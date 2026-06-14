@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Únete a un grupo en Claras</title>
+  <meta name="description" content="Te invitaron a un grupo en Claras para repartir gastos sin enredos." />
+  <meta property="og:title" content="Te invitaron a un grupo en Claras" />
+  <meta property="og:description" content="Toca para entrar al grupo y repartir los gastos." />
+  <meta name="theme-color" content="#C75432" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #C75432;
+      --primary-dark: #A8431F;
+      --cream: #FBF6F1;
+      --surface: #FFFFFF;
+      --ink: #2B2018;
+      --muted: #8A7C70;
+      --soft: #F3E7DD;
+      --wa: #25D366;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: 28px;
+      padding: 40px 28px 32px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 18px 50px rgba(120, 60, 30, 0.14);
+      border: 1px solid var(--soft);
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    .emoji { font-size: 52px; line-height: 1; margin: 8px 0 18px; }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    p.sub { color: var(--muted); font-size: 14.5px; line-height: 1.5; margin-bottom: 24px; }
+    .code-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .code {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 34px;
+      color: var(--primary);
+      letter-spacing: 3px;
+      background: var(--soft);
+      border-radius: 14px;
+      padding: 12px 0;
+      margin-bottom: 26px;
+    }
+    a.btn {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform .08s ease, filter .12s ease;
+    }
+    a.btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(199,84,50,.32); }
+    .btn-primary:hover { filter: brightness(1.05); }
+    .btn-store { background: var(--ink); color: #fff; margin-top: 12px; }
+    .hint { color: var(--muted); font-size: 12.5px; margin-top: 22px; line-height: 1.5; }
+    .footer { color: var(--muted); font-size: 11.5px; margin-top: 18px; opacity: .8; }
+    svg { width: 20px; height: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">Claras</div>
+    <div class="emoji" id="emoji">🤝</div>
+    <h1>Te invitaron a un grupo</h1>
+    <p class="sub">Entra para repartir los gastos sin enredos — en pesos y sin crear cuentas.</p>
+
+    <div id="codeBox" style="display:none">
+      <div class="code-label">Tu código</div>
+      <div class="code" id="code">—</div>
+    </div>
+
+    <a class="btn btn-primary" id="openBtn" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Abrir en Claras
+    </a>
+
+    <a class="btn btn-store" id="storeBtn" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">
+      Descargar Claras
+    </a>
+
+    <p class="hint" id="hint">¿No se abrió? Instala Claras y vuelve a tocar el enlace. Tu código quedará listo.</p>
+    <p class="footer">Claras · cuentas claras, conservan amistades</p>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var code = (params.get('c') || params.get('code') || '').trim().toUpperCase();
+      var deepLink = code ? 'claras://join/' + encodeURIComponent(code) : 'claras://join';
+
+      if (code) {
+        document.getElementById('code').textContent = code;
+        document.getElementById('codeBox').style.display = 'block';
+      }
+
+      var openBtn = document.getElementById('openBtn');
+      openBtn.setAttribute('href', deepLink);
+
+      function tryOpen() { window.location.href = deepLink; }
+      openBtn.addEventListener('click', function (e) { e.preventDefault(); tryOpen(); });
+
+      // Intento automático de abrir la app al cargar (si está instalada,
+      // Android cambia a Claras; si no, esta página queda como respaldo).
+      setTimeout(tryOpen, 600);
+    })();
+  </script>
+</body>
+</html>
