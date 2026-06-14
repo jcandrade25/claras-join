@@ -8,6 +8,8 @@
   <meta property="og:title" content="Te invitaron a un grupo en Claras" />
   <meta property="og:description" content="Toca para entrar al grupo y repartir los gastos." />
   <meta name="theme-color" content="#C75432" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -96,8 +98,15 @@
 </head>
 <body>
   <div class="card">
-    <div class="logo">Claras</div>
-    <div class="emoji" id="emoji">🤝</div>
+    <svg viewBox="0 0 1024 1024" width="104" height="104" style="margin:6px auto 18px; display:block;" aria-label="Claras">
+      <rect width="1024" height="1024" rx="224" fill="#C75432"/>
+      <path d="M 380 232 H 644 a 36 36 0 0 1 36 36 V 672 l -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 V 268 a 36 36 0 0 1 36 -36 Z" fill="#FBF6F1"/>
+      <rect x="392" y="300" width="240" height="30" rx="15" fill="#C75432"/>
+      <rect x="392" y="356" width="168" height="30" rx="15" fill="#F0855B"/>
+      <rect x="503" y="420" width="18" height="216" rx="9" fill="#C75432"/>
+      <path d="M 576 462 C 576 438 548 428 512 428 C 472 428 448 446 448 478 C 448 506 476 518 512 528 C 548 538 576 550 576 580 C 576 610 548 624 512 624 C 474 624 448 612 444 584" fill="none" stroke="#C75432" stroke-width="32" stroke-linecap="round"/>
+    </svg>
+    <div class="logo">Claras<span style="color:var(--primary)">.</span></div>
     <h1>Te invitaron a un grupo</h1>
     <p class="sub">Entra para repartir los gastos sin enredos — en pesos y sin crear cuentas.</p>
 
