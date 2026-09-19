@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Política de Privacidad — Claras</title>
-  <meta name="description" content="Cómo Claras maneja tus datos: local por defecto, sin cuentas, sin publicidad." />
+  <title>Política de Privacidad · Claras</title>
+  <meta name="description" content="Qué datos maneja Claras, para qué, con quién se comparten y cómo borrarlos. Privacy Policy in English included." />
   <meta name="theme-color" content="#C75432" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate" hreflang="es" href="https://jcandrade25.github.io/claras-join/privacidad.html#es" />
+  <link rel="alternate" hreflang="en" href="https://jcandrade25.github.io/claras-join/privacidad.html#en" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -16,6 +18,7 @@
       --cream:#FBF6F1; --surface:#FFFFFF; --soft:#F3E7DD; --line:#EADFD4;
     }
     *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{
       font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
       background:var(--cream); color:var(--ink); line-height:1.65;
@@ -23,18 +26,31 @@
     }
     .wrap{max-width:720px; margin:0 auto}
     .head{display:flex; align-items:center; gap:14px; margin-bottom:8px}
-    .logo{width:52px;height:52px}
-    h1{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:-1px}
-    .sub{color:var(--muted); font-size:14px; margin:2px 0 28px}
-    h2{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; color:var(--primary); margin:30px 0 8px}
-    p,li{font-size:15.5px; color:var(--ink)}
-    ul{margin:8px 0 8px 22px}
+    .logo{width:52px;height:52px;flex:none}
+    h1{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:-1px; line-height:1.2}
+    .sub{color:var(--muted); font-size:14px; margin:2px 0 0}
+    .lang{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 22px}
+    .lang a{font-size:13.5px; font-weight:600; text-decoration:none; color:var(--primary); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 14px}
+    h2{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; color:var(--primary); margin:30px 0 8px; line-height:1.3}
+    h3{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; margin:20px 0 4px}
+    p,li,td,th{font-size:15.5px; color:var(--ink)}
+    p+p{margin-top:8px}
+    ul,ol{margin:8px 0 8px 22px}
     li{margin:5px 0}
     strong{font-weight:600}
     a{color:var(--primary)}
     .card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin:18px 0}
     .tldr{background:var(--soft); border:none}
+    .tldr ul{margin-bottom:0}
+    .table{overflow-x:auto; margin:10px 0; border:1px solid var(--line); border-radius:14px; background:var(--surface)}
+    table{border-collapse:collapse; width:100%; min-width:520px}
+    th,td{text-align:left; vertical-align:top; padding:10px 12px; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.5}
+    th{font-weight:600; background:var(--soft)}
+    tr:last-child td{border-bottom:none}
+    .divider{border:none; border-top:2px solid var(--line); margin:48px 0 8px}
     .foot{color:var(--muted); font-size:13px; margin-top:36px; border-top:1px solid var(--line); padding-top:18px}
+    .foot a{font-weight:600}
+    .links{margin-top:6px}
   </style>
 </head>
 <body>
@@ -50,66 +66,367 @@
       </svg>
       <div>
         <h1>Política de Privacidad</h1>
-        <div class="sub">Claras · vigente desde el 16 de junio de 2026</div>
+        <div class="sub">Claras · actualizada el 18 de septiembre de 2026</div>
       </div>
     </div>
 
+    <nav class="lang" aria-label="Idioma / Language">
+      <a href="#es">Español</a>
+      <a href="#en" lang="en">English</a>
+      <a href="eliminar-cuenta.html">Eliminar cuenta · Delete account</a>
+    </nav>
+
+    <!-- ===================================================== ESPAÑOL -->
+    <section id="es">
     <div class="card tldr">
-      <p><strong>En corto:</strong> Claras funciona <strong>en tu teléfono</strong> y <strong>sin cuentas</strong>. No pedimos correo, teléfono ni nombre real para usarla. No mostramos publicidad, no usamos rastreadores y <strong>no vendemos tus datos</strong>. Solo cuando <em>compartes un grupo "en vivo"</em>, los datos de ese grupo se suben a la nube para sincronizarlos con las personas a las que les diste el código.</p>
+      <p><strong>En corto:</strong></p>
+      <ul>
+        <li>Puedes usar Claras <strong>sin registrarte</strong>. Tus grupos se guardan en tu celular.</li>
+        <li>Solo cuando <strong>compartes un grupo o te unes a uno</strong>, los datos de ese grupo se suben a la nube para que sus miembros lo vean y lo editen.</li>
+        <li>La <strong>cuenta con correo es opcional</strong>: sirve para recuperar tus grupos compartidos en otro celular.</li>
+        <li>El <strong>escaneo de recibos</strong> se hace dentro de tu celular. La foto no se sube a ningún servidor.</li>
+        <li>Los pagos de Claras Pro los procesa <strong>Google Play</strong>. Nunca vemos tu tarjeta.</li>
+        <li>No mostramos publicidad, no usamos rastreadores publicitarios y <strong>no vendemos tus datos</strong>.</li>
+        <li>Puedes borrar tu cuenta y tus datos desde la app (<strong>Ajustes &gt; Eliminar cuenta y datos</strong>) o <a href="eliminar-cuenta.html">pidiéndolo aquí</a>.</li>
+      </ul>
     </div>
 
-    <h2>Quién es responsable</h2>
-    <p>Claras es una aplicación desarrollada por Juan Camilo Andrade (Colombia). Para cualquier duda sobre privacidad puedes escribir a <a href="mailto:jcandrade2590@gmail.com">jcandrade2590@gmail.com</a>.</p>
+    <h2>1. Quién es responsable</h2>
+    <!-- NOTA PARA EL DUEÑO (no se muestra): el Decreto 1377 de 2013 (art. 13) pide que la política
+         de tratamiento identifique al Responsable con nombre, domicilio, dirección, correo electrónico
+         y teléfono. Aquí solo figuran nombre, ciudad y correo. Decide si agregas una dirección física
+         y un teléfono de contacto (pueden ser de un servicio de domicilio o de una línea dedicada).
+         No inventar datos: si los agregas, ponlos igual en la sección 11 y en la versión en inglés. -->
+    <p>Claras (en Google Play: <strong>Claras: dividir gastos</strong>) es una aplicación creada por <strong>Juan Camilo Andrade</strong>, desarrollador independiente en Bogotá, Colombia, quien es el responsable del tratamiento de tus datos. Para cualquier tema de privacidad escribe a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>.</p>
+    <p>Esta política aplica a la app de Android, a la versión web (<a href="https://jcandrade25.github.io/claras/">jcandrade25.github.io/claras</a>) y a estas páginas.</p>
 
-    <h2>Qué información manejamos</h2>
-    <p>Claras no te pide registrarte. La información que existe es la que <strong>tú escribes</strong> para repartir gastos:</p>
+    <h2>2. Qué datos manejamos y para qué</h2>
+
+    <h3>a) Lo que se queda solo en tu celular</h3>
+    <p>Esto no nos llega a nosotros ni a nuestros proveedores:</p>
     <ul>
-      <li><strong>Grupos:</strong> nombre del grupo y un emoji.</li>
-      <li><strong>Personas:</strong> los nombres que tú escribes para identificar a los integrantes del grupo (p. ej. "Ana", "Ben"). Son etiquetas que tú eliges; no se importan de tus contactos.</li>
-      <li><strong>Gastos:</strong> descripción, monto, categoría, fecha, quién pagó y cómo se reparte.</li>
-      <li><strong>Identificador anónimo:</strong> para sincronizar grupos compartidos, el sistema crea una sesión <strong>anónima</strong> (un identificador técnico aleatorio). No está ligado a tu nombre, correo ni teléfono.</li>
+      <li>Los grupos que <strong>no</strong> has compartido, con sus personas y gastos.</li>
+      <li>Tu nombre de perfil (si apareces con ese nombre en un grupo compartido, el nombre sí viaja con el grupo), quién eres tú en cada grupo y tus <strong>Personas</strong> (los vínculos entre grupos).</li>
+      <li>Tus preferencias (tema, idioma) y si tienes Claras Pro activo.</li>
+      <li>Las fotos de recibos que escaneas, mientras Claras las lee (ver la letra f).</li>
     </ul>
-    <p>Claras <strong>no</strong> accede a tu ubicación, contactos, cámara, fotos, micrófono ni a tu identidad de Google.</p>
+    <p>En la versión web, estos datos se guardan en el almacenamiento de tu navegador.</p>
 
-    <h2>Dónde se guarda</h2>
+    <h3>b) Identificador anónimo y sesión (automático)</h3>
+    <p>Cuando abres Claras con internet, nuestro proveedor Supabase crea una <strong>sesión anónima</strong> con un identificador aleatorio. No está ligado a tu nombre, teléfono ni cuenta de Google. Lo usamos para saber de qué grupos compartidos eres miembro, sincronizarlos y proteger el servicio contra abusos.</p>
+    <p>Como parte de esa sesión, el sistema de cuentas de Supabase guarda la <strong>dirección IP</strong> y el <strong>agente de usuario</strong> (un texto técnico que indica, por ejemplo, la app o el navegador y el sistema operativo) desde los que se inició o renovó la sesión, con sus fechas. Supabase también lleva un registro de auditoría de los eventos de la cuenta (por ejemplo inicios de sesión, códigos enviados o eliminación de la cuenta), que puede incluir la IP. Usamos estos datos solo para mantener tu sesión activa y proteger el servicio.</p>
+    <!-- AUDITORÍA DE AUTH: verificado en solo lectura el 2026-09-14: la tabla de auditoría de Auth dentro
+         de la base de datos está vacía (la escritura en la base parece desactivada), así que el registro de
+         auditoría vive en los logs del proveedor, con retención limitada según el plan. Si se activa
+         "escribir auditoría en la base de datos", esos registros quedan sin fecha de borrado: actualizar la
+         sección 5 aquí, en inglés y en eliminar-cuenta.html. -->
+    <!-- CAMBIO DE IDENTIFICADOR: texto según las reglas de sesión del código al 2026-09-15, que viven en
+         lib/core/sesion_nube.dart (la clase SesionNube; Sync.asegurarSesion en lib/core/sync.dart solo delega
+         en ella): la app conserva la sesión guardada entre arranques y solo crea un anónimo nuevo si no hay
+         sesión guardada o si el servidor prueba que está muerta (usuario borrado, sesión revocada, sesión
+         terminada o refresh token inválido); un fallo de red no la cambia. Si esa regla cambia, actualizar este
+         párrafo, las secciones 5 y 6, el inglés y eliminar-cuenta.html (#anterior y #anonima). -->
+    <!-- COPIA DE SEGURIDAD DE ANDROID: el manifiesto no declara android:allowBackup, así que queda en su valor
+         por defecto (true) y no hay reglas de exclusión en android/app/src/main/res/xml. La sesión (Supabase
+         Auth) y los grupos se guardan en shared_preferences, que la copia automática de Android sí incluye.
+         Si algún día se pone allowBackup="false" o se excluyen esas claves, actualizar este párrafo, la
+         sección 5, el inglés y eliminar-cuenta.html (#anterior, la tabla y #anonima). -->
+    <p>Ese identificador queda guardado en tu celular y Claras lo sigue usando cada vez que abres la app. Estar sin internet o tener un fallo de conexión no lo cambia. Claras solo crea un identificador anónimo <strong>nuevo</strong> en estos casos:</p>
     <ul>
-      <li><strong>Por defecto, en tu dispositivo.</strong> Mientras no compartas un grupo, todo se queda guardado localmente en tu teléfono.</li>
-      <li><strong>En la nube, solo si compartes un grupo.</strong> Al tocar "Compartir grupo", los datos de ese grupo (nombre, integrantes y gastos) se suben a nuestra base de datos para poder sincronizarlos en tiempo real con quienes tengan el código. El resto de tus grupos siguen siendo solo locales.</li>
+      <li>Si borras los datos de la app (en la versión web, si borras los datos del sitio en tu navegador), o si la reinstalas y Android no restaura sus datos (ver el párrafo siguiente).</li>
+      <li>Si el servidor confirma que la sesión ya no sirve: porque la cuenta se eliminó, porque la sesión fue revocada o porque rechazó la renovación de la sesión por no ser válida.</li>
+      <li>Si inicias sesión con tu correo en ese celular (en <strong>Ajustes &gt; Cuenta</strong>, con <strong>Ya tengo cuenta</strong>): Claras pasa a usar el identificador de tu cuenta con correo.</li>
+      <li>Después de eliminar tu cuenta (ver la sección 6).</li>
     </ul>
+    <p><strong>Copia de seguridad de Android.</strong> Si tienes activada la copia de seguridad de Google en tu celular Android, Android puede guardar una copia de los datos de Claras (tus grupos, personas, tu nombre, tus preferencias y la sesión con su identificador) en tu cuenta de Google y restaurarla al reinstalar la app o al pasar a un celular nuevo. Por eso reinstalar <strong>no</strong> siempre crea un identificador nuevo ni borra los grupos de ese celular: si la sesión restaurada sirve, Claras sigue con el mismo identificador; si el servidor ya no la acepta, Claras crea uno nuevo y los grupos restaurados se quedan en el celular. Esa copia la hace y la guarda Google en tu cuenta, según tu configuración de copia de seguridad: nosotros no la vemos ni podemos borrarla (ver la sección 5).</p>
+    <p>Cuando cambia, el identificador anterior deja de estar en tu celular, pero sigue en la nube con sus sesiones y, si los tenía, con sus grupos compartidos y sus membresías, y la app ya no lo puede borrar (ver las secciones 5 y 6). Si ese identificador anterior tenía un correo vinculado y no se eliminó, no lo pierdes: puedes volver a entrar con <strong>Ya tengo cuenta</strong>, en <strong>Ajustes &gt; Cuenta</strong> (esa opción aparece mientras ese celular no tenga un correo vinculado).</p>
 
-    <h2>Para qué los usamos</h2>
-    <p>Únicamente para que la app funcione: calcular los balances, repartir los gastos y, en los grupos compartidos, mantenerlos sincronizados entre los teléfonos de los integrantes. No los usamos para perfilarte ni con fines publicitarios.</p>
-
-    <h2>Con quién se comparten</h2>
+    <h3>c) Grupos compartidos</h3>
+    <p>Cuando tocas <strong>Compartir grupo</strong>, o cuando te unes a un grupo con un enlace o código, se guardan en la nube los datos de <strong>ese grupo</strong>:</p>
     <ul>
-      <li><strong>Con los integrantes del grupo:</strong> cuando compartes un grupo, las personas que tengan el código pueden ver los integrantes y los gastos de ese grupo y agregar los suyos. Esa es justamente la función.</li>
-      <li><strong>Proveedores que nos prestan servicio (encargados):</strong>
-        <ul>
-          <li><strong>Supabase</strong> aloja la base de datos y el servicio de sincronización en tiempo real de los grupos compartidos (servidores en Estados Unidos). Esto implica una transferencia internacional de esos datos.</li>
-          <li><strong>Google Fonts</strong> puede servir las tipografías de la app desde los servidores de Google.</li>
-        </ul>
-      </li>
+      <li><strong>Grupo:</strong> nombre, emoji, moneda, código de invitación, fecha de creación, el identificador de quien lo creó y los identificadores de sus miembros.</li>
+      <li><strong>Participantes:</strong> los nombres que escriben los miembros para identificar a cada persona (por ejemplo "Ana") y si alguien es invitada de otra persona. Son etiquetas: no se importan de tus contactos ni se vinculan a ninguna cuenta.</li>
+      <li><strong>Gastos y pagos:</strong> descripción, monto, fecha, categoría, tipo (gasto o pago), quién pagó y cuánto, cómo se divide, ítems y propina o extra, y fechas de actualización.</li>
     </ul>
-    <p>No compartimos tus datos con anunciantes ni con intermediarios de datos, y <strong>nunca los vendemos</strong>.</p>
+    <p>Los usamos para mostrarle el grupo a sus miembros, sincronizarlo en tiempo real y calcular balances y pagos.</p>
 
-    <h2>Seguridad</h2>
-    <p>Los datos de los grupos compartidos viajan cifrados (HTTPS) y el acceso está restringido por reglas de seguridad para que solo los miembros de un grupo puedan leer o modificar ese grupo. Ningún sistema es 100% infalible, pero trabajamos para protegerlos.</p>
+    <h3>d) Cuenta con correo (opcional)</h3>
+    <p>Si eliges <strong>Respaldar grupos compartidos</strong> o <strong>Ya tengo cuenta</strong> (las dos en <strong>Ajustes &gt; Cuenta</strong>), guardamos tu <strong>correo electrónico</strong>, si ya lo confirmaste, el idioma en que quieres recibir los correos (español o inglés) y las fechas de inicio de sesión. Lo usamos para enviarte un código de 6 dígitos, respaldar tus grupos compartidos y recuperarlos en otro celular. No usamos tu correo para publicidad ni boletines.</p>
 
-    <h2>Cuánto tiempo se conservan y cómo borrarlos</h2>
+    <h3>e) Compras de Claras Pro</h3>
+    <p>Claras Pro es una compra única dentro de la app de Android. <strong>Google Play procesa el pago</strong> bajo sus propias condiciones y política de privacidad; nosotros no recibimos los datos de tu tarjeta ni de tu medio de pago. En tu celular, la app recibe de Google Play la confirmación de la compra para activar Pro; no la enviamos a nuestros servidores. Google nos entrega reportes de ventas (por ejemplo número de pedido, producto, fecha, precio y país) que usamos para contabilidad e impuestos.</p>
+
+    <h3>f) Escaneo de recibos (Pro)</h3>
+    <p>Al escanear eliges <strong>Tomar foto</strong> (se abre la cámara del sistema) o <strong>Elegir de la galería</strong> (se abre el selector de fotos del sistema). Claras no pide permiso para usar tu cámara ni para ver toda tu galería: solo recibe la foto que tú eliges. El texto se lee <strong>dentro de tu celular</strong> con Google ML Kit. La foto no se sube a ningún servidor ni se guarda en tus grupos; solo queda en el gasto lo que tú confirmas (descripción, monto e ítems).</p>
+    <!-- FOTOS EN CACHÉ: texto según el código al 2026-09-14: image_picker copia la foto en la caché privada
+         de la app y lib/core/ocr_captura.dart la borra en un finally apenas termina el OCR, bien o mal (con
+         lib/core/ocr_limpieza.dart, que también borra la copia intermedia de la galería). Solo queda si el
+         proceso muere antes (por ejemplo, Android cierra la app mientras la cámara está abierta; Claras no usa
+         retrieveLostData). Si eso cambia, actualizar este párrafo, el de inglés y eliminar-cuenta.html. -->
+    <p>Para leerla, Android le entrega a Claras una <strong>copia temporal de la foto</strong> en la memoria caché privada de la app (no en tu galería, y otras apps no pueden verla). Claras <strong>borra esa copia apenas termina la lectura</strong>, haya podido leer el recibo o no. Solo si la app se cierra de forma inesperada antes de terminar (por ejemplo, si Android la cierra mientras usas la cámara), la copia puede quedar en la caché hasta que Android libere espacio, borres la caché o los datos de Claras en los ajustes del celular, o desinstales la app. Si elegiste una foto de tu galería, la original sigue en tu galería: Claras no la toca.</p>
+    <p>Google ML Kit puede enviar a Google datos técnicos de esa función (fabricante y modelo del dispositivo, versión de Android, nombre y versión de la app, un identificador por instalación, tiempos de respuesta, configuración de la imagen, tipo de evento y códigos de error), que Google usa para diagnóstico y estadísticas de uso de ML Kit. No envía la foto ni el texto del recibo. Lo hace la librería de Google por su cuenta: nosotros no recibimos, no vemos ni usamos esos datos.</p>
+
+    <h3>g) Protección contra abusos</h3>
+    <p>Cuando alguien intenta unirse con un código, registramos su dirección IP (o, si no está disponible, su identificador anónimo) y la hora, para limitar los intentos de adivinar códigos. Cada nuevo intento de unión, de cualquier persona, borra los registros que tienen más de 10 minutos. Por eso un registro dura al menos 10 minutos y, si nadie más intenta unirse durante un tiempo, puede quedar guardado hasta el siguiente intento.</p>
+
+    <h3>h) Datos técnicos de conexión</h3>
+    <p>Como cualquier servicio en internet, al conectarte con nuestros proveedores se transmiten tu dirección IP y datos técnicos de la conexión, que ellos pueden guardar en registros de seguridad y operación por un tiempo limitado. No usamos tu IP para saber dónde estás.</p>
+
+    <h3>Lo que no recopilamos</h3>
+    <p>Claras no accede a tu ubicación, contactos, micrófono, identificador de publicidad ni historial de navegación. No mostramos publicidad y no integramos herramientas de analítica ni de publicidad: nosotros no medimos cómo usas la app. La única excepción son los datos técnicos que la librería Google ML Kit envía a Google cuando escaneas un recibo (letra f). Aunque no los recibimos, Google Play cuenta como recopilado por la app lo que envía cualquier librería incluida en ella, y su definición del propósito "Estadísticas" (Analytics) incluye el diagnóstico y el rendimiento. Por eso, en la sección de Seguridad de los datos de Google Play, Claras declara "Diagnóstico" con ese propósito y lo marca como opcional, porque solo ocurre si escaneas un recibo. El identificador por instalación que envía ML Kit va en "IDs de dispositivo u otros", que Claras declara como obligatorio porque ese tipo también cubre tu identificador anónimo y la dirección IP y el agente de usuario que acompañan tu sesión cada vez que abres la app con internet (letra b).</p>
+
+    <h2>3. Con quién se comparten</h2>
     <ul>
-      <li><strong>Datos locales:</strong> se eliminan cuando borras el grupo dentro de la app o desinstalas Claras.</li>
-      <li><strong>Datos en la nube (grupos compartidos):</strong> al eliminar un grupo compartido, se borra de la nube. Si quieres que eliminemos cualquier dato asociado a tu sesión anónima, escríbenos a <a href="mailto:jcandrade2590@gmail.com">jcandrade2590@gmail.com</a> y lo gestionamos.</li>
+      <li><strong>Miembros del grupo:</strong> quien tenga el enlace o el código de un grupo compartido puede unirse, ver sus participantes y gastos y editarlos. Esa es la función. Trata el enlace y el código como una llave y compártelos solo con tu gente.</li>
+      <li><strong>Proveedores que nos prestan servicio</strong> (procesan datos por encargo nuestro o bajo sus propias condiciones, como se indica):</li>
+    </ul>
+    <div class="table">
+      <table>
+        <thead><tr><th>Proveedor</th><th>Para qué</th><th>Datos</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Supabase</strong> (servidores en EE. UU.)</td><td>Base de datos, sincronización en tiempo real y cuentas</td><td>Identificador anónimo, IP y agente de usuario de las sesiones, grupos compartidos, correo (si lo vinculas), registros técnicos y de auditoría</td></tr>
+          <tr><td><strong>Resend</strong> (EE. UU.)</td><td>Enviar los correos con el código de acceso desde clarasapp.com</td><td>Correo, código, idioma y registro del envío</td></tr>
+          <tr><td><strong>Google Play</strong></td><td>Cobrar Claras Pro (Google Play Billing)</td><td>Lo gestiona Google con tu cuenta de Google; nosotros solo vemos reportes de ventas</td></tr>
+          <tr><td><strong>Google ML Kit</strong></td><td>Leer recibos dentro del celular</td><td>Datos técnicos de diagnóstico y uso (no la foto)</td></tr>
+          <tr><td><strong>Google Fonts</strong></td><td>Descargar las tipografías de la app y de estas páginas</td><td>Dirección IP y datos técnicos del navegador o dispositivo</td></tr>
+          <tr><td><strong>GitHub Pages</strong> (GitHub)</td><td>Alojar estas páginas, la página de invitaciones y la versión web</td><td>Dirección IP y datos técnicos de la visita</td></tr>
+          <tr><td><strong>WhatsApp</strong></td><td>Solo si eliges compartir una invitación por WhatsApp</td><td>El mensaje con el nombre del grupo, el enlace y el código, que envías tú</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li><strong>Autoridades:</strong> solo si la ley nos obliga.</li>
+    </ul>
+    <p>No compartimos tus datos con anunciantes ni intermediarios de datos, y <strong>nunca los vendemos</strong>.</p>
+
+    <h2>4. Transferencia internacional</h2>
+    <p>Los servidores de Supabase y Resend están en Estados Unidos. Al compartir un grupo, unirte a uno o vincular tu correo, tus datos se transfieren y se guardan allí, con proveedores que aplican medidas de seguridad adecuadas.</p>
+
+    <h2>5. Cuánto tiempo los conservamos</h2>
+    <ul>
+      <li><strong>Datos en tu celular:</strong> hasta que los borras en la app, eliminas tu cuenta, borras los datos de la app o la desinstalas. Si tienes activada la copia de seguridad de Google en Android, puede quedar además una copia de esos datos en tu cuenta de Google, que Android restaura al reinstalar la app o al pasar a un celular nuevo (ver 2 b). Esa copia la gestiona Google, no nosotros: se reemplaza con la siguiente copia del celular y depende de tu configuración de copia de seguridad.</li>
+      <li><strong>Grupos compartidos:</strong> mientras el grupo exista. Si quien lo creó lo elimina, o elimina su cuenta, el grupo se borra de la nube para todos. Los gastos o personas que se eliminan dentro de un grupo compartido quedan ocultos para todos y se borran por completo cuando se borra el grupo.</li>
+      <li><strong>Tu membresía en un grupo:</strong> hasta que sales del grupo o eliminas tu cuenta.</li>
+      <li><strong>Identificador que usa Claras hoy en tu celular, sus sesiones y la cuenta con correo:</strong> hasta que eliminas tu cuenta; al eliminarla se borran también sus sesiones, con su IP y agente de usuario. Desinstalar la app <strong>no</strong> borra lo que está en la nube. Si el identificador cambia (ver 2 b), el anterior pasa al punto siguiente.</li>
+      <!-- IDENTIFICADORES ANÓNIMOS ABANDONADOS: al 2026-09-14 no hay limpieza automática de usuarios
+           anónimos inactivos. Si el dueño agrega una (por ejemplo, borrar anónimos sin grupos ni actividad
+           en N días), cambiar este punto por "hasta N días sin uso", aquí, en inglés y en eliminar-cuenta.html. -->
+      <li><strong>Identificadores anónimos anteriores</strong> (los que Claras dejó de usar en los casos de 2 b, por ejemplo al borrar los datos de la app sin correo vinculado): siguen en la nube con sus sesiones, sus grupos y sus membresías, porque la app ya no puede borrarlos. Hoy no se borran automáticamente, así que no tienen un plazo fijo. Por correo solo podemos borrar los grupos creados con ellos en algunos casos, y un identificador anterior que no creó grupos no lo podemos encontrar para borrarlo (ver la sección 6).</li>
+      <li><strong>Registro de intentos de unión:</strong> al menos 10 minutos, hasta el siguiente intento de unión de cualquier persona (ver 2 g).</li>
+      <li><strong>Correos con códigos:</strong> los códigos vencen al poco tiempo; Resend conserva el registro del envío hasta 30 días.</li>
+      <li><strong>Registros técnicos y de auditoría de los proveedores:</strong> por el tiempo limitado que fija cada proveedor.</li>
+      <!-- COPIAS DE SEGURIDAD (verificado el 2026-09-14): el proyecto de Supabase está en el plan gratuito.
+           Según la documentación de Supabase, los proyectos gratuitos no tienen copias diarias accesibles
+           para nosotros, aunque hoy Supabase guarda hasta 7 copias diarias internas; Pro guarda 7 días,
+           Team 14 y Enterprise hasta 30 (con PITR cambia). Por eso "si existen, hasta 7 días".
+           Este texto asume que YA se eliminó la copia manual de agosto de 2026 que seguía en la base de datos
+           el 2026-09-14: NO publicar esta página antes de eliminarla. Si cambia el plan, se activa PITR o se
+           hace otra copia manual, actualizar aquí, en inglés y en eliminar-cuenta.html. -->
+      <li><strong>Copias de seguridad:</strong> no guardamos copias propias de la base de datos. Las copias de seguridad del proveedor (Supabase), si existen, pueden conservar datos borrados hasta 7 días, hasta que se renuevan.</li>
+      <li><strong>Registros de compras:</strong> los que exijan las normas contables y tributarias.</li>
     </ul>
 
-    <h2>Menores de edad</h2>
-    <p>Claras no está dirigida a menores de 13 años y no recopilamos conscientemente datos de niños.</p>
+    <h2>6. Cómo borrar tus datos</h2>
+    <ul>
+      <li><strong>Toda tu cuenta:</strong> en la app, ve a <strong>Ajustes &gt; Eliminar cuenta y datos</strong>. Se borran tu cuenta actual (anónima o con correo) y sus sesiones, los grupos que creaste con esa cuenta (para todos sus miembros), tus membresías en grupos de otras personas y tus grupos, personas y nombre en ese celular. Si sigues usando Claras con internet, la app crea después un identificador anónimo nuevo, con su propia sesión, sin relación con la cuenta eliminada. Detalles en <a href="eliminar-cuenta.html">Eliminar cuenta</a>.</li>
+      <li><strong>Grupos que compartiste con un identificador anterior:</strong> la app solo puede borrar lo que pertenece a tu cuenta actual. Si compartiste grupos con un identificador anónimo que Claras ya no usa en tu celular (ver 2 b), no se pueden borrar desde la app, aunque elimines tu cuenta actual. Puedes pedirnos borrarlos por correo, pero un identificador anónimo no tiene tu nombre ni tu correo y el código de un grupo lo tienen todos sus miembros, así que no podemos comprobar quién creó un grupo. Por eso solo lo borramos en algunos casos (ver <a href="eliminar-cuenta.html#anonima">Eliminar cuenta</a>).</li>
+      <li><strong>Un grupo:</strong> en el menú del grupo, <strong>Eliminar o salir</strong>. Si lo creaste tú, <strong>Eliminar para todos</strong> lo borra de la nube para todos. Si te uniste al grupo de otra persona, <strong>Salir del grupo</strong> quita tu membresía.</li>
+      <li><strong>Sin la app:</strong> usa la página <a href="eliminar-cuenta.html">Eliminar cuenta</a> o escribe a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a> desde el correo de tu cuenta.</li>
+    </ul>
 
-    <h2>Cambios a esta política</h2>
-    <p>Si actualizamos esta política, cambiaremos la fecha de "vigente desde" en la parte superior y, cuando el cambio sea importante, lo informaremos dentro de la app.</p>
+    <h2>7. Tus derechos</h2>
+    <p>Según la ley colombiana de protección de datos (Ley 1581 de 2012) puedes conocer, actualizar, rectificar y suprimir tus datos, revocar tu autorización, pedir prueba de ella, saber cómo se usan tus datos y presentar quejas ante la Superintendencia de Industria y Comercio (SIC), después de haber hecho tu solicitud ante nosotros. Si vives en otro país, puedes tener derechos similares según tu ley local, y también los atendemos.</p>
+    <p>Escríbenos a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>. Plazos, en días hábiles contados desde el día siguiente a que recibimos tu solicitud:</p>
+    <ul>
+      <li><strong>Consultas</strong> (qué datos tenemos y cómo los usamos): respuesta en máximo 10 días hábiles. Si no alcanzamos, te avisamos antes, con el motivo, y respondemos en máximo 5 días hábiles más.</li>
+      <li><strong>Reclamos</strong> (corregir, actualizar o borrar datos, incluida la eliminación de la cuenta): respuesta en máximo 15 días hábiles. Si falta información para identificar tu cuenta, te la pedimos en los 5 días siguientes y el plazo corre desde que nos respondes; si pasan 2 meses sin respuesta, entendemos que desististe del reclamo. Si no alcanzamos, te avisamos antes del vencimiento, con el motivo, y respondemos en máximo 8 días hábiles más. Por correo, para una cuenta con correo, borramos <strong>en la nube</strong> lo mismo que borra la opción de la app (los datos que están solo en tu celular los borras tú, desinstalando la app o borrando sus datos); para cuentas anónimas e identificadores anteriores hay límites (ver <a href="eliminar-cuenta.html#correo">Eliminar cuenta</a>).</li>
+    </ul>
+
+    <h2>8. Seguridad</h2>
+    <ul>
+      <li>Toda la comunicación con nuestros proveedores viaja <strong>cifrada</strong> (HTTPS/TLS).</li>
+      <li>Reglas de acceso en la base de datos permiten que solo los miembros de un grupo lean o modifiquen ese grupo.</li>
+      <li>Los códigos de invitación nuevos tienen 8 caracteres (los de 6 caracteres creados antes siguen funcionando) y hay un límite de intentos para evitar que se adivinen.</li>
+      <li>Los datos en tu celular se guardan en el espacio privado de la app; protege tu celular con bloqueo de pantalla.</li>
+    </ul>
+    <p>Ningún sistema es 100% infalible, pero trabajamos para proteger tus datos.</p>
+
+    <h2>9. Menores de edad</h2>
+    <p>Claras está pensada para personas <strong>mayores de 18 años</strong> y no está dirigida a niños, niñas ni adolescentes. Si crees que un menor nos dio datos, escríbenos y los borramos.</p>
+
+    <h2>10. Vigencia y cambios a esta política</h2>
+    <!-- VIGENCIA (Decreto 1377 de 2013, art. 13, num. 6: fecha de entrada en vigencia de la política y período de
+         vigencia de la base de datos). La fecha de abajo es la de publicación (2026-09-18). Si estas
+         páginas se publican otro día, poner la fecha real aquí, en el encabezado, en inglés y en la fecha de
+         eliminar-cuenta.html. -->
+    <p>Esta versión de la política rige desde el <strong>18 de septiembre de 2026</strong>, la fecha en que se publica, y desde entonces reemplaza la versión de junio de 2026. Sigue vigente hasta que publiquemos una nueva versión en esta página.</p>
+    <p><strong>Vigencia de las bases de datos:</strong> las bases de datos de Claras (en Supabase: grupos compartidos, identificadores anónimos, sesiones, cuentas con correo y registro de intentos de unión) estarán vigentes mientras Claras preste su servicio. Dentro de ese periodo, cada dato se conserva solo por el tiempo indicado en la sección 5. Si Claras deja de prestar el servicio, suprimiremos esas bases de datos. Los registros de compras de Claras Pro se conservan aparte, por el tiempo que exijan las normas contables y tributarias.</p>
+    <p>Si más adelante actualizamos esta política, cambiaremos las fechas de arriba. Si el cambio es importante, lo avisaremos dentro de la app o en la ficha de Google Play antes de que aplique.</p>
+
+    <h2>11. Contacto</h2>
+    <p>Juan Camilo Andrade · Bogotá, Colombia · <a href="mailto:support@clarasapp.com">support@clarasapp.com</a></p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===================================================== ENGLISH -->
+    <section id="en" lang="en">
+    <h1 style="margin-top:24px">Privacy Policy</h1>
+    <div class="sub">Claras · last updated September 18, 2026</div>
+
+    <div class="card tldr">
+      <p><strong>In short:</strong></p>
+      <ul>
+        <li>You can use Claras <strong>without signing up</strong>. Your groups are stored on your phone.</li>
+        <li>Only when you <strong>share a group or join one</strong> is that group's data uploaded to the cloud, so its members can see and edit it.</li>
+        <li>The <strong>email account is optional</strong>: it lets you recover your shared groups on another phone.</li>
+        <li><strong>Receipt scanning</strong> happens on your phone. The photo is not uploaded to any server.</li>
+        <li>Claras Pro payments are processed by <strong>Google Play</strong>. We never see your card.</li>
+        <li>No ads, no advertising trackers, and <strong>we don't sell your data</strong>.</li>
+        <li>You can delete your account and data in the app (<strong>Settings &gt; Delete account and data</strong>) or <a href="eliminar-cuenta.html#en">request it here</a>.</li>
+      </ul>
+    </div>
+
+    <h2>1. Who is responsible</h2>
+    <p>Claras (on Google Play: <strong>Claras: Split Expenses</strong>) is built by <strong>Juan Camilo Andrade</strong>, an independent developer based in Bogotá, Colombia, who is the controller of your data. For any privacy matter, email <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>.</p>
+    <p>This policy covers the Android app, the web version (<a href="https://jcandrade25.github.io/claras/">jcandrade25.github.io/claras</a>) and these pages.</p>
+
+    <h2>2. What data we handle and why</h2>
+
+    <h3>a) What stays on your phone only</h3>
+    <p>None of this reaches us or our providers:</p>
+    <ul>
+      <li>Groups you have <strong>not</strong> shared, with their people and expenses.</li>
+      <li>Your profile name (if you appear under that name in a shared group, the name does travel with the group), which person you are in each group, and your <strong>People</strong> (links across groups).</li>
+      <li>Your preferences (theme, language) and whether Claras Pro is active.</li>
+      <li>The receipt photos you scan, while Claras reads them (see item f).</li>
+    </ul>
+    <p>In the web version, this data is kept in your browser's storage.</p>
+
+    <h3>b) Anonymous identifier and session (automatic)</h3>
+    <p>When you open Claras with an internet connection, our provider Supabase creates an <strong>anonymous session</strong> with a random identifier. It is not linked to your name, phone number or Google account. We use it to know which shared groups you belong to, to sync them, and to protect the service from abuse.</p>
+    <p>As part of that session, Supabase's account system stores the <strong>IP address</strong> and <strong>user agent</strong> (a technical string that shows, for example, the app or browser and the operating system) from which the session was started or refreshed, with their dates. Supabase also keeps an audit log of account events (such as sign-ins, codes sent or account deletion), which may include the IP address. We use this data only to keep you signed in and to protect the service.</p>
+    <p>That identifier is saved on your phone and Claras keeps using it every time you open the app. Being offline or having a connection error doesn't change it. Claras only creates a <strong>new</strong> anonymous identifier in these cases:</p>
+    <ul>
+      <li>If you clear the app's data (in the web version, if you clear the site's data in your browser), or if you reinstall it and Android doesn't restore its data (see the next paragraph).</li>
+      <li>If the server confirms the session is no longer valid: because the account was deleted, because the session was revoked, or because the server rejected the session renewal as invalid.</li>
+      <li>If you sign in with your email on that phone (under <strong>Settings &gt; Account</strong>, with <strong>I already have an account</strong>): Claras switches to your email account's identifier.</li>
+      <li>After you delete your account (see section 6).</li>
+    </ul>
+    <p><strong>Android backup.</strong> If Google backup is on for your Android phone, Android can keep a copy of Claras' data (your groups, people, your name, your preferences and the session with its identifier) in your Google account and restore it when you reinstall the app or move to a new phone. So reinstalling does <strong>not</strong> always create a new identifier or erase the groups on that phone: if the restored session still works, Claras keeps the same identifier; if the server no longer accepts it, Claras creates a new one and the restored groups stay on the phone. That copy is made and kept by Google in your account, according to your backup settings: we can't see it or delete it (see section 5).</p>
+    <p>When it changes, the previous identifier is no longer on your phone, but it stays in the cloud with its sessions and, if it had any, its shared groups and memberships, and the app can no longer delete it (see sections 5 and 6). If that previous identifier had a linked email and wasn't deleted, you don't lose it: you can sign back in with <strong>I already have an account</strong>, under <strong>Settings &gt; Account</strong> (that option is there as long as that phone has no linked email).</p>
+
+    <h3>c) Shared groups</h3>
+    <p>When you tap <strong>Share group</strong>, or join a group with a link or code, the data of <strong>that group</strong> is stored in the cloud:</p>
+    <ul>
+      <li><strong>Group:</strong> name, emoji, currency, invite code, creation date, the identifier of its creator and the identifiers of its members.</li>
+      <li><strong>Participants:</strong> the names members type to identify each person (for example "Ana") and whether someone is another person's guest. They are labels: they are not imported from your contacts or linked to any account.</li>
+      <li><strong>Expenses and payments:</strong> description, amount, date, category, type (expense or payment), who paid and how much, how it is split, items and tip or extra, and update times.</li>
+    </ul>
+    <p>We use this to show the group to its members, sync it in real time and calculate balances and payments.</p>
+
+    <h3>d) Email account (optional)</h3>
+    <p>If you choose <strong>Back up shared groups</strong> or <strong>I already have an account</strong> (both under <strong>Settings &gt; Account</strong>), we store your <strong>email address</strong>, whether it is confirmed, the language you want emails in (Spanish or English) and sign-in times. We use it to send you a 6-digit code, back up your shared groups and recover them on another phone. We don't use your email for advertising or newsletters.</p>
+
+    <h3>e) Claras Pro purchases</h3>
+    <p>Claras Pro is a one-time in-app purchase on Android. <strong>Google Play processes the payment</strong> under its own terms and privacy policy; we never receive your card or payment details. On your phone, the app receives the purchase confirmation from Google Play to unlock Pro; we don't send it to our servers. Google gives us sales reports (such as order number, product, date, price and country), which we use for accounting and taxes.</p>
+
+    <h3>f) Receipt scanning (Pro)</h3>
+    <p>To scan, you choose <strong>Take a photo</strong> (the system camera opens) or <strong>Choose from gallery</strong> (the system photo picker opens). Claras does not ask for permission to use your camera or to see your whole gallery: it only receives the photo you pick. The text is read <strong>on your phone</strong> with Google ML Kit. The photo is not uploaded to any server or saved in your groups; only what you confirm (description, amount and items) is kept in the expense.</p>
+    <p>To read it, Android hands Claras a <strong>temporary copy of the photo</strong> in the app's private cache (not in your gallery, and other apps can't see it). Claras <strong>deletes that copy as soon as reading finishes</strong>, whether or not it could read the receipt. Only if the app closes unexpectedly before it finishes (for example, if Android closes it while you are using the camera) may the copy stay in the cache until Android frees up space, you clear Claras' cache or data in your phone settings, or you uninstall the app. If you picked a photo from your gallery, the original stays in your gallery: Claras doesn't touch it.</p>
+    <p>Google ML Kit may send Google technical data about that feature (device manufacturer and model, Android version, app name and version, a per-installation identifier, response times, image settings, event type and error codes), which Google uses for ML Kit diagnostics and usage analytics. It does not send the photo or the receipt text. Google's library does this on its own: we don't receive, see or use that data.</p>
+
+    <h3>g) Abuse protection</h3>
+    <p>When someone tries to join with a code, we record their IP address (or, if unavailable, their anonymous identifier) and the time, to limit attempts to guess codes. Every new join attempt, by anyone, deletes the records that are older than 10 minutes. So a record lasts at least 10 minutes and, if nobody else tries to join for a while, it may stay until the next attempt.</p>
+
+    <h3>h) Technical connection data</h3>
+    <p>Like any internet service, connecting to our providers transmits your IP address and technical connection data, which they may keep in security and operations logs for a limited time. We don't use your IP address to locate you.</p>
+
+    <h3>What we don't collect</h3>
+    <p>Claras does not access your location, contacts, microphone, advertising ID or browsing history. We don't show ads and we don't integrate analytics or advertising tools: we don't measure how you use the app. The only exception is the technical data that the Google ML Kit library sends to Google when you scan a receipt (item f). Even though we don't receive it, Google Play counts anything a library inside the app sends as collected by the app, and its definition of the "Analytics" purpose includes diagnostics and performance. That is why, in Google Play's Data safety section, Claras declares "Diagnostics" with that purpose and marks it as optional, because it only happens if you scan a receipt. The per-installation identifier ML Kit sends goes under "Device or other IDs", which Claras declares as required because that type also covers your anonymous identifier and the IP address and user agent that come with your session every time you open the app online (item b).</p>
+
+    <h2>3. Who we share it with</h2>
+    <ul>
+      <li><strong>Group members:</strong> anyone with a shared group's link or code can join, see its participants and expenses, and edit them. That is the feature. Treat the link and code like a key and share them only with your people.</li>
+      <li><strong>Service providers</strong> (they process data on our behalf or under their own terms, as noted):</li>
+    </ul>
+    <div class="table">
+      <table>
+        <thead><tr><th>Provider</th><th>Purpose</th><th>Data</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Supabase</strong> (servers in the US)</td><td>Database, real-time sync and accounts</td><td>Anonymous identifier, session IP address and user agent, shared groups, email (if you link one), technical and audit logs</td></tr>
+          <tr><td><strong>Resend</strong> (US)</td><td>Sending the sign-in code emails from clarasapp.com</td><td>Email address, code, language and delivery log</td></tr>
+          <tr><td><strong>Google Play</strong></td><td>Charging for Claras Pro (Google Play Billing)</td><td>Handled by Google with your Google account; we only see sales reports</td></tr>
+          <tr><td><strong>Google ML Kit</strong></td><td>Reading receipts on your phone</td><td>Technical diagnostics and usage data (not the photo)</td></tr>
+          <tr><td><strong>Google Fonts</strong></td><td>Downloading the fonts used by the app and these pages</td><td>IP address and technical browser or device data</td></tr>
+          <tr><td><strong>GitHub Pages</strong> (GitHub)</td><td>Hosting these pages, the invite page and the web version</td><td>IP address and technical visit data</td></tr>
+          <tr><td><strong>WhatsApp</strong></td><td>Only if you choose to share an invite on WhatsApp</td><td>The message with the group name, link and code, sent by you</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li><strong>Authorities:</strong> only when the law requires it.</li>
+    </ul>
+    <p>We don't share your data with advertisers or data brokers, and <strong>we never sell it</strong>.</p>
+
+    <h2>4. International transfers</h2>
+    <p>Supabase and Resend servers are in the United States. When you share a group, join one or link your email, your data is transferred to and stored there, with providers that apply appropriate security measures.</p>
+
+    <h2>5. How long we keep it</h2>
+    <ul>
+      <li><strong>Data on your phone:</strong> until you delete it in the app, delete your account, clear the app's data or uninstall it. If Google backup is on for your Android phone, a copy of that data may also sit in your Google account, and Android restores it when you reinstall the app or move to a new phone (see 2 b). That copy is managed by Google, not by us: it is replaced by the phone's next backup and depends on your backup settings.</li>
+      <li><strong>Shared groups:</strong> while the group exists. If its creator deletes it, or deletes their account, the group is deleted from the cloud for everyone. Expenses or people deleted inside a shared group are hidden for everyone and fully erased when the group is deleted.</li>
+      <li><strong>Your membership in a group:</strong> until you leave the group or delete your account.</li>
+      <li><strong>The identifier Claras uses today on your phone, its sessions and the email account:</strong> until you delete your account; deleting it also deletes its sessions, with their IP address and user agent. Uninstalling the app does <strong>not</strong> delete what is in the cloud. If the identifier changes (see 2 b), the previous one falls under the next item.</li>
+      <li><strong>Earlier anonymous identifiers</strong> (the ones Claras stopped using in the cases in 2 b, for example when you cleared the app's data without a linked email): they stay in the cloud with their sessions, groups and memberships, because the app can no longer delete them. Today they are not deleted automatically, so there is no fixed time limit. By email we can only delete groups created with them in some cases, and we can't find an earlier identifier that created no groups in order to delete it (see section 6).</li>
+      <li><strong>Join attempt records:</strong> at least 10 minutes, until the next join attempt by anyone (see 2 g).</li>
+      <li><strong>Code emails:</strong> codes expire shortly; Resend keeps the delivery log for up to 30 days.</li>
+      <li><strong>Provider technical and audit logs:</strong> for the limited time each provider sets.</li>
+      <li><strong>Backups:</strong> we don't keep our own database backups. The provider's backups (Supabase), if any, may keep deleted data for up to 7 days, until they rotate.</li>
+      <li><strong>Purchase records:</strong> as required by accounting and tax rules.</li>
+    </ul>
+
+    <h2>6. How to delete your data</h2>
+    <ul>
+      <li><strong>Your whole account:</strong> in the app, go to <strong>Settings &gt; Delete account and data</strong>. This deletes your current account (anonymous or with email) and its sessions, the groups you created with that account (for all their members), your memberships in other people's groups and your groups, people and name on that phone. If you keep using Claras online, the app then creates a new anonymous identifier with its own session, unrelated to the deleted account. Details on the <a href="eliminar-cuenta.html#en">Delete account</a> page.</li>
+      <li><strong>Groups you shared under an earlier identifier:</strong> the app can only delete what belongs to your current account. If you shared groups under an anonymous identifier Claras no longer uses on your phone (see 2 b), they can't be deleted in the app, even if you delete your current account. You can ask us by email to delete them, but an anonymous identifier holds neither your name nor your email, and every member of a group has its code, so we can't prove who created a group. That is why we only delete it in some cases (see <a href="eliminar-cuenta.html#anonymous">Delete account</a>).</li>
+      <li><strong>A group:</strong> in the group menu, <strong>Delete or leave</strong>. If you created it, <strong>Delete for everyone</strong> removes it from the cloud for everyone. If you joined someone else's group, <strong>Leave group</strong> removes your membership.</li>
+      <li><strong>Without the app:</strong> use the <a href="eliminar-cuenta.html#en">Delete account</a> page or email <a href="mailto:support@clarasapp.com">support@clarasapp.com</a> from your account's email address.</li>
+    </ul>
+
+    <h2>7. Your rights</h2>
+    <p>Under Colombian data protection law (Law 1581 of 2012) you can access, update, correct and delete your data, withdraw your consent, ask for proof of it, learn how your data is used and file complaints with the Superintendence of Industry and Commerce (SIC) after first making your request to us. If you live elsewhere, you may have similar rights under your local law, and we honor them too.</p>
+    <p>Email <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>. Time frames, in Colombian business days counted from the day after we receive your request:</p>
+    <ul>
+      <li><strong>Questions</strong> (what data we hold and how we use it): answered within 10 business days. If we can't make it, we tell you why before the deadline and answer within 5 more business days.</li>
+      <li><strong>Claims</strong> (correcting, updating or deleting data, including account deletion): resolved within 15 business days. If we need more information to identify your account, we ask for it within 5 days and the time frame runs from your reply; if 2 months pass without a reply, we consider the claim withdrawn. If we can't make it, we tell you why before the deadline and resolve it within 8 more business days. By email, for an account with an email address, we delete <strong>in the cloud</strong> the same data as the in-app option (data that is only on your phone you remove yourself, by uninstalling the app or clearing its data); for anonymous accounts and earlier identifiers there are limits (see <a href="eliminar-cuenta.html#email">Delete account</a>).</li>
+    </ul>
+
+    <h2>8. Security</h2>
+    <ul>
+      <li>All communication with our providers is <strong>encrypted in transit</strong> (HTTPS/TLS).</li>
+      <li>Database access rules let only a group's members read or change that group.</li>
+      <li>New invite codes have 8 characters (6-character codes created earlier still work) and attempts are rate limited so they can't be guessed.</li>
+      <li>Data on your phone is kept in the app's private storage; protect your phone with a screen lock.</li>
+    </ul>
+    <p>No system is 100% secure, but we work to protect your data.</p>
+
+    <h2>9. Children</h2>
+    <p>Claras is intended for people <strong>18 and older</strong> and is not directed at children or teenagers. If you believe a minor gave us data, email us and we will delete it.</p>
+
+    <h2>10. Effective date and changes to this policy</h2>
+    <p>This version of the policy is effective as of <strong>September 18, 2026</strong>, the date it is published, and from then on it replaces the June 2026 version. It remains in effect until we publish a new version on this page.</p>
+    <p><strong>How long the databases remain in effect:</strong> Claras' databases (on Supabase: shared groups, anonymous identifiers, sessions, email accounts and join attempt records) remain in effect for as long as Claras provides its service. Within that period, each piece of data is kept only for the time stated in section 5. If Claras stops providing the service, we will delete those databases. Claras Pro purchase records are kept separately, for as long as accounting and tax rules require.</p>
+    <p>If we update this policy later on, we will change the dates above. If the change is significant, we will announce it in the app or on the Google Play listing before it applies.</p>
+
+    <h2>11. Contact</h2>
+    <p>Juan Camilo Andrade · Bogotá, Colombia · <a href="mailto:support@clarasapp.com">support@clarasapp.com</a></p>
+    </section>
 
     <div class="foot">
-      ¿Preguntas? Escríbenos a <a href="mailto:jcandrade2590@gmail.com">jcandrade2590@gmail.com</a>.<br/>
-      Claras — cuentas claras, amistades largas.
+      ¿Preguntas? · Questions? <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>
+      <div class="links"><a href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Claras en Google Play</a> · <a href="privacidad.html">Privacidad · Privacy</a> · <a href="eliminar-cuenta.html">Eliminar cuenta · Delete account</a></div>
+      <div class="links">Claras · cuentas claras, amistades largas.</div>
     </div>
   </div>
 </body>

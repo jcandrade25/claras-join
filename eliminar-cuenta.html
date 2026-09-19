@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar cuenta y datos · Claras: dividir gastos</title>
+  <meta name="description" content="Cómo eliminar tu cuenta de Claras: dividir gastos y tus datos, qué se borra y qué puede quedar. How to delete your Claras: Split Expenses account and data." />
+  <meta name="theme-color" content="#C75432" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate" hreflang="es" href="https://jcandrade25.github.io/claras-join/eliminar-cuenta.html#es" />
+  <link rel="alternate" hreflang="en" href="https://jcandrade25.github.io/claras-join/eliminar-cuenta.html#en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --primary:#C75432; --ink:#2B211A; --muted:#6E5F52;
+      --cream:#FBF6F1; --surface:#FFFFFF; --soft:#F3E7DD; --line:#EADFD4;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:var(--cream); color:var(--ink); line-height:1.65;
+      -webkit-font-smoothing:antialiased; padding:32px 20px 64px;
+    }
+    .wrap{max-width:720px; margin:0 auto}
+    .head{display:flex; align-items:center; gap:14px; margin-bottom:8px}
+    .logo{width:52px;height:52px;flex:none}
+    h1{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:-1px; line-height:1.2}
+    .sub{color:var(--muted); font-size:14px; margin:2px 0 0}
+    .lang{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 22px}
+    .lang a{font-size:13.5px; font-weight:600; text-decoration:none; color:var(--primary); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 14px}
+    h2{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; color:var(--primary); margin:30px 0 8px; line-height:1.3}
+    h3{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; margin:20px 0 4px}
+    p,li,td,th{font-size:15.5px; color:var(--ink)}
+    p+p{margin-top:8px}
+    ul{margin:8px 0 8px 22px}
+    li{margin:5px 0}
+    strong{font-weight:600}
+    a{color:var(--primary)}
+    .card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin:18px 0}
+    .tldr{background:var(--soft); border:none}
+    ol.steps{list-style:none; counter-reset:paso; margin:12px 0}
+    ol.steps li{counter-increment:paso; position:relative; padding:2px 0 10px 44px; margin:0}
+    ol.steps li::before{
+      content:counter(paso); position:absolute; left:0; top:0;
+      width:30px; height:30px; border-radius:50%; background:var(--primary); color:#fff;
+      font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .table{overflow-x:auto; margin:10px 0; border:1px solid var(--line); border-radius:14px; background:var(--surface)}
+    table{border-collapse:collapse; width:100%; min-width:520px}
+    th,td{text-align:left; vertical-align:top; padding:10px 12px; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.5}
+    th{font-weight:600; background:var(--soft)}
+    tr:last-child td{border-bottom:none}
+    a.btn{display:inline-block; margin-top:10px; background:var(--primary); color:#fff; text-decoration:none; font-weight:600; font-size:15px; padding:12px 18px; border-radius:14px; box-shadow:0 8px 20px rgba(199,84,50,.25)}
+    .divider{border:none; border-top:2px solid var(--line); margin:48px 0 8px}
+    .foot{color:var(--muted); font-size:13px; margin-top:36px; border-top:1px solid var(--line); padding-top:18px}
+    .foot a{font-weight:600}
+    .links{margin-top:6px}
+  </style>
+</head>
+<body>
+  <!-- NOMBRE DE LA APP: debe coincidir EXACTO con el nombre de la ficha de Google Play
+       (store/LISTING.md: es-419 "Claras: dividir gastos", en-US "Claras: Split Expenses").
+       Si cambia la ficha, cambiar aquí el title, los h1 y los subtítulos. -->
+  <div class="wrap">
+    <div class="head">
+      <svg class="logo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-label="Claras">
+        <rect width="1024" height="1024" rx="224" fill="#C75432"/>
+        <path d="M 380 232 H 644 a 36 36 0 0 1 36 36 V 672 l -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 V 268 a 36 36 0 0 1 36 -36 Z" fill="#FBF6F1"/>
+        <rect x="392" y="300" width="240" height="30" rx="15" fill="#C75432"/>
+        <rect x="392" y="356" width="168" height="30" rx="15" fill="#F0855B"/>
+        <rect x="503" y="420" width="18" height="216" rx="9" fill="#C75432"/>
+        <path d="M 576 462 C 576 438 548 428 512 428 C 472 428 448 446 448 478 C 448 506 476 518 512 528 C 548 538 576 550 576 580 C 576 610 548 624 512 624 C 474 624 448 612 444 584" fill="none" stroke="#C75432" stroke-width="32" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <h1>Eliminar tu cuenta de Claras: dividir gastos</h1>
+        <div class="sub">App de Juan Camilo Andrade en Google Play (en inglés: Claras: Split Expenses) · actualizada el 18 de septiembre de 2026</div>
+      </div>
+    </div>
+
+    <nav class="lang" aria-label="Idioma / Language">
+      <a href="#es">Español</a>
+      <a href="#en" lang="en">English</a>
+      <a href="privacidad.html">Privacidad · Privacy</a>
+    </nav>
+
+    <!-- ===================================================== ESPAÑOL -->
+    <section id="es">
+    <div class="card tldr">
+      <p><strong>En corto:</strong> puedes eliminar tu cuenta y tus datos cuando quieras, desde la app, en <strong>Ajustes &gt; Eliminar cuenta y datos</strong>. Si ya no tienes la app, o quieres borrar grupos que la app no puede borrar, escríbenos a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>.</p>
+    </div>
+
+    <h2>Desde la app (lo más rápido)</h2>
+    <ol class="steps">
+      <li>Abre Claras en tu celular y verifica que tengas <strong>conexión a internet</strong> (sin conexión no se puede borrar lo que está en la nube).</li>
+      <li>Toca la pestaña <strong>Ajustes</strong>, en la barra de abajo, y busca la sección <strong>Cuenta</strong>.</li>
+      <li>Toca <strong>Eliminar cuenta y datos</strong>.</li>
+      <li>Lee el resumen de lo que se va a borrar y toca <strong>Continuar</strong>.</li>
+      <li>Escribe <strong>ELIMINAR</strong> y toca <strong>Eliminar cuenta</strong>.</li>
+      <li>Espera el mensaje "Se eliminaron tu cuenta, los grupos que creaste con ella y los datos de este celular." (si ese celular usó antes otros identificadores anónimos, el mensaje lo agrega y te da el correo de soporte).</li>
+    </ol>
+    <p>¿No ves la opción? Aparece cuando Claras ya se conectó a internet al menos una vez. Si nunca se conectó, no hay datos tuyos en la nube: basta con eliminar tus grupos o borrar los datos de la app.</p>
+    <p>Si usaste la misma cuenta con correo en otro celular, allá pueden quedar copias locales de tus grupos. Bórralas eliminando esos grupos o borrando los datos de la app en ese celular.</p>
+
+    <h2>Qué se borra</h2>
+    <p>La app borra lo que pertenece a la cuenta con la que Claras está conectada en ese celular (tu <strong>cuenta actual</strong>):</p>
+    <ul>
+      <li><strong>Tu cuenta actual:</strong> su identificador anónimo, sus sesiones (con la dirección IP y el agente de usuario guardados en ellas) y, si lo vinculaste, tu correo electrónico.</li>
+      <li><strong>Los grupos que creaste con esa cuenta y compartiste:</strong> se borran de la nube para todos sus miembros, con todos sus participantes y gastos.</li>
+      <li><strong>Tu membresía en grupos creados por otras personas:</strong> dejas de ser miembro y de tener acceso.</li>
+      <li><strong>Los registros de intentos de unión</strong> hechos con tu identificador anónimo.</li>
+      <li><strong>Los datos de Claras en tu celular:</strong> grupos, personas y tu nombre de perfil. Se mantienen el tema, el idioma y Claras Pro.</li>
+    </ul>
+    <p>Claras queda como recién instalada. Justo después (o la próxima vez que la abras con internet) crea un identificador anónimo nuevo, con su propia sesión (dirección IP y agente de usuario de esa conexión). No tiene grupos ni ninguna relación con la cuenta eliminada, y queda en la nube aunque después desinstales la app (como cualquier identificador anterior, ver abajo).</p>
+
+    <h2 id="anterior">Lo que la app no puede borrar: grupos con un identificador anterior</h2>
+    <p>La opción de la app <strong>solo</strong> borra lo que pertenece a tu cuenta actual, es decir, lo que creaste o donde te uniste con el identificador que Claras usa hoy en ese celular. Claras conserva ese identificador cada vez que abres la app, pero lo cambia por uno nuevo en algunos casos (detalles en la <a href="privacidad.html#es">Política de Privacidad</a>, 2 b). Quedan en la nube, y no se pueden borrar desde la app aunque elimines tu cuenta actual:</p>
+    <ul>
+      <li>Grupos que compartiste <strong>antes de borrar los datos de la app</strong>, o antes de reinstalarla si Android no restauró sus datos desde tu copia de seguridad de Google (ver la <a href="privacidad.html#es">Política de Privacidad</a>, 2 b), si no habías vinculado un correo.</li>
+      <li>Grupos que compartiste antes de que <strong>el servidor diera por terminada tu sesión</strong> (porque la sesión fue revocada o se rechazó su renovación por no ser válida), si no habías vinculado un correo. Si lo habías vinculado, entra de nuevo con "Ya tengo cuenta" (en <strong>Ajustes &gt; Cuenta</strong>) y usa la opción de la app desde esa cuenta.</li>
+      <li>Grupos que compartiste en un celular <strong>antes de iniciar sesión ahí con tu correo</strong> (con "Ya tengo cuenta", en <strong>Ajustes &gt; Cuenta</strong>).</li>
+      <li>Tu membresía en grupos a los que te uniste con ese identificador anterior.</li>
+      <li>El identificador anónimo anterior y sus sesiones (con su dirección IP y agente de usuario).</li>
+    </ul>
+    <p>¿No sabes si Claras sigue usando el identificador con el que creaste un grupo? Abre el grupo, menú de tres puntos, <strong>Eliminar o salir</strong>: si el aviso ofrece <strong>Eliminar para todos</strong>, sí lo usa y puedes borrarlo desde la app (o tocar <strong>Cancelar</strong>). Si no, eliminarlo desde la app solo quita la copia del celular. Si volviste a unirte a uno de esos grupos con un código, en la app apareces como miembro, no como quien lo creó, así que tampoco verás "Eliminar para todos". Para pedir que los borremos de la nube, <a href="#correo">escríbenos por correo</a> con el nombre y el código de cada grupo, y lee antes <a href="#anonima">qué podemos hacer y qué no</a>.</p>
+
+    <h2>Qué puede quedar y por cuánto tiempo</h2>
+    <!-- Filas de caché de fotos y copias de seguridad: ver comentarios en privacidad.html (sección 2 f y 5). -->
+    <div class="table">
+      <table>
+        <thead><tr><th>Dato</th><th>Por qué queda</th><th>Cuánto tiempo</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Gastos y nombres de participantes en <strong>grupos creados por otras personas</strong></td>
+            <td>Son parte de las cuentas de todo el grupo. No están vinculados a tu cuenta: tu nombre queda solo como el texto que alguien escribió para identificarte (por ejemplo "Ana") y los gastos no guardan quién los anotó.</td>
+            <td>Mientras quien creó el grupo no lo elimine.</td>
+          </tr>
+          <tr>
+            <td>Grupos, membresías y sesiones de un <strong>identificador anterior</strong></td>
+            <td>La app no puede saber que son tuyos (ver arriba). Hoy no se borran automáticamente. Las sesiones guardan la dirección IP, el agente de usuario y fechas, pero no tu nombre ni tu correo.</td>
+            <td>Sin plazo fijo. Por correo podemos borrar los grupos creados con ese identificador solo en los casos que explicamos <a href="#anonima">abajo</a>, y por defecto borramos solo el grupo, no el identificador. Si ese identificador no creó grupos, no tenemos cómo encontrarlo para borrarlo.</td>
+          </tr>
+          <tr>
+            <td>Copias en los celulares de otros miembros</td>
+            <td>Los grupos de otras personas siguen en sus celulares. Los grupos que tú creaste desaparecen de los celulares que tengan Claras abierta y conectada en ese momento; en los demás puede quedar una copia local que ya no se sincroniza, hasta que esa persona la borre. Lo que alguien haya guardado por fuera de Claras (capturas de pantalla, mensajes) no lo controlamos.</td>
+            <td>Mientras ellos lo conserven.</td>
+          </tr>
+          <tr>
+            <td>Copia de seguridad de Android, en tu cuenta de Google</td>
+            <td>Si tienes activada la copia de seguridad de Google en tu celular Android, Android guarda una copia de los datos de Claras (grupos, personas, tu nombre, preferencias y la sesión con su identificador) en tu cuenta de Google. La hace y la guarda Google: nosotros no la vemos ni podemos borrarla, y eliminar tu cuenta no la borra. Si reinstalas la app, Android puede restaurar esos grupos en el celular; la sesión de la cuenta eliminada ya no sirve, así que Claras crea un identificador nuevo.</td>
+            <td>Hasta que Android la reemplace con la siguiente copia de ese celular, según tu configuración de copia de seguridad de Google.</td>
+          </tr>
+          <tr>
+            <td>Copia temporal de una foto de recibo en la caché de la app, en tu celular</td>
+            <td>Claras borra la copia de cada foto apenas termina de leer el recibo, así que normalmente no queda ninguna. Solo puede quedar si la app se cerró de forma inesperada durante un escaneo; eliminar la cuenta no la busca. Si quieres asegurarte, bórrala en los ajustes del celular (Apps &gt; Claras &gt; Almacenamiento &gt; Borrar caché).</td>
+            <td>Si quedó: hasta que Android libere espacio, borres la caché o los datos de Claras, o desinstales la app.</td>
+          </tr>
+          <tr>
+            <td>Registro de tu compra de Claras Pro</td>
+            <td>La compra está ligada a tu cuenta de Google, no a tu cuenta de Claras. Eliminar tu cuenta no la cancela ni la reembolsa, y puedes restaurarla si vuelves a instalar la app. Google y nosotros conservamos el registro del pedido (número, fecha y valor).</td>
+            <td>El que exijan las normas contables y tributarias.</td>
+          </tr>
+          <tr>
+            <td>Registro del envío de correos con código</td>
+            <td>Lo guarda nuestro proveedor de correo (Resend).</td>
+            <td>Hasta 30 días.</td>
+          </tr>
+          <tr>
+            <td>Registros de intentos de unión hechos desde tu dirección IP</td>
+            <td>Sirven para limitar los intentos de adivinar códigos. Cada nuevo intento de unión, de cualquier persona, borra los que tienen más de 10 minutos.</td>
+            <td>Al menos 10 minutos, hasta el siguiente intento de unión.</td>
+          </tr>
+          <tr>
+            <td>Registros técnicos y de auditoría (por ejemplo dirección IP, agente de usuario, fechas y el evento de eliminación de la cuenta)</td>
+            <td>Los guardan nuestros proveedores para operar y proteger el servicio.</td>
+            <td>Por el tiempo limitado que fija cada proveedor.</td>
+          </tr>
+          <tr>
+            <td>Copias de seguridad</td>
+            <td>No guardamos copias propias de la base de datos. Si nuestro proveedor (Supabase) tiene copias de seguridad, los datos borrados salen de ellas cuando se renuevan.</td>
+            <td>Copias del proveedor, si existen: hasta 7 días.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Consejo:</strong> antes de eliminar tu cuenta, cambia tu nombre en los grupos de otras personas (abre el grupo, menú de tres puntos, <strong>Participantes</strong>, <strong>Renombrar</strong>) o pídele a quien creó el grupo que lo elimine.</p>
+
+    <h2 id="correo">Por correo: si no tienes la app, no puedes abrirla o la app no puede borrar tus grupos</h2>
+    <ol class="steps">
+      <li>Escribe a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>, en lo posible <strong>desde el correo vinculado a tu cuenta de Claras</strong>.</li>
+      <li>Usa el asunto <strong>"Eliminar mi cuenta de Claras"</strong>. Si tu cuenta tiene correo, con eso basta. Si se trata de grupos de una cuenta anónima o de un identificador anterior, incluye el nombre y el código de cada grupo y la fecha aproximada en que lo creaste.</li>
+      <li>Antes de borrar una cuenta con correo, te escribimos a ese correo y esperamos tu confirmación. No borramos una cuenta a pedido de un correo distinto al vinculado. Para cuentas anónimas no hay un correo con el cual verificar: mira <a href="#anonima">qué podemos hacer y qué no</a>.</li>
+    </ol>
+    <!-- PROCEDIMIENTO INTERNO: las solicitudes por correo se atienden con el procedimiento de administración
+         documentado en supabase/README.md del repositorio de la app ("Admin: solicitud de eliminación por correo"):
+         cuenta con correo = verificar respondiendo a ese correo y borrar por id con
+         private.eliminar_cuenta_de_usuario (en la nube, lo mismo que la opción de la app); grupos de un anónimo
+         anterior = buscar el grupo por código y, por defecto, borrar SOLO ese grupo (delete from public.grupos,
+         con la guarda de que no tenga más miembros que quien lo creó), no el identificador entero. El
+         identificador solo se borra con eliminar_cuenta_de_usuario si se cumplen las tres guardas del README:
+         ese grupo es el único que creó, no tiene membresías en grupos de otras personas y la persona demostró
+         que lo controla. Si ese procedimiento cambia, revisar esta sección y la de inglés. -->
+    <p><strong>Qué borramos (cuenta con correo):</strong> en la nube, lo mismo que la opción de la app: la cuenta y sus sesiones, los grupos que creaste con ella (para todos sus miembros), tus membresías en grupos de otras personas y los registros de intentos de unión con tu identificador. Los datos que están solo en tu celular no los podemos borrar nosotros: bórralos eliminando tus grupos, borrando los datos de Claras o desinstalando la app.</p>
+    <p><strong>Plazo:</strong> tratamos tu solicitud como un reclamo de la Ley 1581 de 2012. La resolvemos en máximo <strong>15 días hábiles</strong>, contados desde el día siguiente a que la recibimos. Si nos falta información para identificar tu cuenta o tus grupos, te la pedimos en los 5 días siguientes y el plazo cuenta desde que nos respondes; si pasan 2 meses sin respuesta, entendemos que desististe. Si no alcanzamos, te avisamos antes del vencimiento, con el motivo, y la terminamos en máximo 8 días hábiles más. Te escribimos cuando esté lista.</p>
+    <a class="btn" href="mailto:support@clarasapp.com?subject=Eliminar%20mi%20cuenta%20de%20Claras">Escribir a soporte</a>
+
+    <h3 id="anonima">Cuentas anónimas e identificadores anteriores: qué podemos hacer por correo y qué no</h3>
+    <p>Un identificador anónimo no guarda tu nombre ni tu correo, y la app no lo muestra. Por correo no tenemos cómo saber cuál es el tuyo ni comprobar que eres tú. Esto es lo que sí se puede hacer:</p>
+    <ul>
+      <li><strong>Si Claras sigue usando ese identificador en tu celular</strong> (en un grupo que creaste, <strong>Eliminar o salir</strong> ofrece <strong>Eliminar para todos</strong>), usa la opción de la app. Es la única forma de comprobar que el identificador es tuyo.</li>
+      <li><strong>Un grupo compartido que ya no puedes borrar desde la app:</strong> con su código encontramos el grupo y vemos cuándo se creó y cuántos miembros tiene. Eso no prueba quién lo creó (el código lo tiene cualquier miembro) y borrar el grupo lo borra para todos. Por eso solo lo borramos con una razón clara, por ejemplo que el grupo no tenga más miembros que el identificador que lo creó y que los datos que nos das (nombre y fecha aproximada) coincidan. Borramos <strong>solo ese grupo</strong>, con sus participantes y sus gastos: el identificador anterior sigue en la nube, con sus sesiones y, si existen, sus otros grupos y sus membresías.</li>
+      <li><strong>El identificador anterior completo</strong> (con sus sesiones, sus membresías y el grupo) solo lo borramos si se cumplen las tres condiciones: ese grupo es el <strong>único</strong> que creó, ese identificador <strong>no es miembro</strong> de grupos creados por otras personas y nos demuestras que lo controlas (por ejemplo, desde el celular que todavía lo tiene). Si falta alguna, borramos solo el grupo.</li>
+      <li><strong>Si el grupo tiene otros miembros,</strong> no lo borramos por correo, porque lo borraríamos para todos sin poder comprobar que tú lo creaste. Lo que sí puedes hacer: unirte con el código, cambiar tu nombre en ese grupo (menú de tres puntos, <strong>Participantes</strong>, <strong>Renombrar</strong>) y luego salir del grupo.</li>
+      <li><strong>Un identificador anterior que no creó grupos</strong> (por ejemplo, uno con el que solo te uniste a grupos de otras personas): guarda sus sesiones, con la dirección IP, el agente de usuario y fechas, pero no tu nombre ni tu correo. Una dirección IP cambia con el tiempo y la pueden compartir muchas personas, así que no nos permite saber cuál identificador era tuyo y no lo podemos encontrar para borrarlo. Hoy no se borran automáticamente.</li>
+      <li>Si ya desinstalaste la app, los grupos que nunca compartiste se borraron de ese celular con ella. Si tenías activada la copia de seguridad de Google en Android, puede quedar una copia en tu cuenta de Google, que Android restaura si vuelves a instalar Claras (ver la tabla de arriba).</li>
+    </ul>
+
+    <h2 id="parcial">Borrar algunos datos sin eliminar tu cuenta</h2>
+    <ul>
+      <li><strong>Un gasto:</strong> ábrelo y toca eliminar. En un grupo compartido se oculta para todos y se borra por completo cuando se borra el grupo.</li>
+      <li><strong>Un grupo compartido que creaste:</strong> abre el grupo, menú de tres puntos, <strong>Eliminar o salir</strong>, <strong>Eliminar para todos</strong>. Se borra de la nube para todos sus miembros.</li>
+      <li><strong>Un grupo de otra persona:</strong> abre el grupo, menú de tres puntos, <strong>Eliminar o salir</strong>, <strong>Salir del grupo</strong>. Dejas de ser miembro; el grupo sigue para los demás.</li>
+      <li><strong>Un grupo que nunca compartiste:</strong> menú de tres puntos, <strong>Eliminar grupo</strong>. Solo existía en tu celular.</li>
+      <li><strong>Copias de fotos de recibos:</strong> Claras las borra apenas termina de leer cada recibo. Si la app se cerró durante un escaneo y quieres asegurarte, en los ajustes del celular ve a Apps &gt; Claras &gt; Almacenamiento &gt; <strong>Borrar caché</strong>. No borra tus grupos ni cambia tu identificador.</li>
+      <li><strong>Cualquier otro dato:</strong> escríbenos a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a> y lo atendemos en los mismos plazos.</li>
+    </ul>
+    <p>Más detalles en la <a href="privacidad.html">Política de Privacidad</a>.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===================================================== ENGLISH -->
+    <section id="en" lang="en">
+    <h1 style="margin-top:24px">Delete your Claras: Split Expenses account</h1>
+    <div class="sub">App by Juan Camilo Andrade on Google Play (in Spanish: Claras: dividir gastos) · last updated September 18, 2026</div>
+
+    <div class="card tldr">
+      <p><strong>In short:</strong> you can delete your account and data at any time in the app, under <strong>Settings &gt; Delete account and data</strong>. If you no longer have the app, or want to delete groups the app can't delete, email <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>.</p>
+    </div>
+
+    <h2>In the app (fastest)</h2>
+    <ol class="steps">
+      <li>Open Claras on your phone and make sure you have an <strong>internet connection</strong> (cloud data can't be deleted while offline).</li>
+      <li>Tap the <strong>Settings</strong> tab in the bottom bar and find the <strong>Account</strong> section.</li>
+      <li>Tap <strong>Delete account and data</strong>.</li>
+      <li>Read the summary of what will be deleted and tap <strong>Continue</strong>.</li>
+      <li>Type <strong>DELETE</strong> and tap <strong>Delete account</strong>.</li>
+      <li>Wait for the message "Your account, the groups created with it and the data on this phone were deleted." (if that phone used other anonymous identifiers before, the message adds that and gives you the support email).</li>
+    </ol>
+    <p>Don't see the option? It appears once Claras has connected to the internet at least once. If it never connected, there is none of your data in the cloud: just delete your groups or clear the app's data.</p>
+    <p>If you used the same email account on another phone, local copies of your groups may remain there. Remove them by deleting those groups or clearing the app's data on that phone.</p>
+
+    <h2>What gets deleted</h2>
+    <p>The app deletes what belongs to the account Claras is connected with on that phone (your <strong>current account</strong>):</p>
+    <ul>
+      <li><strong>Your current account:</strong> its anonymous identifier, its sessions (with the IP address and user agent stored in them) and, if you linked one, your email address.</li>
+      <li><strong>Groups you created with that account and shared:</strong> deleted from the cloud for all their members, with all their participants and expenses.</li>
+      <li><strong>Your membership in groups created by other people:</strong> you stop being a member and lose access.</li>
+      <li><strong>Join attempt records</strong> made with your anonymous identifier.</li>
+      <li><strong>Claras data on your phone:</strong> groups, people and your profile name. Your theme, language and Claras Pro are kept.</li>
+    </ul>
+    <p>Claras is left like a fresh install. Right afterwards (or the next time you open it online) it creates a new anonymous identifier with its own session (IP address and user agent of that connection). It has no groups and no connection to the deleted account, and it stays in the cloud even if you then uninstall the app (like any earlier identifier, see below).</p>
+
+    <h2 id="earlier">What the app can't delete: groups under an earlier identifier</h2>
+    <p>The in-app option <strong>only</strong> deletes what belongs to your current account, meaning what you created or joined with the identifier Claras uses today on that phone. Claras keeps that identifier every time you open the app, but replaces it with a new one in some cases (details in the <a href="privacidad.html#en">Privacy Policy</a>, 2 b). These stay in the cloud and can't be deleted in the app, even if you delete your current account:</p>
+    <ul>
+      <li>Groups you shared <strong>before clearing the app's data</strong>, or before reinstalling it if Android didn't restore its data from your Google backup (see the <a href="privacidad.html#en">Privacy Policy</a>, 2 b), if you hadn't linked an email.</li>
+      <li>Groups you shared before <strong>the server ended your session</strong> (because the session was revoked or its renewal was rejected as invalid), if you hadn't linked an email. If you had, sign back in with "I already have an account" (under <strong>Settings &gt; Account</strong>) and use the in-app option from that account.</li>
+      <li>Groups you shared on a phone <strong>before signing in there with your email</strong> (with "I already have an account", under <strong>Settings &gt; Account</strong>).</li>
+      <li>Your membership in groups you joined with that earlier identifier.</li>
+      <li>The earlier anonymous identifier and its sessions (with their IP address and user agent).</li>
+    </ul>
+    <p>Not sure whether Claras still uses the identifier you created a group with? Open the group, three-dot menu, <strong>Delete or leave</strong>: if the prompt offers <strong>Delete for everyone</strong>, it does, and you can delete it in the app (or tap <strong>Cancel</strong>). If not, deleting it in the app only removes the copy on the phone. If you joined one of those groups again with a code, the app shows you as a member, not as its creator, so you won't see "Delete for everyone" either. To ask us to delete them from the cloud, <a href="#email">email us</a> with each group's name and code, and first read <a href="#anonymous">what we can and can't do</a>.</p>
+
+    <h2>What may remain, and for how long</h2>
+    <div class="table">
+      <table>
+        <thead><tr><th>Data</th><th>Why it remains</th><th>How long</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Expenses and participant names in <strong>groups created by other people</strong></td>
+            <td>They are part of the whole group's accounts. They are not linked to your account: your name only remains as the text someone typed to identify you (for example "Ana"), and expenses don't record who entered them.</td>
+            <td>Until the group's creator deletes the group.</td>
+          </tr>
+          <tr>
+            <td>Groups, memberships and sessions of an <strong>earlier identifier</strong></td>
+            <td>The app can't tell they are yours (see above). Today they are not deleted automatically. The sessions store the IP address, user agent and times, but not your name or email.</td>
+            <td>No fixed time limit. By email we can delete groups created under that identifier only in the cases explained <a href="#anonymous">below</a>, and by default we delete only the group, not the identifier. If that identifier created no groups, we have no way to find it in order to delete it.</td>
+          </tr>
+          <tr>
+            <td>Copies on other members' phones</td>
+            <td>Other people's groups stay on their phones. Groups you created disappear from phones that have Claras open and online at that moment; on the others a local copy that no longer syncs may remain until that person deletes it. Anything someone saved outside Claras (screenshots, messages) is beyond our control.</td>
+            <td>As long as they keep it.</td>
+          </tr>
+          <tr>
+            <td>Android backup, in your Google account</td>
+            <td>If Google backup is on for your Android phone, Android keeps a copy of Claras' data (groups, people, your name, preferences and the session with its identifier) in your Google account. It is made and kept by Google: we can't see it or delete it, and deleting your account doesn't delete it. If you reinstall the app, Android may restore those groups on the phone; the deleted account's session no longer works, so Claras creates a new identifier.</td>
+            <td>Until Android replaces it with that phone's next backup, according to your Google backup settings.</td>
+          </tr>
+          <tr>
+            <td>Temporary copy of a receipt photo in the app's cache, on your phone</td>
+            <td>Claras deletes the copy of each photo as soon as it finishes reading the receipt, so normally none remains. One can only remain if the app closed unexpectedly during a scan; deleting your account doesn't look for it. If you want to be sure, clear it in your phone settings (Apps &gt; Claras &gt; Storage &gt; Clear cache).</td>
+            <td>If one remained: until Android frees up space, you clear Claras' cache or data, or you uninstall the app.</td>
+          </tr>
+          <tr>
+            <td>Record of your Claras Pro purchase</td>
+            <td>The purchase belongs to your Google account, not your Claras account. Deleting your account doesn't cancel or refund it, and you can restore it if you reinstall the app. Google and we keep the order record (number, date and amount).</td>
+            <td>As required by accounting and tax rules.</td>
+          </tr>
+          <tr>
+            <td>Delivery log of code emails</td>
+            <td>Kept by our email provider (Resend).</td>
+            <td>Up to 30 days.</td>
+          </tr>
+          <tr>
+            <td>Join attempt records made from your IP address</td>
+            <td>They limit attempts to guess codes. Every new join attempt, by anyone, deletes the ones older than 10 minutes.</td>
+            <td>At least 10 minutes, until the next join attempt.</td>
+          </tr>
+          <tr>
+            <td>Technical and audit logs (such as IP address, user agent, times and the account deletion event)</td>
+            <td>Kept by our providers to run and protect the service.</td>
+            <td>For the limited time each provider sets.</td>
+          </tr>
+          <tr>
+            <td>Backups</td>
+            <td>We don't keep our own database backups. If our provider (Supabase) has backups, deleted data leaves them when they rotate.</td>
+            <td>Provider backups, if any: up to 7 days.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Tip:</strong> before deleting your account, change your name in other people's groups (open the group, three-dot menu, <strong>Participants</strong>, <strong>Rename</strong>) or ask the group's creator to delete it.</p>
+
+    <h2 id="email">By email: if you don't have the app, can't open it, or the app can't delete your groups</h2>
+    <ol class="steps">
+      <li>Email <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>, if possible <strong>from the email address linked to your Claras account</strong>.</li>
+      <li>Use the subject <strong>"Delete my Claras account"</strong>. If your account has an email address, that's all we need. If it's about groups from an anonymous account or an earlier identifier, include each group's name and code and roughly when you created it.</li>
+      <li>Before deleting an account with an email address, we write to that address and wait for your confirmation. We don't delete an account at the request of an address other than the linked one. Anonymous accounts have no email to verify with: see <a href="#anonymous">what we can and can't do</a>.</li>
+    </ol>
+    <p><strong>What we delete (account with an email address):</strong> in the cloud, the same as the in-app option: the account and its sessions, the groups you created with it (for all their members), your memberships in other people's groups and join attempt records with your identifier. We can't delete data stored only on your phone: remove it by deleting your groups, clearing Claras' data or uninstalling the app.</p>
+    <p><strong>Time frame:</strong> we handle your request as a claim under Colombian Law 1581 of 2012. We resolve it within <strong>15 business days</strong>, counted from the day after we receive it. If we need more information to identify your account or groups, we ask for it within 5 days and the time frame runs from your reply; if 2 months pass without a reply, we consider the request withdrawn. If we can't make it, we tell you why before the deadline and finish within 8 more business days. We email you when it's done.</p>
+    <a class="btn" href="mailto:support@clarasapp.com?subject=Delete%20my%20Claras%20account">Email support</a>
+
+    <h3 id="anonymous">Anonymous accounts and earlier identifiers: what we can and can't do by email</h3>
+    <p>An anonymous identifier holds neither your name nor your email, and the app doesn't show it. By email we have no way to know which one is yours or to prove it's you. This is what can be done:</p>
+    <ul>
+      <li><strong>If Claras still uses that identifier on your phone</strong> (in a group you created, <strong>Delete or leave</strong> offers <strong>Delete for everyone</strong>), use the in-app option. It is the only way to prove the identifier is yours.</li>
+      <li><strong>A shared group you can no longer delete in the app:</strong> with its code we find the group and see when it was created and how many members it has. That doesn't prove who created it (every member has the code), and deleting the group deletes it for everyone. So we only delete it with a clear reason, for example when the group has no members other than the identifier that created it and the details you give us (name and rough date) match. We delete <strong>only that group</strong>, with its participants and expenses: the earlier identifier stays in the cloud, with its sessions and, if it has any, its other groups and memberships.</li>
+      <li><strong>The whole earlier identifier</strong> (with its sessions, its memberships and the group) we delete only if all three hold: that group is the <strong>only</strong> one it created, that identifier is <strong>not a member</strong> of groups created by other people, and you show us that you control it (for example, from the phone that still has it). If any of them is missing, we delete only the group.</li>
+      <li><strong>If the group has other members,</strong> we don't delete it by email, because we would delete it for everyone without being able to prove you created it. What you can do: join with the code, change your name in that group (three-dot menu, <strong>Participants</strong>, <strong>Rename</strong>) and then leave the group.</li>
+      <li><strong>An earlier identifier that created no groups</strong> (for example, one you only used to join other people's groups): it keeps its sessions, with the IP address, user agent and times, but not your name or email. An IP address changes over time and many people can share it, so it doesn't tell us which identifier was yours, and we can't find it in order to delete it. Today these are not deleted automatically.</li>
+      <li>If you already uninstalled the app, groups you never shared were erased from that phone with it. If Google backup was on for your Android phone, a copy may sit in your Google account, and Android restores it if you install Claras again (see the table above).</li>
+    </ul>
+
+    <h2 id="partial">Delete some data without deleting your account</h2>
+    <ul>
+      <li><strong>An expense:</strong> open it and tap delete. In a shared group it is hidden for everyone and fully erased when the group is deleted.</li>
+      <li><strong>A shared group you created:</strong> open the group, three-dot menu, <strong>Delete or leave</strong>, <strong>Delete for everyone</strong>. It is deleted from the cloud for all its members.</li>
+      <li><strong>Someone else's group:</strong> open the group, three-dot menu, <strong>Delete or leave</strong>, <strong>Leave group</strong>. You stop being a member; the group stays for everyone else.</li>
+      <li><strong>A group you never shared:</strong> three-dot menu, <strong>Delete group</strong>. It only existed on your phone.</li>
+      <li><strong>Copies of receipt photos:</strong> Claras deletes them as soon as it finishes reading each receipt. If the app closed during a scan and you want to be sure, go to your phone settings, Apps &gt; Claras &gt; Storage &gt; <strong>Clear cache</strong>. It doesn't delete your groups or change your identifier.</li>
+      <li><strong>Any other data:</strong> email <a href="mailto:support@clarasapp.com">support@clarasapp.com</a> and we will handle it within the same time frames.</li>
+    </ul>
+    <p>More details in the <a href="privacidad.html#en">Privacy Policy</a>.</p>
+    </section>
+
+    <div class="foot">
+      ¿Preguntas? · Questions? <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>
+      <div class="links"><a href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Claras: dividir gastos en Google Play</a> · <a href="privacidad.html">Privacidad · Privacy</a> · <a href="eliminar-cuenta.html">Eliminar cuenta · Delete account</a></div>
+      <div class="links">Claras · cuentas claras, amistades largas.</div>
+    </div>
+  </div>
+</body>
+</html>
