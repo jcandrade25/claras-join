@@ -75,11 +75,12 @@
       padding: 12px 0;
       margin-bottom: 26px;
     }
-    a.btn {
+    .btn {
       display: flex; align-items: center; justify-content: center; gap: 9px;
       width: 100%;
       padding: 16px;
       border-radius: 16px;
+      font-family: inherit;
       font-weight: 600;
       font-size: 16px;
       text-decoration: none;
@@ -87,15 +88,17 @@
       cursor: pointer;
       transition: transform .08s ease, filter .12s ease;
     }
-    a.btn:active { transform: scale(0.98); }
+    .btn:active { transform: scale(0.98); }
     .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(199,84,50,.32); }
     .btn-primary:hover { filter: brightness(1.05); }
     .btn-store { background: var(--ink); color: #fff; margin-top: 12px; }
+    .btn-copy { background: var(--soft); color: var(--primary-dark); padding: 12px; font-size: 15px; margin: -14px 0 24px; }
+    .web-link { display: block; margin-top: 14px; color: var(--muted); font-size: 14px; font-weight: 500; }
     .hint { color: var(--muted); font-size: 12.5px; margin-top: 22px; line-height: 1.5; }
     .footer { color: var(--muted); font-size: 11.5px; margin-top: 18px; opacity: .8; }
     .legal { font-size: 11.5px; margin-top: 8px; }
     .legal a { color: var(--muted); font-weight: 500; }
-    svg { width: 20px; height: 20px; }
+    .btn svg { width: 20px; height: 20px; }
   </style>
 </head>
 <body>
@@ -109,24 +112,28 @@
       <path d="M 576 462 C 576 438 548 428 512 428 C 472 428 448 446 448 478 C 448 506 476 518 512 528 C 548 538 576 550 576 580 C 576 610 548 624 512 624 C 474 624 448 612 444 584" fill="none" stroke="#C75432" stroke-width="32" stroke-linecap="round"/>
     </svg>
     <div class="logo">Claras<span style="color:var(--primary)">.</span></div>
-    <h1>Te invitaron a un grupo</h1>
-    <p class="sub">Entra para repartir los gastos sin enredos, en pesos y sin crear cuentas.</p>
+    <h1 id="titulo">Te invitaron a un grupo</h1>
+    <p class="sub" id="sub">Entra para repartir los gastos sin enredos, en pesos y sin crear cuentas.</p>
 
     <div id="codeBox" style="display:none">
       <div class="code-label">Tu código</div>
       <div class="code" id="code"></div>
+      <button class="btn btn-copy" id="copyBtn" type="button" style="display:none">Copiar código</button>
     </div>
 
-    <a class="btn btn-primary" id="openBtn" href="#">
+    <!-- Sin JavaScript, el botón lleva a la versión web, que sirve en cualquier teléfono. -->
+    <a class="btn btn-primary" id="openBtn" href="https://app.clarasapp.com/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      Abrir en Claras
+      <span id="openLabel">Abrir Claras</span>
     </a>
 
-    <a class="btn btn-store" id="storeBtn" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">
+    <a class="btn btn-store" id="storeBtn" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras" style="display:none">
       Descargar Claras
     </a>
 
-    <p class="hint" id="hint">¿No se abrió? Instala Claras y vuelve a tocar el enlace. Tu código quedará listo.</p>
+    <a class="web-link" id="webLink" href="https://app.clarasapp.com/" style="display:none">o úsala en el navegador</a>
+
+    <p class="hint" id="hint"></p>
     <p class="footer">Claras · cuentas claras, amistades largas</p>
     <p class="legal"><a href="privacidad.html">Privacidad</a> · <a href="eliminar-cuenta.html">Eliminar cuenta</a></p>
   </div>
@@ -135,22 +142,67 @@
     (function () {
       var params = new URLSearchParams(window.location.search);
       var code = (params.get('c') || params.get('code') || '').trim().toUpperCase();
+      var ua = navigator.userAgent || '';
+      var esAndroid = /Android/i.test(ua);
+      // iPadOS se presenta como Mac; se distingue porque tiene pantalla táctil.
+      var esIOS = /iPhone|iPad|iPod/i.test(ua) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var web = 'https://app.clarasapp.com/' + (code ? '?c=' + encodeURIComponent(code) : '');
       var deepLink = code ? 'claras://join/' + encodeURIComponent(code) : 'claras://join';
+      function $(id) { return document.getElementById(id); }
 
       if (code) {
-        document.getElementById('code').textContent = code;
-        document.getElementById('codeBox').style.display = 'block';
+        $('code').textContent = code;
+        $('codeBox').style.display = 'block';
+      } else {
+        // Visita a clarasapp.com sin invitación: portada en vez de "te invitaron".
+        $('titulo').textContent = 'Reparte gastos sin enredos';
+        $('sub').textContent = 'Claras divide los gastos de viajes, roomies y planes, en pesos y sin crear cuentas.';
       }
 
-      var openBtn = document.getElementById('openBtn');
-      openBtn.setAttribute('href', deepLink);
+      if (esAndroid) {
+        // La app abre claras://join/CODIGO; si no está instalada, queda la tienda
+        // y la versión web (mientras Claras no esté en producción, Play solo deja
+        // instalarla a los testers).
+        $('openLabel').textContent = 'Abrir en Claras';
+        $('openBtn').setAttribute('href', deepLink);
+        $('openBtn').addEventListener('click', function (e) {
+          e.preventDefault();
+          window.location.href = deepLink;
+        });
+        $('storeBtn').style.display = 'flex';
+        $('webLink').setAttribute('href', web);
+        $('webLink').style.display = 'block';
+        if (code) {
+          $('hint').textContent = '¿No se abrió? Instala Claras y vuelve a tocar el enlace. Tu código quedará listo.';
+          // Intento automático: si la app está instalada, Android cambia a Claras.
+          setTimeout(function () { window.location.href = deepLink; }, 600);
+        }
+      } else {
+        // iPhone y computador: no hay app que abrir (claras:// da error en Safari),
+        // así que el botón entra a la versión web con el código ya puesto.
+        $('openBtn').setAttribute('href', web);
+        if (code) $('copyBtn').style.display = 'flex';
+        $('hint').textContent = esIOS
+            ? (code ? '¿Ya usas Claras desde la pantalla de inicio? Ábrela, toca "Unirse con código" y pega el código.' : '')
+            : 'Claras funciona en el navegador. En Android también puedes instalar la app.';
+      }
 
-      function tryOpen() { window.location.href = deepLink; }
-      openBtn.addEventListener('click', function (e) { e.preventDefault(); tryOpen(); });
-
-      // Intento automático de abrir la app al cargar (si está instalada,
-      // Android cambia a Claras; si no, esta página queda como respaldo).
-      setTimeout(tryOpen, 600);
+      $('copyBtn').addEventListener('click', function () {
+        function copiado() { $('copyBtn').textContent = 'Código copiado'; }
+        function seleccionar() {
+          var r = document.createRange();
+          r.selectNodeContents($('code'));
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(copiado, seleccionar);
+        } else {
+          seleccionar();
+        }
+      });
     })();
   </script>
 </body>
