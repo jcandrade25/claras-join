@@ -9,9 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate" hreflang="es" href="https://clarasapp.com/privacidad.html#es" />
   <link rel="alternate" hreflang="en" href="https://clarasapp.com/privacidad.html#en" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="fonts/fonts.css" rel="stylesheet" />
   <style>
     :root{
       --primary:#C75432; --ink:#2B211A; --muted:#6E5F52;
@@ -66,7 +64,7 @@
       </svg>
       <div>
         <h1>Política de Privacidad</h1>
-        <div class="sub">Claras · actualizada el 6 de octubre de 2026</div>
+        <div class="sub">Claras · actualizada el 10 de octubre de 2026</div>
       </div>
     </div>
 
@@ -92,14 +90,6 @@
     </div>
 
     <h2>1. Quién es responsable</h2>
-    <!-- NOTA PARA EL DUEÑO (no se muestra): el Decreto 1377 de 2013 (art. 13) pide que la política
-         de tratamiento identifique al Responsable con nombre, domicilio, dirección, correo electrónico
-         y teléfono. Aquí solo figuran nombre, ciudad y correo: el 2026-09-25 Juan decidió no publicar
-         por ahora dirección ni teléfono (brecha conocida). Google Play mostrará de todos modos la
-         dirección legal de la cuenta cuando la app venda Pro. No inventar datos: si se agregan,
-         ponerlos igual en la sección 11 y en la versión en inglés.
-         NOMBRES: deben coincidir con Google Play (desarrollador "Grybow"; ficha es-419
-         "Claras: dividir gastos" desde el 2026-09-28, en-US "Claras: Split Expenses"). -->
     <p>Claras (en Google Play: <strong>Claras: dividir gastos</strong>) es una aplicación creada por <strong>Juan Camilo Andrade Grisales</strong>, desarrollador independiente en Bogotá, Colombia, que la publica en Google Play con el nombre de desarrollador <strong>Grybow</strong> y es el responsable del tratamiento de tus datos. Para cualquier tema de privacidad escribe a <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>.</p>
     <p>Esta política aplica a la app de Android, a la versión web (<a href="https://app.clarasapp.com/">app.clarasapp.com</a>) y a estas páginas.</p>
 
@@ -118,22 +108,6 @@
     <h3>b) Identificador anónimo y sesión (automático)</h3>
     <p>Cuando abres Claras con internet, nuestro proveedor Supabase crea una <strong>sesión anónima</strong> con un identificador aleatorio. No está ligado a tu nombre, teléfono ni cuenta de Google. Lo usamos para saber de qué grupos compartidos eres miembro, sincronizarlos y proteger el servicio contra abusos.</p>
     <p>Como parte de esa sesión, el sistema de cuentas de Supabase guarda la <strong>dirección IP</strong> y el <strong>agente de usuario</strong> (un texto técnico que indica, por ejemplo, la app o el navegador y el sistema operativo) desde los que se inició o renovó la sesión, con sus fechas. Supabase también lleva un registro de auditoría de los eventos de la cuenta (por ejemplo inicios de sesión, códigos enviados o eliminación de la cuenta), que puede incluir la IP. Usamos estos datos solo para mantener tu sesión activa y proteger el servicio.</p>
-    <!-- AUDITORÍA DE AUTH: verificado en solo lectura el 2026-09-14: la tabla de auditoría de Auth dentro
-         de la base de datos está vacía (la escritura en la base parece desactivada), así que el registro de
-         auditoría vive en los logs del proveedor, con retención limitada según el plan. Si se activa
-         "escribir auditoría en la base de datos", esos registros quedan sin fecha de borrado: actualizar la
-         sección 5 aquí, en inglés y en eliminar-cuenta.html. -->
-    <!-- CAMBIO DE IDENTIFICADOR: texto según las reglas de sesión del código al 2026-09-15, que viven en
-         lib/core/sesion_nube.dart (la clase SesionNube; Sync.asegurarSesion en lib/core/sync.dart solo delega
-         en ella): la app conserva la sesión guardada entre arranques y solo crea un anónimo nuevo si no hay
-         sesión guardada o si el servidor prueba que está muerta (usuario borrado, sesión revocada, sesión
-         terminada o refresh token inválido); un fallo de red no la cambia. Si esa regla cambia, actualizar este
-         párrafo, las secciones 5 y 6, el inglés y eliminar-cuenta.html (#anterior y #anonima). -->
-    <!-- COPIA DE SEGURIDAD DE ANDROID: el manifiesto no declara android:allowBackup, así que queda en su valor
-         por defecto (true) y no hay reglas de exclusión en android/app/src/main/res/xml. La sesión (Supabase
-         Auth) y los grupos se guardan en shared_preferences, que la copia automática de Android sí incluye.
-         Si algún día se pone allowBackup="false" o se excluyen esas claves, actualizar este párrafo, la
-         sección 5, el inglés y eliminar-cuenta.html (#anterior, la tabla y #anonima). -->
     <p>Ese identificador queda guardado en tu celular y Claras lo sigue usando cada vez que abres la app. Estar sin internet o tener un fallo de conexión no lo cambia. Claras solo crea un identificador anónimo <strong>nuevo</strong> en estos casos:</p>
     <ul>
       <li>Si borras los datos de la app (en la versión web, si borras los datos del sitio en tu navegador), o si la reinstalas y Android no restaura sus datos (ver el párrafo siguiente).</li>
@@ -161,11 +135,6 @@
 
     <h3>f) Escaneo de recibos (Pro)</h3>
     <p>Al escanear eliges <strong>Tomar foto</strong> (se abre la cámara del sistema) o <strong>Elegir de la galería</strong> (se abre el selector de fotos del sistema). Claras no pide permiso para usar tu cámara ni para ver toda tu galería: solo recibe la foto que tú eliges. El texto se lee <strong>dentro de tu celular</strong> con Google ML Kit. La foto no se sube a ningún servidor ni se guarda en tus grupos; solo queda en el gasto lo que tú confirmas (descripción, monto e ítems).</p>
-    <!-- FOTOS EN CACHÉ: texto según el código al 2026-09-14: image_picker copia la foto en la caché privada
-         de la app y lib/core/ocr_captura.dart la borra en un finally apenas termina el OCR, bien o mal (con
-         lib/core/ocr_limpieza.dart, que también borra la copia intermedia de la galería). Solo queda si el
-         proceso muere antes (por ejemplo, Android cierra la app mientras la cámara está abierta; Claras no usa
-         retrieveLostData). Si eso cambia, actualizar este párrafo, el de inglés y eliminar-cuenta.html. -->
     <p>Para leerla, Android le entrega a Claras una <strong>copia temporal de la foto</strong> en la memoria caché privada de la app (no en tu galería, y otras apps no pueden verla). Claras <strong>borra esa copia apenas termina la lectura</strong>, haya podido leer el recibo o no. Solo si la app se cierra de forma inesperada antes de terminar (por ejemplo, si Android la cierra mientras usas la cámara), la copia puede quedar en la caché hasta que Android libere espacio, borres la caché o los datos de Claras en los ajustes del celular, o desinstales la app. Si elegiste una foto de tu galería, la original sigue en tu galería: Claras no la toca.</p>
     <p>Google ML Kit puede enviar a Google datos técnicos de esa función (fabricante y modelo del dispositivo, versión de Android, nombre y versión de la app, un identificador por instalación, tiempos de respuesta, configuración de la imagen, tipo de evento y códigos de error), que Google usa para diagnóstico y estadísticas de uso de ML Kit. No envía la foto ni el texto del recibo. Lo hace la librería de Google por su cuenta: nosotros no recibimos, no vemos ni usamos esos datos.</p>
 
@@ -188,10 +157,10 @@
         <thead><tr><th>Proveedor</th><th>Para qué</th><th>Datos</th></tr></thead>
         <tbody>
           <tr><td><strong>Supabase</strong> (servidores en EE. UU.)</td><td>Base de datos, sincronización en tiempo real y cuentas</td><td>Identificador anónimo, IP y agente de usuario de las sesiones, grupos compartidos, correo (si lo vinculas), registros técnicos y de auditoría</td></tr>
-          <tr><td><strong>Resend</strong> (EE. UU.)</td><td>Enviar los correos con el código de acceso desde clarasapp.com</td><td>Correo, código, idioma y registro del envío</td></tr>
+          <tr><td><strong>Resend</strong> (empresa de EE. UU.; envía desde servidores en Brasil)</td><td>Enviar los correos con el código de acceso desde clarasapp.com</td><td>Correo, código, idioma y registro del envío</td></tr>
           <tr><td><strong>Google Play</strong></td><td>Cobrar Claras Pro (Google Play Billing)</td><td>Lo gestiona Google con tu cuenta de Google; nosotros solo vemos reportes de ventas</td></tr>
           <tr><td><strong>Google ML Kit</strong></td><td>Leer recibos dentro del celular</td><td>Datos técnicos de diagnóstico y uso (no la foto)</td></tr>
-          <tr><td><strong>Google Fonts</strong></td><td>Descargar las tipografías de la app y de estas páginas</td><td>Dirección IP y datos técnicos del navegador o dispositivo</td></tr>
+          <tr><td><strong>Google Fonts</strong></td><td>Solo las versiones de Claras para Android anteriores a la 0.3.1 descargan sus tipografías desde Google. Desde la 0.3.1, la app, la versión web y estas páginas traen las tipografías incluidas y ya no las descargan de Google</td><td>Dirección IP y datos técnicos del dispositivo, solo en esas versiones anteriores</td></tr>
           <tr><td><strong>GitHub Pages</strong> (GitHub)</td><td>Alojar estas páginas, la página de invitaciones y la versión web</td><td>Dirección IP y datos técnicos de la visita</td></tr>
           <tr><td><strong>WhatsApp</strong></td><td>Solo si eliges compartir una invitación por WhatsApp</td><td>El mensaje con el nombre del grupo, el enlace y el código, que envías tú</td></tr>
         </tbody>
@@ -203,7 +172,7 @@
     <p>No compartimos tus datos con anunciantes ni intermediarios de datos, y <strong>nunca los vendemos</strong>.</p>
 
     <h2>4. Transferencia internacional</h2>
-    <p>Los servidores de Supabase y Resend están en Estados Unidos. Al compartir un grupo, unirte a uno o vincular tu correo, tus datos se transfieren y se guardan allí, con proveedores que aplican medidas de seguridad adecuadas.</p>
+    <p>Los servidores de Supabase están en Estados Unidos, y Resend (empresa de Estados Unidos) envía los correos con el código desde servidores en Brasil. Al compartir un grupo, unirte a uno o vincular tu correo, tus datos se transfieren y se guardan allí, con proveedores que aplican medidas de seguridad adecuadas.</p>
 
     <h2>5. Cuánto tiempo los conservamos</h2>
     <ul>
@@ -211,20 +180,10 @@
       <li><strong>Grupos compartidos:</strong> mientras el grupo exista. Si quien lo creó lo elimina, o elimina su cuenta, el grupo se borra de la nube para todos. Los gastos o personas que se eliminan dentro de un grupo compartido quedan ocultos para todos y se borran por completo cuando se borra el grupo.</li>
       <li><strong>Tu membresía en un grupo:</strong> hasta que sales del grupo o eliminas tu cuenta.</li>
       <li><strong>Identificador que usa Claras hoy en tu celular, sus sesiones y la cuenta con correo:</strong> hasta que eliminas tu cuenta; al eliminarla se borran también sus sesiones, con su IP y agente de usuario. Desinstalar la app <strong>no</strong> borra lo que está en la nube. Si el identificador cambia (ver 2 b), el anterior pasa al punto siguiente.</li>
-      <!-- IDENTIFICADORES ANÓNIMOS ABANDONADOS: al 2026-09-14 no hay limpieza automática de usuarios
-           anónimos inactivos. Si el dueño agrega una (por ejemplo, borrar anónimos sin grupos ni actividad
-           en N días), cambiar este punto por "hasta N días sin uso", aquí, en inglés y en eliminar-cuenta.html. -->
       <li><strong>Identificadores anónimos anteriores</strong> (los que Claras dejó de usar en los casos de 2 b, por ejemplo al borrar los datos de la app sin correo vinculado): siguen en la nube con sus sesiones, sus grupos y sus membresías, porque la app ya no puede borrarlos. Hoy no se borran automáticamente, así que no tienen un plazo fijo. Por correo solo podemos borrar los grupos creados con ellos en algunos casos, y un identificador anterior que no creó grupos no lo podemos encontrar para borrarlo (ver la sección 6).</li>
       <li><strong>Registro de intentos de unión:</strong> al menos 10 minutos, hasta el siguiente intento de unión de cualquier persona (ver 2 g).</li>
       <li><strong>Correos con códigos:</strong> los códigos vencen al poco tiempo; Resend conserva el registro del envío hasta 30 días.</li>
       <li><strong>Registros técnicos y de auditoría de los proveedores:</strong> por el tiempo limitado que fija cada proveedor.</li>
-      <!-- COPIAS DE SEGURIDAD (verificado el 2026-09-14): el proyecto de Supabase está en el plan gratuito.
-           Según la documentación de Supabase, los proyectos gratuitos no tienen copias diarias accesibles
-           para nosotros, aunque hoy Supabase guarda hasta 7 copias diarias internas; Pro guarda 7 días,
-           Team 14 y Enterprise hasta 30 (con PITR cambia). Por eso "si existen, hasta 7 días".
-           Este texto asume que YA se eliminó la copia manual de agosto de 2026 que seguía en la base de datos
-           el 2026-09-14: NO publicar esta página antes de eliminarla. Si cambia el plan, se activa PITR o se
-           hace otra copia manual, actualizar aquí, en inglés y en eliminar-cuenta.html. -->
       <li><strong>Copias de seguridad:</strong> no guardamos copias propias de la base de datos. Las copias de seguridad del proveedor (Supabase), si existen, pueden conservar datos borrados hasta 7 días, hasta que se renuevan.</li>
       <li><strong>Registros de compras:</strong> los que exijan las normas contables y tributarias.</li>
     </ul>
@@ -258,11 +217,7 @@
     <p>Claras está pensada para personas <strong>mayores de 18 años</strong> y no está dirigida a niños, niñas ni adolescentes. Si crees que un menor nos dio datos, escríbenos y los borramos.</p>
 
     <h2>10. Vigencia y cambios a esta política</h2>
-    <!-- VIGENCIA (Decreto 1377 de 2013, art. 13, num. 6: fecha de entrada en vigencia de la política y período de
-         vigencia de la base de datos). La fecha de abajo es la de publicación (2026-09-18). Si estas
-         páginas se publican otro día, poner la fecha real aquí, en el encabezado, en inglés y en la fecha de
-         eliminar-cuenta.html. -->
-    <p>Esta versión de la política rige desde el <strong>6 de octubre de 2026</strong>, la fecha en que se publica, y desde entonces reemplaza la versión del 28 de septiembre de 2026. Sigue vigente hasta que publiquemos una nueva versión en esta página.</p>
+    <p>Esta versión de la política rige desde el <strong>10 de octubre de 2026</strong>, la fecha en que se publica, y desde entonces reemplaza la versión del 6 de octubre de 2026. Sigue vigente hasta que publiquemos una nueva versión en esta página.</p>
     <p><strong>Vigencia de las bases de datos:</strong> las bases de datos de Claras (en Supabase: grupos compartidos, identificadores anónimos, sesiones, cuentas con correo y registro de intentos de unión) estarán vigentes mientras Claras preste su servicio. Dentro de ese periodo, cada dato se conserva solo por el tiempo indicado en la sección 5. Si Claras deja de prestar el servicio, suprimiremos esas bases de datos. Los registros de compras de Claras Pro se conservan aparte, por el tiempo que exijan las normas contables y tributarias.</p>
     <p>Si más adelante actualizamos esta política, cambiaremos las fechas de arriba. Si el cambio es importante, lo avisaremos dentro de la app o en la ficha de Google Play antes de que aplique.</p>
 
@@ -275,7 +230,7 @@
     <!-- ===================================================== ENGLISH -->
     <section id="en" lang="en">
     <h1 style="margin-top:24px">Privacy Policy</h1>
-    <div class="sub">Claras · last updated October 6, 2026</div>
+    <div class="sub">Claras · last updated October 10, 2026</div>
 
     <div class="card tldr">
       <p><strong>In short:</strong></p>
@@ -358,10 +313,10 @@
         <thead><tr><th>Provider</th><th>Purpose</th><th>Data</th></tr></thead>
         <tbody>
           <tr><td><strong>Supabase</strong> (servers in the US)</td><td>Database, real-time sync and accounts</td><td>Anonymous identifier, session IP address and user agent, shared groups, email (if you link one), technical and audit logs</td></tr>
-          <tr><td><strong>Resend</strong> (US)</td><td>Sending the sign-in code emails from clarasapp.com</td><td>Email address, code, language and delivery log</td></tr>
+          <tr><td><strong>Resend</strong> (US company; sends from servers in Brazil)</td><td>Sending the sign-in code emails from clarasapp.com</td><td>Email address, code, language and delivery log</td></tr>
           <tr><td><strong>Google Play</strong></td><td>Charging for Claras Pro (Google Play Billing)</td><td>Handled by Google with your Google account; we only see sales reports</td></tr>
           <tr><td><strong>Google ML Kit</strong></td><td>Reading receipts on your phone</td><td>Technical diagnostics and usage data (not the photo)</td></tr>
-          <tr><td><strong>Google Fonts</strong></td><td>Downloading the fonts used by the app and these pages</td><td>IP address and technical browser or device data</td></tr>
+          <tr><td><strong>Google Fonts</strong></td><td>Only Claras for Android versions earlier than 0.3.1 download their fonts from Google. Since 0.3.1, the app, the web version and these pages ship the fonts themselves and no longer download them from Google</td><td>IP address and technical device data, only in those earlier versions</td></tr>
           <tr><td><strong>GitHub Pages</strong> (GitHub)</td><td>Hosting these pages, the invite page and the web version</td><td>IP address and technical visit data</td></tr>
           <tr><td><strong>WhatsApp</strong></td><td>Only if you choose to share an invite on WhatsApp</td><td>The message with the group name, link and code, sent by you</td></tr>
         </tbody>
@@ -373,7 +328,7 @@
     <p>We don't share your data with advertisers or data brokers, and <strong>we never sell it</strong>.</p>
 
     <h2>4. International transfers</h2>
-    <p>Supabase and Resend servers are in the United States. When you share a group, join one or link your email, your data is transferred to and stored there, with providers that apply appropriate security measures.</p>
+    <p>Supabase servers are in the United States, and Resend (a US company) sends the code emails from servers in Brazil. When you share a group, join one or link your email, your data is transferred to and stored there, with providers that apply appropriate security measures.</p>
 
     <h2>5. How long we keep it</h2>
     <ul>
@@ -418,7 +373,7 @@
     <p>Claras is intended for people <strong>18 and older</strong> and is not directed at children or teenagers. If you believe a minor gave us data, email us and we will delete it.</p>
 
     <h2>10. Effective date and changes to this policy</h2>
-    <p>This version of the policy is effective as of <strong>October 6, 2026</strong>, the date it is published, and from then on it replaces the September 28, 2026 version. It remains in effect until we publish a new version on this page.</p>
+    <p>This version of the policy is effective as of <strong>October 10, 2026</strong>, the date it is published, and from then on it replaces the October 6, 2026 version. It remains in effect until we publish a new version on this page.</p>
     <p><strong>How long the databases remain in effect:</strong> Claras' databases (on Supabase: shared groups, anonymous identifiers, sessions, email accounts and join attempt records) remain in effect for as long as Claras provides its service. Within that period, each piece of data is kept only for the time stated in section 5. If Claras stops providing the service, we will delete those databases. Claras Pro purchase records are kept separately, for as long as accounting and tax rules require.</p>
     <p>If we update this policy later on, we will change the dates above. If the change is significant, we will announce it in the app or on the Google Play listing before it applies.</p>
 

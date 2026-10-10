@@ -10,9 +10,7 @@
   <meta name="theme-color" content="#C75432" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="fonts/fonts.css" rel="stylesheet" />
   <style>
     :root {
       --primary: #C75432;
@@ -142,6 +140,9 @@
     (function () {
       var params = new URLSearchParams(window.location.search);
       var code = (params.get('c') || params.get('code') || '').trim().toUpperCase();
+      // Solo un código de verdad (6 u 8 letras y números; margen hasta 12): sin
+      // esto la página mostraría y copiaría cualquier texto puesto en el enlace.
+      if (!/^[A-Z0-9]{4,12}$/.test(code)) code = '';
       var ua = navigator.userAgent || '';
       var esAndroid = /Android/i.test(ua);
       // iPadOS se presenta como Mac; se distingue porque tiene pantalla táctil.

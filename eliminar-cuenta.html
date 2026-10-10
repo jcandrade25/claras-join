@@ -9,9 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate" hreflang="es" href="https://clarasapp.com/eliminar-cuenta.html#es" />
   <link rel="alternate" hreflang="en" href="https://clarasapp.com/eliminar-cuenta.html#en" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="fonts/fonts.css" rel="stylesheet" />
   <style>
     :root{
       --primary:#C75432; --ink:#2B211A; --muted:#6E5F52;
@@ -62,11 +60,6 @@
   </style>
 </head>
 <body>
-  <!-- NOMBRES: deben coincidir EXACTO con Google Play (Google exige que esta página nombre la app
-       o al desarrollador tal como aparecen en la ficha): desarrollador "Grybow"; ficha es-419
-       "Claras: dividir gastos" (desde el 2026-09-28), en-US "Claras: Split Expenses".
-       Si cambia la ficha o el nombre del desarrollador, cambiar aquí el title, los h1, los
-       subtítulos y el enlace del pie, y también la sección 1 y la 11 de privacidad.html. -->
   <div class="wrap">
     <div class="head">
       <svg class="logo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-label="Claras">
@@ -130,7 +123,6 @@
     <p>¿No sabes si Claras sigue usando el identificador con el que creaste un grupo? Abre el grupo, menú de tres puntos, <strong>Eliminar o salir</strong>: si el aviso ofrece <strong>Eliminar para todos</strong>, sí lo usa y puedes borrarlo desde la app (o tocar <strong>Cancelar</strong>). Si no, eliminarlo desde la app solo quita la copia del celular. Si volviste a unirte a uno de esos grupos con un código, en la app apareces como miembro, no como quien lo creó, así que tampoco verás "Eliminar para todos". Para pedir que los borremos de la nube, <a href="#correo">escríbenos por correo</a> con el nombre y el código de cada grupo, y lee antes <a href="#anonima">qué podemos hacer y qué no</a>.</p>
 
     <h2>Qué puede quedar y por cuánto tiempo</h2>
-    <!-- Filas de caché de fotos y copias de seguridad: ver comentarios en privacidad.html (sección 2 f y 5). -->
     <div class="table">
       <table>
         <thead><tr><th>Dato</th><th>Por qué queda</th><th>Cuánto tiempo</th></tr></thead>
@@ -196,15 +188,6 @@
       <li>Usa el asunto <strong>"Eliminar mi cuenta de Claras"</strong>. Si tu cuenta tiene correo, con eso basta. Si se trata de grupos de una cuenta anónima o de un identificador anterior, incluye el nombre y el código de cada grupo y la fecha aproximada en que lo creaste.</li>
       <li>Antes de borrar una cuenta con correo, te escribimos a ese correo y esperamos tu confirmación. No borramos una cuenta a pedido de un correo distinto al vinculado. Para cuentas anónimas no hay un correo con el cual verificar: mira <a href="#anonima">qué podemos hacer y qué no</a>.</li>
     </ol>
-    <!-- PROCEDIMIENTO INTERNO: las solicitudes por correo se atienden con el procedimiento de administración
-         documentado en supabase/README.md del repositorio de la app ("Admin: solicitud de eliminación por correo"):
-         cuenta con correo = verificar respondiendo a ese correo y borrar por id con
-         private.eliminar_cuenta_de_usuario (en la nube, lo mismo que la opción de la app); grupos de un anónimo
-         anterior = buscar el grupo por código y, por defecto, borrar SOLO ese grupo (delete from public.grupos,
-         con la guarda de que no tenga más miembros que quien lo creó), no el identificador entero. El
-         identificador solo se borra con eliminar_cuenta_de_usuario si se cumplen las tres guardas del README:
-         ese grupo es el único que creó, no tiene membresías en grupos de otras personas y la persona demostró
-         que lo controla. Si ese procedimiento cambia, revisar esta sección y la de inglés. -->
     <p><strong>Qué borramos (cuenta con correo):</strong> en la nube, lo mismo que la opción de la app: la cuenta y sus sesiones, los grupos que creaste con ella (para todos sus miembros), tus membresías en grupos de otras personas y los registros de intentos de unión con tu identificador. Los datos que están solo en tu celular no los podemos borrar nosotros: bórralos eliminando tus grupos, borrando los datos de Claras o desinstalando la app.</p>
     <p><strong>Plazo:</strong> tratamos tu solicitud como un reclamo de la Ley 1581 de 2012. La resolvemos en máximo <strong>15 días hábiles</strong>, contados desde el día siguiente a que la recibimos. Si nos falta información para identificar tu cuenta o tus grupos, te la pedimos en los 5 días siguientes y el plazo cuenta desde que nos respondes; si pasan 2 meses sin respuesta, entendemos que desististe. Si no alcanzamos, te avisamos antes del vencimiento, con el motivo, y la terminamos en máximo 8 días hábiles más. Te escribimos cuando esté lista.</p>
     <a class="btn" href="mailto:support@clarasapp.com?subject=Eliminar%20mi%20cuenta%20de%20Claras">Escribir a soporte</a>
