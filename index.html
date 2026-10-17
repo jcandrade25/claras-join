@@ -14,6 +14,7 @@
   <script type="module" src="js/pagina.js"></script>
   <script type="module" src="js/cuenta.js"></script>
   <script type="module" src="js/preguntas.js"></script>
+  <script type="module" src="js/vitrina.js"></script>
 </head>
 <body>
   <header class="barra">
@@ -124,6 +125,33 @@
         </ul>
         <p class="tirilla-final">Domingo: todo liquidado en 3 pagos</p>
       </article>
+    </section>
+
+    <section class="seccion vitrina" id="app" aria-labelledby="vitrina-titulo" data-vitrina>
+      <figure class="vitrina-plato" data-ui>
+        <img data-plato src="img/app/cobrar.webp" width="780" height="780" loading="lazy" alt="Liquidar en la app: la tarjeta Cobra en un toque y un botón Cobrar en cada pago que te deben">
+      </figure>
+      <div class="vitrina-texto">
+        <h2 class="seccion-titulo" id="vitrina-titulo">Cobra sin pena</h2>
+        <div class="vitrina-pestanas" role="tablist" aria-label="Partes de la app">
+          <button type="button" role="tab" id="pestana-cobrar" aria-controls="panel-cobrar" aria-selected="true" data-pestana="cobrar" data-imagen="img/app/cobrar.webp" data-alt="Liquidar en la app: la tarjeta Cobra en un toque y un botón Cobrar en cada pago que te deben">Cobrar</button>
+          <button type="button" role="tab" id="pestana-items" aria-controls="panel-items" aria-selected="false" tabindex="-1" data-pestana="items" data-imagen="img/app/items.webp" data-alt="Un gasto por ítems en la app: la pizza con fichas para marcar quién la comió">Por ítems</button>
+          <button type="button" role="tab" id="pestana-balances" aria-controls="panel-balances" aria-selected="false" tabindex="-1" data-pestana="balances" data-imagen="img/app/balances.webp" data-alt="Balances en la app: quién debe y a quién le deben en el grupo">Balances</button>
+        </div>
+        <div class="vitrina-panel" role="tabpanel" id="panel-cobrar" aria-labelledby="pestana-cobrar" data-panel="cobrar">
+          <h3 class="vitrina-panel-titulo">Un toque y listo</h3>
+          <p>En Liquidar, Cobrar arma el mensaje con el monto y tu llave Bre-B y lo abre en tu WhatsApp. Lo mandas tú: Claras no mueve plata.</p>
+        </div>
+        <div class="vitrina-panel" role="tabpanel" id="panel-items" aria-labelledby="pestana-items" data-panel="items" hidden>
+          <h3 class="vitrina-panel-titulo">Cada quien lo suyo</h3>
+          <p>Anota cada plato y marca quién lo consumió. La propina se reparte según lo que comió cada uno.</p>
+        </div>
+        <div class="vitrina-panel" role="tabpanel" id="panel-balances" aria-labelledby="pestana-balances" data-panel="balances" hidden>
+          <h3 class="vitrina-panel-titulo">De un vistazo</h3>
+          <p>Cuánto te deben y cuánto debes en cada grupo, y cuánto has consumido tú.</p>
+        </div>
+        <a class="boton boton-papel vitrina-accion" data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
+      </div>
     </section>
 
     <section class="seccion carta" id="precio" aria-labelledby="carta-titulo">

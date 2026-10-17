@@ -460,6 +460,31 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-weight: 500;
 }
 
+/* Cobra sin pena: la app de verdad, en un plato cuadrado con muescas de tiquete. */
+.vitrina {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: stretch;
+  min-height: 88svh;
+}
+.vitrina-plato { align-self: center; }
+.vitrina-plato img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 46%, calc(100% - 16px) 50%, 100% 54%, 100% 100%, 0 100%, 0 54%, 16px 50%, 0 46%);
+}
+.vitrina-texto { display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; padding-block: 1rem; }
+.vitrina-pestanas { display: flex; gap: 1.75rem; margin-top: 2rem; }
+.vitrina-pestanas [role='tab'] { padding: 0.35rem 0; font-size: var(--step-lead); text-underline-offset: 8px; }
+.vitrina-pestanas [role='tab'][aria-selected='true'] { font-weight: 800; font-stretch: 62%; text-transform: uppercase; text-decoration: underline 4px; }
+.vitrina-pestanas [role='tab']:hover { text-decoration: underline 4px; }
+.vitrina-panel-titulo { font-weight: 800; font-stretch: 62%; font-size: var(--step-lead); text-transform: uppercase; }
+.vitrina-panel p { max-width: 34ch; margin-top: 0.75rem; font-size: var(--step-lead); line-height: 1.35; }
+.vitrina-accion { align-self: flex-start; }
+
 /* La carta: los precios como en un menú, sobre un campo de papel. */
 .carta {
   display: grid;
@@ -526,6 +551,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .paseo-texto { position: static; }
   .tirilla { margin-top: 2.5rem; }
   .carta-lista { margin-top: 2.5rem; grid-template-columns: 1fr; }
+  .vitrina { display: block; min-height: 0; }
+  .vitrina-texto { margin-top: 2rem; gap: 1.5rem; }
+  .vitrina-pestanas { margin-top: 1.25rem; gap: 1.25rem; }
   .preguntas { display: block; }
   .pregunta { --pestana: 7.5rem; padding-inline: 1.25rem; }
 }

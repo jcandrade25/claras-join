@@ -18,6 +18,10 @@ const TIPOS = {
   '.svg': 'image/svg+xml',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
+  '.wasm': 'application/wasm',
+  '.ttf': 'font/ttf',
+  '.otf': 'font/otf',
+  '.ico': 'image/x-icon',
 };
 
 export function servir(raiz, { host = '127.0.0.1', puerto = 0 } = {}) {
