@@ -1,4 +1,6 @@
 // La cuenta jugable en un navegador de verdad (Edge), como la usaría un visitante.
+// Se reparte como en la app: cada plato abre sus fichas (Todos y cada persona) y
+// se tocan las de quienes comieron. Arrastrar el plato a una persona es un atajo.
 import { after, before, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
@@ -12,7 +14,8 @@ after(async () => { await sitio.cerrar(); });
 
 const plato = (id) => `[data-item="${id}"]`;
 const persona = (id) => `[data-persona="${id}"]`;
-const quitar = (item, id) => `li:has(${plato(item)}) [data-quitar="${id}"]`;
+const fila = (item) => `li:has(${plato(item)})`;
+const ficha = (item, id) => `${fila(item)} [data-ficha="${id}"]`;
 
 async function pagina(opciones) {
   const { browser, page } = await abrir(opciones);
@@ -20,18 +23,34 @@ async function pagina(opciones) {
   return { browser, page };
 }
 
+// Abre el plato si sus fichas no están a la vista.
+async function abrirPlato(page, tocar, item) {
+  if (await page.locator(ficha(item, 'todos')).count() === 0) await tocar(plato(item));
+}
+
 // Los tres platos que llegan sin dueño, repartidos como en la cuenta completa.
 async function completar(page, tocar) {
   for (const [item, quienes] of [['chicharron', ['dani', 'juanma', 'pipe']], ['cerveza', ['pipe']], ['natas', ['dani']]]) {
-    await tocar(plato(item));
-    for (const id of quienes) await tocar(persona(id));
+    await abrirPlato(page, tocar, item);
+    for (const id of quienes) await tocar(ficha(item, id));
   }
 }
 
 const montos = (page) => page.$$eval('[data-talon]', (ts) =>
   ts.map((t) => [t.dataset.talon, t.querySelector('[data-monto]').textContent.trim()]));
+const prendida = (page, s) => page.getAttribute(s, 'aria-pressed');
 
-test('asignar los tres platos y liquidar da tres talones', async () => {
+test('al llegar, el primer plato sin dueño muestra sus fichas como en la app', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    const nombres = await page.$$eval(`${fila('chicharron')} [data-ficha]`, (fs) => fs.map((f) => f.textContent.trim()));
+    assert.deepEqual(nombres, ['Todos', 'Dani', 'Juanma', 'Valen', 'Pipe']);
+    for (const id of ['dani', 'juanma', 'valen', 'pipe']) assert.equal(await prendida(page, ficha('chicharron', id)), 'false');
+    assert.equal(await page.locator('[data-ficha]').count(), 5);
+  } finally { await browser.close(); }
+});
+
+test('asignar los tres platos con las fichas y liquidar da tres talones', async () => {
   const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
   try {
     assert.equal(await page.textContent('[data-falta]'), '$48.000');
@@ -43,20 +62,47 @@ test('asignar los tres platos y liquidar da tres talones', async () => {
       const texto = await page.textContent(`[data-talon="${id}"]`);
       assert.match(texto, /Cobrar por WhatsApp/);
       assert.ok(texto.includes(mensajeCobro({ deudor: nombre, grupo: 'Almuerzo en Fonda La Vaca', monto, llave: '@dani.ejemplo' })));
+      assert.match(texto, /En la app, este botón abre tu WhatsApp con el mensaje listo/);
     }
   } finally { await browser.close(); }
 });
 
-test('arrastrar un plato con el dedo lo asigna', async () => {
+test('la ficha Todos reparte el plato entre los cuatro', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    await page.tap(plato('cerveza'));
+    await page.tap(ficha('cerveza', 'todos'));
+    for (const id of ['dani', 'juanma', 'valen', 'pipe']) assert.equal(await prendida(page, ficha('cerveza', id)), 'true');
+    assert.equal(await prendida(page, ficha('cerveza', 'todos')), 'true');
+    assert.equal(await page.textContent('[data-falta]'), '$34.000');
+  } finally { await browser.close(); }
+});
+
+test('tocar una ficha prendida la apaga', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    await page.tap(plato('cerveza'));
+    await page.tap(ficha('cerveza', 'pipe'));
+    assert.equal(await prendida(page, ficha('cerveza', 'pipe')), 'true');
+    assert.equal(await page.textContent('[data-falta]'), '$34.000');
+    await page.tap(ficha('cerveza', 'pipe'));
+    assert.equal(await prendida(page, ficha('cerveza', 'pipe')), 'false');
+    assert.equal(await page.textContent('[data-falta]'), '$48.000');
+  } finally { await browser.close(); }
+});
+
+test('arrastrar un plato a una persona también lo asigna', async () => {
   const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
   try {
+    // La cuenta entra moviéndose: medir cuando ya quedó quieta.
+    await page.evaluate(() => Promise.all(document.querySelector('.cuenta').getAnimations().map((a) => a.finished)));
     const desde = await page.locator(plato('cerveza')).boundingBox();
     const hasta = await page.locator(persona('pipe')).boundingBox();
     await page.mouse.move(desde.x + desde.width / 2, desde.y + desde.height / 2);
     await page.mouse.down();
     await page.mouse.move(hasta.x + hasta.width / 2, hasta.y + hasta.height / 2, { steps: 12 });
     await page.mouse.up();
-    assert.equal(await page.locator(quitar('cerveza', 'pipe')).count(), 1);
+    assert.equal(await page.textContent(`${fila('cerveza')} .duenos`), 'Pipe');
     assert.equal(await page.textContent('[data-falta]'), '$34.000');
   } finally { await browser.close(); }
 });
@@ -83,20 +129,49 @@ test('Liquidar se ve desde el principio, apagado hasta que no falte nada', async
     assert.ok(await page.isDisabled('[data-liquidar]'));
     await completar(page, (s) => page.tap(s));
     assert.ok(await page.isEnabled('[data-liquidar]'));
-    await page.tap(quitar('cerveza', 'pipe'));
+    await abrirPlato(page, (s) => page.tap(s), 'cerveza');
+    await page.tap(ficha('cerveza', 'pipe'));
     assert.ok(await page.isVisible('[data-liquidar]'));
     assert.ok(await page.isDisabled('[data-liquidar]'));
     assert.equal(await page.textContent('[data-falta]'), '$14.000');
   } finally { await browser.close(); }
 });
 
-test('solo los platos bloquean el gesto de scroll', async () => {
+test('en el celular nada de la cuenta bloquea el scroll', async () => {
   const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
   try {
     const gesto = (s) => page.$eval(s, (e) => getComputedStyle(e).touchAction);
-    assert.equal(await gesto(plato('chicharron')), 'none');
-    assert.notEqual(await gesto('.cuenta'), 'none');
-    assert.notEqual(await gesto('.plato'), 'none');
+    for (const s of [plato('chicharron'), '.cuenta', '.plato', ficha('chicharron', 'dani')]) {
+      assert.notEqual(await gesto(s), 'none', s);
+    }
+  } finally { await browser.close(); }
+});
+
+test('con mouse el nombre del plato se puede arrastrar', async () => {
+  const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
+  try {
+    assert.equal(await page.$eval(plato('chicharron'), (e) => getComputedStyle(e).touchAction), 'none');
+  } finally { await browser.close(); }
+});
+
+test('arriba, la cuenta dice que es de ejemplo y cómo se usa', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    const texto = await page.textContent('.cuenta-cabeza');
+    assert.match(texto, /Cuenta de ejemplo/);
+    assert.match(texto, /Toca un plato y escoge quién lo comió/);
+    assert.ok(await page.isVisible('.cuenta-cabeza'));
+  } finally { await browser.close(); }
+});
+
+test('en el celular, lo que falta y Liquidar se quedan a la vista', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    assert.equal(await page.$eval('.cuenta-pie', (e) => getComputedStyle(e).position), 'sticky');
+    const caja = await page.locator('[data-liquidar]').boundingBox();
+    assert.ok(caja.y + caja.height <= 844, `Liquidar queda en y=${caja.y}`);
+    const falta = await page.locator('[data-falta]').boundingBox();
+    assert.ok(falta.y + falta.height <= 844, `Falta queda en y=${falta.y}`);
   } finally { await browser.close(); }
 });
 
@@ -124,20 +199,18 @@ test('con teclado se puede repartir', async () => {
   const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
   try {
     const antes = await page.textContent(`${persona('pipe')} [data-total]`);
-    await page.focus(plato('cerveza'));
+    await page.focus(ficha('chicharron', 'pipe'));
     await page.keyboard.press('Enter');
-    await page.focus(persona('pipe'));
-    await page.keyboard.press('Enter');
+    assert.equal(await prendida(page, ficha('chicharron', 'pipe')), 'true');
     assert.notEqual(await page.textContent(`${persona('pipe')} [data-total]`), antes);
     assert.match(await page.textContent('[data-anuncio]'), /Pipe/);
   } finally { await browser.close(); }
 });
 
-test('al llegar, una demostración lleva un plato hasta una persona', async () => {
+test('al llegar, una demostración toca las fichas del primer plato', async () => {
   const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
   try {
     await page.waitForSelector('[data-demo]', { timeout: 3000 });
-    assert.match(await page.textContent('[data-demo]'), /Chicharrón/);
     assert.ok(await page.$eval('[data-demo]', (d) => d.getAnimations({ subtree: true }).length > 0));
   } finally { await browser.close(); }
 });

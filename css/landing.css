@@ -148,7 +148,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-transform: uppercase;
 }
 .cuenta-dato { font-size: var(--step-small); color: var(--tinta-suave); }
-.cuenta-cabeza .cuenta-dato { margin-top: 0.25rem; }
+.cuenta-guia { margin-top: 0.3rem; font-size: var(--step-small); font-weight: 500; text-wrap: balance; }
 
 .platos { display: grid; gap: 0.15rem; }
 .plato {
@@ -169,14 +169,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 0.2rem 0.45rem;
   border-radius: var(--radio);
   text-align: left;
-  touch-action: none;
-  cursor: grab;
+  touch-action: manipulation;
+  cursor: pointer;
   transition: background-color 120ms ease, color 120ms ease;
 }
 .plato-nombre:hover { background: var(--papel-2); }
 .plato-libre .plato-nombre:hover { background: var(--papel); }
-.plato-nombre[aria-pressed='true'] { background: var(--tinta); color: var(--papel); }
+.plato-nombre[aria-expanded='true'] { background: var(--tinta); color: var(--papel); }
 .plato-nombre.arrastrando { opacity: 0.4; }
+@media (hover: hover) and (pointer: fine) {
+  .plato-nombre { touch-action: none; cursor: grab; }
+}
 .duenos { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; }
 .dueno, .sin-dueno {
   font-size: var(--step-small);
@@ -186,10 +189,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-radius: var(--radio);
 }
 .dueno { background: var(--papel-2); }
-.con-js .dueno { cursor: pointer; }
-.con-js .dueno:hover { background: var(--tinta); color: var(--papel); }
 .plato-libre .dueno { background: var(--papel); }
-.sin-dueno { background: var(--tinta); color: var(--papel); }
+.sin-dueno { padding-inline: 0; color: var(--ladrillo); }
 
 .totales { margin-top: 1.25rem; padding-top: 1rem; display: grid; gap: 0.2rem; border-top: 4px dotted var(--tinta-suave); }
 .totales div { display: flex; justify-content: space-between; gap: 1rem; }
@@ -197,9 +198,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .totales .total { font-weight: 500; font-size: var(--step-lead); margin-top: 0.25rem; }
 .totales .total dt { color: var(--tinta); }
 
-.falta { margin: 1rem 0 0.85rem; font-weight: 500; }
+/* El pie se queda a la vista mientras se reparte: quién lleva cuánto, lo que
+   falta y Liquidar. Una perforación lo separa de lo que pasa por debajo. */
+.cuenta-pie {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin: 1rem -1.5rem 0;
+  padding: 0.6rem 1.5rem 0.9rem;
+  background: var(--papel);
+  border-top: 4px dotted var(--tinta-suave);
+}
+.pie-fila { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.6rem; }
+.falta { font-weight: 500; }
 .falta strong { font-weight: 800; font-stretch: 62%; font-size: var(--step-lead); text-transform: uppercase; }
 
+.personas-titulo { margin: 0 0 0.4rem; font-size: var(--step-small); color: var(--tinta-suave); }
 .personas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
 .persona {
   width: 100%;
@@ -215,14 +229,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .persona-total { font-size: var(--step-small); }
 .persona.encima, .con-seleccion .persona:hover { background: var(--tinta); color: var(--papel); }
 
-.pista { display: none; margin-top: 0.75rem; font-size: var(--step-small); color: var(--tinta-suave); }
-.con-js .pista { display: block; }
+.pista { display: none; margin-top: 0.6rem; font-size: var(--step-small); color: var(--tinta-suave); }
+@media (hover: hover) and (pointer: fine) {
+  .con-js .pista { display: block; }
+}
 .liquidada .pista { display: none; }
 
 /* Liquidar: la única acción en terracota sobre papel. */
 .boton-liquidar {
-  width: 100%;
-  margin-top: 0.85rem;
+  flex: 0 0 auto;
+  padding-inline: 1.75rem;
   background: var(--acento);
   color: var(--papel);
   font-weight: 800;
@@ -266,51 +282,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .talon-cobro summary::-webkit-details-marker { display: none; }
 .talon-cobro summary:focus:not(:focus-visible) { outline: none; }
-.talon-mensaje { margin-top: 0.75rem; padding: 0.85rem 1rem; background: var(--papel-2); }
+.talon-intro { margin-top: 0.75rem; font-size: var(--step-small); color: var(--tinta-suave); }
+.talon-mensaje { margin-top: 0.35rem; padding: 0.85rem 1rem; background: var(--papel-2); }
 .talon-nota { margin-top: 0.5rem; font-size: var(--step-small); color: var(--tinta-suave); }
 .boton-otra-vez { justify-self: start; }
 
-/* La demostración: un dedo lleva el primer plato libre hasta una persona. */
-.portada-cuenta { position: relative; }
-.demo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 5;
-  pointer-events: none;
-  animation: demo-viaje 2.8s cubic-bezier(0.45, 0, 0.25, 1) 2 both;
-}
-.demo-plato {
-  display: block;
-  padding: 0.45rem 0.9rem;
+/* Las fichas del plato abierto, como los chips de la tarjeta de ítem de la app. */
+.plato-abierto { background: var(--papel-2); border-radius: 1.5rem; padding-bottom: 0.6rem; }
+.fichas { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+.ficha {
+  position: relative;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--radio);
-  background: var(--tinta);
-  color: var(--papel);
+  background: var(--papel);
+  font-size: var(--step-small);
   font-weight: 500;
-  white-space: nowrap;
+  line-height: 1;
+  transition: background-color 120ms ease, color 120ms ease;
 }
-.demo-dedo {
-  position: absolute;
-  left: 62%;
-  top: 58%;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--radio);
-  background: var(--tinta);
-  opacity: 0.35;
-  animation: demo-dedo 2.8s ease-in-out 2 both;
-}
-@keyframes demo-viaje {
-  0% { transform: translate(var(--x0), var(--y0)) translate(-35%, -50%); opacity: 0; }
-  12% { transform: translate(var(--x0), var(--y0)) translate(-35%, -50%); opacity: 1; }
-  24% { transform: translate(var(--x0), var(--y0)) translate(-35%, -130%); }
-  62% { transform: translate(var(--x1), var(--y1)) translate(-50%, -130%); }
-  74% { transform: translate(var(--x1), var(--y1)) translate(-50%, -55%); opacity: 1; }
-  90%, 100% { transform: translate(var(--x1), var(--y1)) translate(-50%, -55%); opacity: 0; }
-}
-/* La persona que recibe el plato en la demostración salta un poco al llegar. */
-.persona { position: relative; }
-.persona::after {
+.ficha:hover { background: var(--tinta-suave); color: var(--papel); }
+.ficha[aria-pressed='true'] { background: var(--tinta); color: var(--papel); }
+.ficha::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -319,23 +312,40 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   opacity: 0;
   pointer-events: none;
 }
-.demo-destino { animation: demo-recibe 2.8s ease-in-out 2 both; }
-.demo-destino::after { animation: demo-sombra 2.8s ease-in-out 2 both; }
-@keyframes demo-recibe {
-  0%, 62% { transform: scale(1); }
-  72% { transform: scale(1.08); }
-  84%, 100% { transform: scale(1); }
+
+/* La demostración: un dedo toca dos fichas del plato abierto, como en la app. */
+.portada-cuenta { position: relative; }
+.demo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radio);
+  background: var(--tinta);
+  opacity: 0;
+  pointer-events: none;
+  animation: demo-toques 3s ease-in-out 2 both;
 }
-@keyframes demo-sombra {
-  0%, 62% { opacity: 0; }
-  72%, 80% { opacity: 0.18; }
-  92%, 100% { opacity: 0; }
+@keyframes demo-toques {
+  0% { transform: translate(var(--x0), var(--y0)) translate(-30%, -10%) scale(1.2); opacity: 0; }
+  10% { transform: translate(var(--x0), var(--y0)) translate(-30%, -10%) scale(1.2); opacity: 0.4; }
+  18% { transform: translate(var(--x0), var(--y0)) translate(-30%, -10%) scale(0.85); opacity: 0.45; }
+  26% { transform: translate(var(--x0), var(--y0)) translate(-30%, -10%) scale(1.1); opacity: 0.4; }
+  48% { transform: translate(var(--x1), var(--y1)) translate(-30%, -10%) scale(1.1); opacity: 0.4; }
+  58% { transform: translate(var(--x1), var(--y1)) translate(-30%, -10%) scale(0.85); opacity: 0.45; }
+  66% { transform: translate(var(--x1), var(--y1)) translate(-30%, -10%) scale(1.1); opacity: 0.4; }
+  82%, 100% { transform: translate(var(--x1), var(--y1)) translate(-30%, -10%) scale(1.1); opacity: 0; }
 }
-@keyframes demo-dedo {
-  0%, 10% { transform: scale(1.15); }
-  18%, 70% { transform: scale(0.85); }
-  78%, 100% { transform: scale(1.15); }
-}
+.demo-toque-1 { animation: toque-1 3s ease-in-out 2 both; }
+.demo-toque-2 { animation: toque-2 3s ease-in-out 2 both; }
+.demo-toque-1::after { animation: sombra-1 3s ease-in-out 2 both; }
+.demo-toque-2::after { animation: sombra-2 3s ease-in-out 2 both; }
+@keyframes toque-1 { 0%, 14% { transform: scale(1); } 18% { transform: scale(0.92); } 26%, 100% { transform: scale(1); } }
+@keyframes toque-2 { 0%, 54% { transform: scale(1); } 58% { transform: scale(0.92); } 66%, 100% { transform: scale(1); } }
+@keyframes sombra-1 { 0%, 14% { opacity: 0; } 18%, 40% { opacity: 0.25; } 50%, 100% { opacity: 0; } }
+@keyframes sombra-2 { 0%, 54% { opacity: 0; } 58%, 76% { opacity: 0.25; } 86%, 100% { opacity: 0; } }
 
 /* Lo que se arrastra sigue al dedo, encima del dedo para que se vea. */
 .fantasma {
@@ -370,7 +380,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (prefers-reduced-motion: reduce) {
   .con-js .cuenta, .con-js .talon { animation: none; }
   .demo { display: none; }
-  .demo-destino, .demo-destino::after { animation: none; }
+  .demo-toque-1, .demo-toque-2, .demo-toque-1::after, .demo-toque-2::after { animation: none; }
   *, *::before, *::after { transition: none !important; }
 }
 
@@ -397,5 +407,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .cuenta-cabeza { margin-bottom: 0.5rem; }
   .plato { padding: 0.25rem 0.5rem; }
   .totales { margin-top: 0.75rem; padding-top: 0.6rem; }
-  .falta { margin: 0.75rem 0; }
+  .cuenta-pie { margin-inline: -1rem; padding-inline: 1rem; }
+  .fichas { gap: 0.3rem; }
+  .ficha { padding-inline: 0.6rem; }
 }
