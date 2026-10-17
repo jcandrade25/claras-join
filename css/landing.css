@@ -1,0 +1,222 @@
+/* Landing de clarasapp.com: "La cuenta de verdad".
+   Dirección: la página es el objeto (taste-skill, semilla 701961118). Fondo de
+   ladrillo, papel térmico y tinta; la terracota de la marca solo en la acción
+   principal sobre papel. Archivo alojada aquí: nada se le pide a Google. */
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('../fonts/Archivo-texto.woff2') format('woff2');
+  font-weight: 400 500;
+  font-stretch: 100%;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('../fonts/Archivo-titulos.woff2') format('woff2');
+  font-weight: 800;
+  font-stretch: 62%;
+  font-display: swap;
+}
+
+:root {
+  --ladrillo: #b3482a;
+  --papel: #f6f5f2;
+  --papel-2: #e9e6df;
+  --tinta: #1b1714;
+  --tinta-suave: #4f4740;
+  --acento: #c75432;
+
+  /* Mapeo A: el ladrillo es el suelo de la página. */
+  --fondo: var(--ladrillo);
+  --sobre-fondo: var(--papel);
+  --boton-fondo: var(--papel);
+  --boton-tinta: var(--tinta);
+
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.5rem, 1.2rem + 5vw, 5.5rem);
+  --step-display: clamp(5rem, 2.2rem + 10vw, 11rem);
+
+  --radio: 0;
+  --margen: clamp(1rem, 0.4rem + 2.4vw, 2rem);
+  --dientes: polygon(0% 0%, 100% 0%, 100% calc(100% - 12px), 96.429% 100%, 92.857% calc(100% - 12px), 89.286% 100%, 85.714% calc(100% - 12px), 82.143% 100%, 78.571% calc(100% - 12px), 75% 100%, 71.429% calc(100% - 12px), 67.857% 100%, 64.286% calc(100% - 12px), 60.714% 100%, 57.143% calc(100% - 12px), 53.571% 100%, 50% calc(100% - 12px), 46.429% 100%, 42.857% calc(100% - 12px), 39.286% 100%, 35.714% calc(100% - 12px), 32.143% 100%, 28.571% calc(100% - 12px), 25% 100%, 21.429% calc(100% - 12px), 17.857% 100%, 14.286% calc(100% - 12px), 10.714% 100%, 7.143% calc(100% - 12px), 3.571% 100%, 0% calc(100% - 12px));
+}
+
+/* Mapeo B (control para comparar): suelo de tinta, ladrillo solo en la acción. */
+html[data-comp='b'] {
+  --fondo: var(--tinta);
+  --sobre-fondo: var(--papel);
+  --boton-fondo: var(--ladrillo);
+  --boton-tinta: var(--papel);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: var(--step-body);
+  line-height: 1.5;
+  background: var(--fondo);
+  color: var(--sobre-fondo);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+ul { list-style: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+:focus-visible { outline: 3px solid var(--sobre-fondo); outline-offset: 3px; }
+.cuenta :focus-visible { outline-color: var(--tinta); }
+
+/* Botones: rectos, un solo relleno. */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radio);
+  background: var(--boton-fondo);
+  color: var(--boton-tinta);
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 120ms ease;
+}
+.boton:active { transform: translateY(1px); }
+
+/* Barra: marca, tres enlaces, una acción. */
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.75rem var(--margen);
+}
+.marca {
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: 2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.barra-enlaces { display: flex; gap: 1.75rem; margin-left: auto; }
+.barra-enlaces a { text-decoration: none; }
+.barra-enlaces a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.boton-barra { min-height: 2.5rem; padding: 0.5rem 1.25rem; }
+
+/* Portada: el titular sobre el ladrillo y la cuenta en papel. */
+.portada {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 1.5rem;
+  align-items: center;
+  min-height: calc(100svh - 4rem);
+  padding: 1rem var(--margen) 4rem;
+}
+.portada-texto { grid-column: 1 / span 6; }
+.portada-cuenta { grid-column: 8 / span 5; display: flex; justify-content: center; }
+
+.titular {
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: var(--step-display);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.bajada {
+  max-width: 34ch;
+  margin: 2rem 0 2.25rem;
+  font-size: var(--step-lead);
+  line-height: 1.35;
+}
+
+/* La cuenta: papel térmico con el borde de dientes. */
+.cuenta {
+  width: min(100%, 31rem);
+  padding: 1.5rem 1.5rem 2.5rem;
+  background: var(--papel);
+  color: var(--tinta);
+  clip-path: var(--dientes);
+  font-variant-numeric: tabular-nums;
+  transform: rotate(-1.2deg);
+}
+.cuenta-cabeza { text-align: center; margin-bottom: 1.25rem; }
+.cuenta-local {
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: 2.25rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.cuenta-dato { font-size: var(--step-small); color: var(--tinta-suave); }
+.cuenta-cabeza .cuenta-dato { margin-top: 0.25rem; }
+
+.platos { display: grid; gap: 0.15rem; }
+.plato {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  column-gap: 0.5rem;
+  align-items: center;
+  padding: 0.35rem 0.5rem;
+  margin: 0 -0.5rem;
+}
+.plato-libre { background: var(--papel-2); }
+.plato-cant { color: var(--tinta-suave); }
+.plato-valor { text-align: right; }
+.plato-centro { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.5rem; row-gap: 0.25rem; }
+.duenos { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; }
+.dueno, .sin-dueno {
+  font-size: var(--step-small);
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+}
+.dueno { background: var(--papel-2); }
+.plato-libre .dueno { background: var(--papel); }
+.sin-dueno { background: var(--tinta); color: var(--papel); }
+
+.totales { margin-top: 1.25rem; padding-top: 1rem; display: grid; gap: 0.2rem; border-top: 4px dotted var(--tinta-suave); }
+.totales div { display: flex; justify-content: space-between; gap: 1rem; }
+.totales dt { color: var(--tinta-suave); }
+.totales .total { font-weight: 500; font-size: var(--step-lead); margin-top: 0.25rem; }
+.totales .total dt { color: var(--tinta); }
+
+.falta { margin: 1rem 0 0.85rem; font-weight: 500; }
+.falta strong { font-weight: 800; font-stretch: 62%; font-size: 1.75rem; text-transform: uppercase; }
+
+.personas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
+.persona {
+  width: 100%;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.6rem 0.4rem;
+  background: var(--tinta);
+  color: var(--papel);
+  text-align: center;
+}
+.persona-nombre { font-weight: 800; font-stretch: 62%; font-size: 1.35rem; line-height: 1; text-transform: uppercase; }
+.persona-total { font-size: var(--step-small); }
+
+/* Teléfono: la cuenta es el primer pantallazo y se juega con el pulgar. */
+@media (max-width: 760px) {
+  .barra { gap: 1rem; }
+  .barra-enlaces { display: none; }
+  .boton-barra { margin-left: auto; }
+  .portada { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-top: 0.25rem; }
+  .portada-texto { display: contents; }
+  .titular { order: 1; font-size: clamp(4rem, 1rem + 15vw, 6rem); }
+  .portada-cuenta { order: 2; margin-top: 0.75rem; }
+  .bajada { order: 3; margin: 2rem 0 1.5rem; }
+  .boton-principal { order: 4; align-self: flex-start; }
+  .cuenta { width: 100%; transform: none; padding: 1rem 1rem 2.25rem; font-size: 1rem; }
+  .cuenta-cabeza { margin-bottom: 0.5rem; }
+  .cuenta-local { font-size: 1.75rem; }
+  .plato { padding: 0.25rem 0.5rem; }
+  .totales { margin-top: 0.75rem; padding-top: 0.6rem; }
+  .totales .total { font-size: 1.25rem; }
+  .falta { margin: 0.75rem 0; }
+}
