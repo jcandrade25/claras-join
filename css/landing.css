@@ -82,6 +82,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .boton:active { transform: translateY(1px); }
 
+[hidden] { display: none !important; }
+.boton-acento { background: var(--acento); color: var(--papel); }
+.boton-papel { background: var(--papel-2); color: var(--tinta); }
+
+/* La invitación: un tiquete con muescas a los lados, encima de la portada. */
+.invitacion { padding: 0.75rem var(--margen) 0.25rem; }
+.invitacion-talon {
+  max-width: 40rem;
+  padding: 1.5rem 2rem 1.25rem;
+  background: var(--papel);
+  color: var(--tinta);
+  clip-path: polygon(0 0, 100% 0, 100% 42%, calc(100% - 14px) 50%, 100% 58%, 100% 100%, 0 100%, 0 58%, 14px 50%, 0 42%);
+}
+.invitacion-titulo { font-weight: 800; font-stretch: 62%; font-size: var(--step-lead); line-height: 1; text-transform: uppercase; }
+.invitacion-codigo { margin-top: 0.5rem; }
+.invitacion-codigo strong { margin-left: 0.4rem; font-weight: 800; font-stretch: 62%; font-size: var(--step-lead); letter-spacing: 0.04em; }
+.invitacion-acciones { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.invitacion-web { display: inline-block; margin-top: 0.75rem; }
+.invitacion-pista { margin-top: 0.5rem; font-size: var(--step-small); color: var(--tinta-suave); }
+.invitacion-pista:empty { display: none; }
+
 /* Barra: marca, tres enlaces, una acción. */
 .barra {
   display: flex;
@@ -209,6 +230,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--papel);
   border-top: 4px dotted var(--tinta-suave);
 }
+.con-invitacion .cuenta-pie { position: static; }
 .pie-fila { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.6rem; }
 .falta { font-weight: 500; }
 .falta strong { font-weight: 800; font-stretch: 62%; font-size: var(--step-lead); text-transform: uppercase; }
