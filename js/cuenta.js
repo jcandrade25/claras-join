@@ -35,7 +35,8 @@ export function montarCuenta(raiz, fonda = FONDA) {
     platos.innerHTML = htmlPlatos(estado, seleccionado);
     personas.innerHTML = htmlPersonas(estado);
     falta.textContent = textoFalta(estado);
-    liquidar.hidden = liquidado || faltaAsignar(estado) > 0;
+    liquidar.hidden = liquidado;
+    liquidar.disabled = faltaAsignar(estado) > 0;
     raiz.classList.toggle('con-seleccion', seleccionado !== null);
 
     if (clave === 'item' || clave === 'persona') {

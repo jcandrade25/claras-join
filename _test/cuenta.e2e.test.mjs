@@ -76,13 +76,16 @@ test('otra vez y de nuevo liquidar no duplica', async () => {
   } finally { await browser.close(); }
 });
 
-test('quitar a todos de un plato esconde Liquidar', async () => {
+test('Liquidar se ve desde el principio, apagado hasta que no falte nada', async () => {
   const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
   try {
-    await completar(page, (s) => page.tap(s));
     assert.ok(await page.isVisible('[data-liquidar]'));
+    assert.ok(await page.isDisabled('[data-liquidar]'));
+    await completar(page, (s) => page.tap(s));
+    assert.ok(await page.isEnabled('[data-liquidar]'));
     await page.tap(quitar('cerveza', 'pipe'));
-    assert.ok(await page.isHidden('[data-liquidar]'));
+    assert.ok(await page.isVisible('[data-liquidar]'));
+    assert.ok(await page.isDisabled('[data-liquidar]'));
     assert.equal(await page.textContent('[data-falta]'), '$14.000');
   } finally { await browser.close(); }
 });

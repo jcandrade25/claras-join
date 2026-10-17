@@ -231,6 +231,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-transform: uppercase;
 }
 .boton-liquidar[hidden] { display: none; }
+.boton-liquidar:disabled { background: var(--papel-2); color: var(--tinta-suave); cursor: not-allowed; }
 
 /* Los talones: lo que queda al rasgar la cuenta, uno por cada pago. */
 .talones { width: min(100%, 31rem); display: grid; gap: 0.6rem; margin-top: 0.6rem; }
