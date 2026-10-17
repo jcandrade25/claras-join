@@ -101,6 +101,55 @@
         <p class="solo-lector" aria-live="polite" data-anuncio></p>
       </div>
     </section>
+
+    <section class="seccion paseo" id="como-funciona" aria-labelledby="paseo-titulo">
+      <div class="paseo-texto">
+        <h2 class="seccion-titulo" id="paseo-titulo">El paseo entero</h2>
+        <p class="seccion-bajada">Anota cada gasto cuando pasa: quién pagó, cuánto y entre quiénes. El domingo, Claras hace las cuentas.</p>
+        <p class="seccion-nota">Sirve igual para los roomies, la pareja, el asado o la vaca de la oficina.</p>
+      </div>
+      <article class="tirilla" aria-label="Ejemplo: las cuentas de un paseo a la finca">
+        <header class="tirilla-cabeza">
+          <p class="tirilla-grupo">Paseo a la finca</p>
+          <p class="tirilla-dato">Ejemplo. Cuatro personas, todo entre los cuatro.</p>
+        </header>
+        <ul class="tirilla-dias">
+<!-- estatico:tirilla -->
+<li class="tirilla-dia"><p class="tirilla-cuando">Viernes</p><ul><li class="tirilla-fila"><span>Gasolina y peajes<span class="tirilla-quien">Pipe pagó</span></span><span class="lider" aria-hidden="true"></span><span>$186.000</span></li></ul></li>
+<li class="tirilla-dia"><p class="tirilla-cuando">Sábado</p><ul><li class="tirilla-fila"><span>Mercado para la finca<span class="tirilla-quien">Dani pagó</span></span><span class="lider" aria-hidden="true"></span><span>$240.000</span></li><li class="tirilla-fila"><span>La finca, dos noches<span class="tirilla-quien">Valen pagó</span></span><span class="lider" aria-hidden="true"></span><span>$900.000</span></li></ul></li>
+<li class="tirilla-dia"><p class="tirilla-cuando">Domingo</p><ul><li class="tirilla-fila"><span>Almuerzo en el pueblo<span class="tirilla-quien">Juanma pagó</span></span><span class="lider" aria-hidden="true"></span><span>$132.000</span></li></ul></li>
+<li class="tirilla-dia"><p class="tirilla-cuando">Para quedar a mano</p><ul><li class="tirilla-fila" data-de="juanma" data-a="valen"><span>Juanma le paga a Valen</span><span class="lider" aria-hidden="true"></span><span data-monto>$232.500</span></li><li class="tirilla-fila" data-de="pipe" data-a="valen"><span>Pipe le paga a Valen</span><span class="lider" aria-hidden="true"></span><span data-monto>$178.500</span></li><li class="tirilla-fila" data-de="dani" data-a="valen"><span>Dani le paga a Valen</span><span class="lider" aria-hidden="true"></span><span data-monto>$124.500</span></li></ul></li>
+<!-- /estatico:tirilla -->
+        </ul>
+        <p class="tirilla-final">Domingo: todo liquidado en 3 pagos</p>
+      </article>
+    </section>
+
+    <section class="seccion carta" id="precio" aria-labelledby="carta-titulo">
+      <h2 class="seccion-titulo carta-titulo" id="carta-titulo">La carta</h2>
+      <div class="carta-lista">
+        <div class="carta-grupo" data-grupo="gratis">
+          <h3 class="carta-grupo-nombre">Gratis</h3>
+          <div class="carta-items">
+            <div class="carta-item"><p class="carta-nombre"><span>Grupos</span><span>$0</span></p><p class="carta-desc">Para el paseo, el apartamento o el regalo: los que necesites.</p></div>
+            <div class="carta-item"><p class="carta-nombre"><span>Dividir por ítems, con propina</span><span>$0</span></p><p class="carta-desc">Cada uno paga lo suyo y la propina va según lo que consumió.</p></div>
+            <div class="carta-item"><p class="carta-nombre"><span>Liquidar en pocos pagos</span><span>$0</span></p><p class="carta-desc">Quién le paga a quién, y las cuentas cuadran al peso.</p></div>
+            <div class="carta-item"><p class="carta-nombre"><span>Cobrar por WhatsApp</span><span>$0</span></p><p class="carta-desc">El monto y tu llave Bre-B en un mensaje que sale de tu WhatsApp.</p></div>
+            <div class="carta-item"><p class="carta-nombre"><span>Compartir en vivo</span><span>$0</span></p><p class="carta-desc">Cada uno entra desde su celular y ve los mismos gastos.</p></div>
+          </div>
+        </div>
+        <div class="carta-grupo" data-grupo="pro">
+          <h3 class="carta-grupo-nombre carta-pro"><span>Claras Pro, un solo pago</span><span>$14.900</span></h3>
+          <div class="carta-items">
+            <div class="carta-item"><p class="carta-nombre"><span>Escanear recibos</span></p><p class="carta-desc">Una foto de la cuenta llena el gasto y sus ítems. La lectura se hace en tu celular.</p></div>
+            <div class="carta-item"><p class="carta-nombre"><span>Personas</span></p><p class="carta-desc">Tu saldo con cada persona, sumando todos tus grupos.</p></div>
+            <div class="carta-item"><p class="carta-nombre"><span>Personas vinculadas</span></p><p class="carta-desc">La misma persona conectada en todos tus grupos.</p></div>
+          </div>
+          <p class="carta-nota">Precio en Colombia. Pro se compra en la app de Android, sin suscripciones. En la versión web, Personas es gratis y escanear recibos no está disponible.</p>
+        </div>
+        <p class="carta-pie">Sin anuncios. Sin registrarte: agregas a cada persona solo con su nombre.</p>
+      </div>
+    </section>
   </main>
 </body>
 </html>

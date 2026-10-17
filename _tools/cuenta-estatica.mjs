@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { FONDA } from '../js/fonda.js';
 import { completar, crearEstado } from '../js/estado-cuenta.js';
 import { htmlPersonas, htmlPlatos, htmlTalones, textoFalta } from '../js/cuenta-html.js';
+import { htmlTirilla } from '../js/paseo.js';
 
 const ruta = new URL('../index.html', import.meta.url);
 const e = completar(crearEstado(FONDA));
@@ -13,6 +14,7 @@ const partes = {
   personas: `\n${htmlPersonas(e)}\n`,
   talones: `\n${htmlTalones(e)}\n`,
   falta: textoFalta(e),
+  tirilla: `\n${htmlTirilla()}\n`,
 };
 let html = readFileSync(ruta, 'utf8');
 for (const [nombre, contenido] of Object.entries(partes)) {
