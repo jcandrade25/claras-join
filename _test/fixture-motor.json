@@ -33,8 +33,8 @@
   {
    "nombre": "fonda-la-vaca",
    "orden": [
-    "mafe",
-    "pacho",
+    "dani",
+    "juanma",
     "valen",
     "pipe"
    ],
@@ -42,14 +42,14 @@
     {
      "monto": 72000,
      "participantes": [
-      "pacho",
+      "juanma",
       "pipe"
      ]
     },
     {
      "monto": 32000,
      "participantes": [
-      "mafe"
+      "dani"
      ]
     },
     {
@@ -61,17 +61,17 @@
     {
      "monto": 25000,
      "participantes": [
-      "mafe",
-      "pacho",
+      "dani",
+      "juanma",
       "pipe"
      ]
     },
     {
      "monto": 36000,
      "participantes": [
-      "mafe",
+      "dani",
       "valen",
-      "pacho"
+      "juanma"
      ]
     },
     {
@@ -83,40 +83,40 @@
     {
      "monto": 9000,
      "participantes": [
-      "mafe"
+      "dani"
      ]
     }
    ],
    "extra": 19500,
    "pagos": {
-    "mafe": 214500
+    "dani": 214500
    },
    "deuda": {
-    "pacho": 61966,
+    "juanma": 61966,
     "pipe": 64166,
-    "mafe": 67468,
+    "dani": 67468,
     "valen": 20900
    },
    "balances": {
-    "mafe": 147032,
-    "pacho": -61966,
+    "dani": 147032,
+    "juanma": -61966,
     "valen": -20900,
     "pipe": -64166
    },
    "transferencias": [
     {
      "de": "pipe",
-     "a": "mafe",
+     "a": "dani",
      "monto": 64166
     },
     {
-     "de": "pacho",
-     "a": "mafe",
+     "de": "juanma",
+     "a": "dani",
      "monto": 61966
     },
     {
      "de": "valen",
-     "a": "mafe",
+     "a": "dani",
      "monto": 20900
     }
    ]
@@ -124,8 +124,8 @@
   {
    "nombre": "paseo",
    "orden": [
-    "mafe",
-    "pacho",
+    "dani",
+    "juanma",
     "valen",
     "pipe"
    ],
@@ -133,8 +133,8 @@
     {
      "monto": 186000,
      "participantes": [
-      "mafe",
-      "pacho",
+      "dani",
+      "juanma",
       "valen",
       "pipe"
      ]
@@ -142,8 +142,8 @@
     {
      "monto": 240000,
      "participantes": [
-      "mafe",
-      "pacho",
+      "dani",
+      "juanma",
       "valen",
       "pipe"
      ]
@@ -151,8 +151,8 @@
     {
      "monto": 900000,
      "participantes": [
-      "mafe",
-      "pacho",
+      "dani",
+      "juanma",
       "valen",
       "pipe"
      ]
@@ -160,8 +160,8 @@
     {
      "monto": 132000,
      "participantes": [
-      "mafe",
-      "pacho",
+      "dani",
+      "juanma",
       "valen",
       "pipe"
      ]
@@ -170,25 +170,25 @@
    "extra": 0,
    "pagos": {
     "pipe": 186000,
-    "mafe": 240000,
+    "dani": 240000,
     "valen": 900000,
-    "pacho": 132000
+    "juanma": 132000
    },
    "deuda": {
-    "mafe": 364500,
-    "pacho": 364500,
+    "dani": 364500,
+    "juanma": 364500,
     "valen": 364500,
     "pipe": 364500
    },
    "balances": {
-    "mafe": -124500,
-    "pacho": -232500,
+    "dani": -124500,
+    "juanma": -232500,
     "valen": 535500,
     "pipe": -178500
    },
    "transferencias": [
     {
-     "de": "pacho",
+     "de": "juanma",
      "a": "valen",
      "monto": 232500
     },
@@ -198,7 +198,7 @@
      "monto": 178500
     },
     {
-     "de": "mafe",
+     "de": "dani",
      "a": "valen",
      "monto": 124500
     }

@@ -71,7 +71,7 @@ export function montarCuenta(raiz, fonda = FONDA) {
     talones.innerHTML = `${htmlTalones(estado)}\n<button type="button" class="boton boton-otra-vez" data-otra-vez>Otra vez</button>`;
     talones.hidden = false;
     raiz.classList.add('liquidada');
-    decir('Cuenta liquidada: tres pagos para Mafe.');
+    decir(`Cuenta liquidada en ${talones.querySelectorAll('[data-talon]').length} pagos.`);
     talones.scrollIntoView({ block: 'nearest', behavior: reducido() ? 'auto' : 'smooth' });
   }
 

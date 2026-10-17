@@ -18,11 +18,11 @@ for (const m of [{ ancho: 390, alto: 844, tactil: true }, { ancho: 1440, alto: 9
   await page.waitForTimeout(900);
   await page.screenshot({ path: `${salida}estado-${m.ancho}-1.png` });
   await tocar('[data-item="chicharron"]');
-  await tocar('[data-persona="mafe"]');
-  await tocar('[data-persona="pacho"]');
+  await tocar('[data-persona="dani"]');
+  await tocar('[data-persona="juanma"]');
   await page.screenshot({ path: `${salida}estado-${m.ancho}-2.png` });
   await tocar('[data-persona="pipe"]');
-  for (const [item, id] of [['cerveza', 'pipe'], ['natas', 'mafe']]) { await tocar(`[data-item="${item}"]`); await tocar(`[data-persona="${id}"]`); }
+  for (const [item, id] of [['cerveza', 'pipe'], ['natas', 'dani']]) { await tocar(`[data-item="${item}"]`); await tocar(`[data-persona="${id}"]`); }
   await tocar('[data-liquidar]');
   await page.waitForTimeout(900);
   await tocar('[data-talon="pipe"] summary');

@@ -61,9 +61,9 @@ test('formatoPesos escribe los pesos como la app', () => {
 test('mensajeCobro dice lo mismo que el cobro de la app', () => {
   const base = { deudor: 'Pipe', grupo: 'Almuerzo en Fonda La Vaca', monto: 64166 };
   assert.equal(
-    mensajeCobro({ ...base, llave: '@mafe.ejemplo' }),
+    mensajeCobro({ ...base, llave: '@dani.ejemplo' }),
     'Hola Pipe, en «Almuerzo en Fonda La Vaca» me debes $64.166. ' +
-      'Puedes pagarme por Bre-B a la llave @mafe.ejemplo. ¡Gracias!');
+      'Puedes pagarme por Bre-B a la llave @dani.ejemplo. ¡Gracias!');
   assert.equal(
     mensajeCobro({ ...base, llave: '  ' }),
     'Hola Pipe, en «Almuerzo en Fonda La Vaca» me debes $64.166. ¡Gracias!');

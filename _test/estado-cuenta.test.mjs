@@ -20,9 +20,9 @@ test('al llegar faltan $48.000', () => {
 });
 
 test('asignar y quitar devuelven el contador', () => {
-  const con = asignar(crearEstado(FONDA), 'chicharron', 'pacho');
+  const con = asignar(crearEstado(FONDA), 'chicharron', 'juanma');
   assert.equal(faltaAsignar(con), 23000);
-  assert.equal(faltaAsignar(quitar(con, 'chicharron', 'pacho')), 48000);
+  assert.equal(faltaAsignar(quitar(con, 'chicharron', 'juanma')), 48000);
 });
 
 test('asignar dos veces no duplica', () => {
@@ -31,11 +31,11 @@ test('asignar dos veces no duplica', () => {
   assert.deepEqual(dos.asignacion.cerveza, ['pipe']);
 });
 
-test('la cuenta completa da los tres pagos a Mafe', () => {
+test('la cuenta completa da los tres pagos a Dani', () => {
   assert.deepEqual(resultado(completar(crearEstado(FONDA))).transferencias, [
-    { de: 'pipe', a: 'mafe', monto: 64166 },
-    { de: 'pacho', a: 'mafe', monto: 61966 },
-    { de: 'valen', a: 'mafe', monto: 20900 },
+    { de: 'pipe', a: 'dani', monto: 64166 },
+    { de: 'juanma', a: 'dani', monto: 61966 },
+    { de: 'valen', a: 'dani', monto: 20900 },
   ]);
 });
 
@@ -47,7 +47,7 @@ test('la deuda suma 214.500', () => {
 test('crearEstado no comparte arreglos con FONDA', () => {
   const e = crearEstado(FONDA);
   e.asignacion.bandeja.push('valen');
-  assert.deepEqual(FONDA.items.find((it) => it.id === 'bandeja').inicial, ['pacho', 'pipe']);
+  assert.deepEqual(FONDA.items.find((it) => it.id === 'bandeja').inicial, ['juanma', 'pipe']);
 });
 
 test('los subtotales en vivo solo cuentan platos con dueño', () => {

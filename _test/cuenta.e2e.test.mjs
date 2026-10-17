@@ -22,7 +22,7 @@ async function pagina(opciones) {
 
 // Los tres platos que llegan sin dueño, repartidos como en la cuenta completa.
 async function completar(page, tocar) {
-  for (const [item, quienes] of [['chicharron', ['mafe', 'pacho', 'pipe']], ['cerveza', ['pipe']], ['natas', ['mafe']]]) {
+  for (const [item, quienes] of [['chicharron', ['dani', 'juanma', 'pipe']], ['cerveza', ['pipe']], ['natas', ['dani']]]) {
     await tocar(plato(item));
     for (const id of quienes) await tocar(persona(id));
   }
@@ -38,11 +38,11 @@ test('asignar los tres platos y liquidar da tres talones', async () => {
     await completar(page, (s) => page.tap(s));
     assert.equal(await page.textContent('[data-falta]'), '$0');
     await page.tap('[data-liquidar]');
-    assert.deepEqual(await montos(page), [['pipe', '$64.166'], ['pacho', '$61.966'], ['valen', '$20.900']]);
-    for (const [id, nombre, monto] of [['pipe', 'Pipe', 64166], ['pacho', 'Pacho', 61966], ['valen', 'Valen', 20900]]) {
+    assert.deepEqual(await montos(page), [['pipe', '$64.166'], ['juanma', '$61.966'], ['valen', '$20.900']]);
+    for (const [id, nombre, monto] of [['pipe', 'Pipe', 64166], ['juanma', 'Juanma', 61966], ['valen', 'Valen', 20900]]) {
       const texto = await page.textContent(`[data-talon="${id}"]`);
       assert.match(texto, /Cobrar por WhatsApp/);
-      assert.ok(texto.includes(mensajeCobro({ deudor: nombre, grupo: 'Almuerzo en Fonda La Vaca', monto, llave: '@mafe.ejemplo' })));
+      assert.ok(texto.includes(mensajeCobro({ deudor: nombre, grupo: 'Almuerzo en Fonda La Vaca', monto, llave: '@dani.ejemplo' })));
     }
   } finally { await browser.close(); }
 });
@@ -72,7 +72,7 @@ test('otra vez y de nuevo liquidar no duplica', async () => {
     assert.equal(await page.textContent('[data-falta]'), '$48.000');
     await completar(page, clic);
     await page.click('[data-liquidar]');
-    assert.deepEqual(await montos(page), [['pipe', '$64.166'], ['pacho', '$61.966'], ['valen', '$20.900']]);
+    assert.deepEqual(await montos(page), [['pipe', '$64.166'], ['juanma', '$61.966'], ['valen', '$20.900']]);
   } finally { await browser.close(); }
 });
 
@@ -111,8 +111,8 @@ test('con movimiento reducido los talones aparecen igual', async () => {
 test('sin JavaScript se ve la cuenta resuelta', async () => {
   const { browser, page } = await pagina({ ancho: 390, alto: 844, sinJs: true });
   try {
-    assert.deepEqual(await montos(page), [['pipe', '$64.166'], ['pacho', '$61.966'], ['valen', '$20.900']]);
-    for (const id of ['pipe', 'pacho', 'valen']) assert.ok(await page.isVisible(`[data-talon="${id}"]`));
+    assert.deepEqual(await montos(page), [['pipe', '$64.166'], ['juanma', '$61.966'], ['valen', '$20.900']]);
+    for (const id of ['pipe', 'juanma', 'valen']) assert.ok(await page.isVisible(`[data-talon="${id}"]`));
     assert.equal(await page.textContent('[data-falta]'), '$0');
   } finally { await browser.close(); }
 });
