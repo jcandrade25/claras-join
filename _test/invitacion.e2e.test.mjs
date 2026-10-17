@@ -56,20 +56,30 @@ test('sin código, o con uno que no sirve, no hay talón', async () => {
   }
 });
 
-test('los botones de acción van a Play en Android y a la web en lo demás', async () => {
-  for (const [ua, destino, corto, largo] of [
-    [UA.android, URL_PLAY, 'Descargar', 'Descargar en Google Play'],
-    [UA.iphone, URL_WEB, 'Abrir en el navegador', 'Abrir Claras en el navegador'],
-    [UA.windows, URL_WEB, 'Abrir en el navegador', 'Abrir Claras en el navegador'],
-  ]) {
+test('los botones de acción llevan a Play en cualquier celular o computador', async () => {
+  for (const ua of [UA.android, UA.iphone, UA.windows]) {
     const { browser, page } = await pagina('/', ua, 1440);
     try {
       const enlaces = await page.$$eval('[data-accion]', (es) => es.map((e) => [e.dataset.accion, e.getAttribute('href'), e.textContent.trim()]));
       assert.ok(enlaces.length >= 2);
       for (const [tipo, href, texto] of enlaces) {
-        assert.equal(href, destino, `${ua.slice(0, 40)} ${tipo}`);
-        if (tipo === 'corto') assert.equal(texto, corto);
-        if (tipo === 'largo') assert.equal(texto, largo);
+        assert.equal(href, URL_PLAY, `${ua.slice(0, 40)} ${tipo}`);
+        if (tipo === 'corto') assert.equal(texto, 'Descargar');
+        if (tipo === 'largo') assert.equal(texto, 'Descargar en Google Play');
+      }
+    } finally { await browser.close(); }
+  }
+});
+
+test('la versión web se ofrece solo en iPhone, discreta', async () => {
+  for (const [ua, visible] of [[UA.iphone, true], [UA.android, false], [UA.windows, false]]) {
+    const { browser, page } = await pagina('/', ua);
+    try {
+      const enlaces = page.locator('[data-solo-iphone]');
+      assert.ok(await enlaces.count() >= 1);
+      for (let i = 0; i < await enlaces.count(); i++) {
+        assert.equal(await enlaces.nth(i).isVisible(), visible, ua.slice(0, 40));
+        assert.equal(await enlaces.nth(i).getAttribute('href'), URL_WEB);
       }
     } finally { await browser.close(); }
   }

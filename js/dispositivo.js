@@ -24,18 +24,15 @@ export function codigoDeInvitacion(search) {
   return /^[A-Z0-9]{4,12}$/.test(codigo) ? codigo : '';
 }
 
-const TEXTOS = {
-  android: { corto: 'Descargar', largo: 'Descargar en Google Play' },
-  otro: { corto: 'Abrir en el navegador', largo: 'Abrir Claras en el navegador' },
-};
+const TEXTOS = { corto: 'Descargar', largo: 'Descargar en Google Play' };
 
-// Cada [data-accion] lleva a Play o a la web; "corto" y "largo" también
-// cambian su texto, "enlace" conserva el suyo.
+// Cada [data-accion] lleva a Play en cualquier aparato (la app es lo que se
+// promociona; desde un computador, Play deja instalarla en el celular). La
+// versión web solo se ofrece, discreta, en iPhone: los [data-solo-iphone].
 export function aplicarDestinos(doc, tipo) {
-  const destino = tipo === 'android' ? URL_PLAY : URL_WEB;
-  const textos = tipo === 'android' ? TEXTOS.android : TEXTOS.otro;
   for (const a of doc.querySelectorAll('[data-accion]')) {
-    a.setAttribute('href', destino);
-    if (textos[a.dataset.accion]) a.textContent = textos[a.dataset.accion];
+    a.setAttribute('href', URL_PLAY);
+    if (TEXTOS[a.dataset.accion]) a.textContent = TEXTOS[a.dataset.accion];
   }
+  for (const a of doc.querySelectorAll('[data-solo-iphone]')) a.hidden = tipo !== 'ios';
 }

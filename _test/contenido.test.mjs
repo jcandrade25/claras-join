@@ -39,7 +39,25 @@ test('la carta: todo lo gratis a $0 y Pro a $14.900 una sola vez, dentro de Pro'
   const pro = c.match(/data-grupo="pro"[\s\S]*$/)?.[0] ?? '';
   assert.ok(pro.includes('$14.900'));
   assert.match(texto(c), /se compra en la app de Android/);
-  assert.match(texto(c), /En la versión web, Personas es gratis y escanear recibos no está disponible/);
+  assert.doesNotMatch(texto(c), /versión web/);
+});
+
+test('la página termina como termina un recibo, con la descarga y lo legal', () => {
+  const pie = html.match(/<footer[\s\S]*?<\/footer>/)?.[0] ?? '';
+  const t = texto(pie);
+  assert.match(t, /El próximo paseo ya tiene quién haga las cuentas/);
+  assert.match(t, /Gracias por su visita/i);
+  assert.match(t, /Cuentas claras, amistades largas/);
+  assert.match(t, /Esta página no usa cookies ni rastreadores/);
+  assert.ok(pie.includes('data-accion="largo"'));
+  for (const href of ['privacidad.html', 'eliminar-cuenta.html', 'mailto:support@clarasapp.com']) {
+    assert.ok(pie.includes(`href="${href}"`), href);
+  }
+});
+
+test('no quedan fotos de terceros ni sus créditos', () => {
+  assert.doesNotMatch(html, /img\/mundo\//);
+  assert.doesNotMatch(html, /Wikimedia/);
 });
 
 test('el texto de la página no lleva rayas largas ni puntos medios', () => {
