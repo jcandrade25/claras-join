@@ -11,11 +11,12 @@ const salida = fileURLToPath(new URL('./out/', import.meta.url));
 await mkdir(salida, { recursive: true });
 
 const { url, cerrar } = await servir(raiz);
+const comps = process.argv.length > 2 ? process.argv.slice(2) : ['a'];
 const medidas = [{ ancho: 390, alto: 844, tactil: true }, { ancho: 1440, alto: 900 }];
 
 for (const m of medidas) {
   const capturas = {};
-  for (const comp of ['a', 'b']) {
+  for (const comp of comps) {
     const { browser, page } = await abrir(m);
     await page.goto(`${url}/`);
     await page.evaluate((c) => { document.documentElement.dataset.comp = c; }, comp);
@@ -23,11 +24,11 @@ for (const m of medidas) {
     capturas[comp] = await page.screenshot();
     await browser.close();
   }
-  // Une las dos capturas en una sola imagen, con una franja entre ellas.
-  const { browser, page } = await abrir({ ancho: m.ancho * 2 + 24, alto: m.alto });
+  // Une las capturas en una sola imagen, con una franja entre ellas.
+  const { browser, page } = await abrir({ ancho: (m.ancho + 24) * comps.length - 24, alto: m.alto });
   const b64 = (x) => `data:image/png;base64,${x.toString('base64')}`;
   await page.setContent(`<body style="margin:0;display:flex;gap:24px;background:#777">
-    <img src="${b64(capturas.a)}"><img src="${b64(capturas.b)}"></body>`);
+    ${comps.map((c) => `<img src="${b64(capturas[c])}">`).join('')}</body>`);
   await page.screenshot({ path: `${salida}comps-${m.ancho}.png` });
   await browser.close();
   console.log(`comps-${m.ancho}.png`);
