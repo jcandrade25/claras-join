@@ -159,6 +159,47 @@ export function montarCuenta(raiz, fonda = FONDA) {
   raiz.addEventListener('pointerup', (ev) => soltar(ev, true));
   raiz.addEventListener('pointercancel', (ev) => soltar(ev, false));
 
+  // Al llegar, un dedo lleva el primer plato sin dueño hasta una persona, dos
+  // veces, para que se vea que se puede. Se quita apenas uno toca la cuenta.
+  let demo = null;
+  let yaTocaron = false;
+  function detenerDemo() {
+    yaTocaron = true;
+    demo?.remove();
+    demo = null;
+    raiz.querySelector('.demo-destino')?.classList.remove('demo-destino');
+  }
+  function demostrar() {
+    if (reducido() || demo || yaTocaron) return;
+    const origen = platos.querySelector('.plato-libre [data-item]');
+    const destino = personas.querySelectorAll('[data-persona]')[1];
+    if (!origen || !destino) return;
+    const base = raiz.getBoundingClientRect();
+    const centro = (el) => {
+      const r = el.getBoundingClientRect();
+      return [r.left - base.left + r.width / 2, r.top - base.top + r.height / 2];
+    };
+    const [x0, y0] = centro(origen);
+    const [x1, y1] = centro(destino);
+    demo = document.createElement('div');
+    demo.className = 'demo';
+    demo.dataset.demo = '';
+    demo.setAttribute('aria-hidden', 'true');
+    demo.innerHTML = `<span class="demo-plato">${origen.textContent}</span><span class="demo-dedo"></span>`;
+    for (const [k, v] of Object.entries({ x0, y0, x1, y1 })) demo.style.setProperty(`--${k}`, `${Math.round(v)}px`);
+    demo.addEventListener('animationend', detenerDemo);
+    raiz.append(demo);
+    destino.classList.add('demo-destino');
+  }
+  for (const tipo of ['pointerdown', 'keydown']) raiz.addEventListener(tipo, detenerDemo, { capture: true });
+  const cuenta = raiz.querySelector('.cuenta');
+  if ('IntersectionObserver' in window && cuenta) {
+    const vigia = new IntersectionObserver((entradas) => {
+      if (entradas.some((e) => e.isIntersecting)) { vigia.disconnect(); setTimeout(demostrar, 900); }
+    }, { threshold: 0.5 });
+    vigia.observe(cuenta);
+  }
+
   reiniciar();
   return { reiniciar };
 }

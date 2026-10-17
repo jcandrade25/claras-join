@@ -269,6 +269,73 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .talon-nota { margin-top: 0.5rem; font-size: var(--step-small); color: var(--tinta-suave); }
 .boton-otra-vez { justify-self: start; }
 
+/* La demostración: un dedo lleva el primer plato libre hasta una persona. */
+.portada-cuenta { position: relative; }
+.demo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  pointer-events: none;
+  animation: demo-viaje 2.8s cubic-bezier(0.45, 0, 0.25, 1) 2 both;
+}
+.demo-plato {
+  display: block;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radio);
+  background: var(--tinta);
+  color: var(--papel);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.demo-dedo {
+  position: absolute;
+  left: 62%;
+  top: 58%;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radio);
+  background: var(--tinta);
+  opacity: 0.35;
+  animation: demo-dedo 2.8s ease-in-out 2 both;
+}
+@keyframes demo-viaje {
+  0% { transform: translate(var(--x0), var(--y0)) translate(-35%, -50%); opacity: 0; }
+  12% { transform: translate(var(--x0), var(--y0)) translate(-35%, -50%); opacity: 1; }
+  24% { transform: translate(var(--x0), var(--y0)) translate(-35%, -130%); }
+  62% { transform: translate(var(--x1), var(--y1)) translate(-50%, -130%); }
+  74% { transform: translate(var(--x1), var(--y1)) translate(-50%, -55%); opacity: 1; }
+  90%, 100% { transform: translate(var(--x1), var(--y1)) translate(-50%, -55%); opacity: 0; }
+}
+/* La persona que recibe el plato en la demostración salta un poco al llegar. */
+.persona { position: relative; }
+.persona::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--tinta);
+  opacity: 0;
+  pointer-events: none;
+}
+.demo-destino { animation: demo-recibe 2.8s ease-in-out 2 both; }
+.demo-destino::after { animation: demo-sombra 2.8s ease-in-out 2 both; }
+@keyframes demo-recibe {
+  0%, 62% { transform: scale(1); }
+  72% { transform: scale(1.08); }
+  84%, 100% { transform: scale(1); }
+}
+@keyframes demo-sombra {
+  0%, 62% { opacity: 0; }
+  72%, 80% { opacity: 0.18; }
+  92%, 100% { opacity: 0; }
+}
+@keyframes demo-dedo {
+  0%, 10% { transform: scale(1.15); }
+  18%, 70% { transform: scale(0.85); }
+  78%, 100% { transform: scale(1.15); }
+}
+
 /* Lo que se arrastra sigue al dedo, encima del dedo para que se vea. */
 .fantasma {
   position: fixed;
@@ -301,6 +368,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 @media (prefers-reduced-motion: reduce) {
   .con-js .cuenta, .con-js .talon { animation: none; }
+  .demo { display: none; }
+  .demo-destino, .demo-destino::after { animation: none; }
   *, *::before, *::after { transition: none !important; }
 }
 

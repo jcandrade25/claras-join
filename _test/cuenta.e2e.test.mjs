@@ -129,3 +129,29 @@ test('con teclado se puede repartir', async () => {
     assert.match(await page.textContent('[data-anuncio]'), /Pipe/);
   } finally { await browser.close(); }
 });
+
+test('al llegar, una demostración lleva un plato hasta una persona', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    await page.waitForSelector('[data-demo]', { timeout: 3000 });
+    assert.match(await page.textContent('[data-demo]'), /Chicharrón/);
+    assert.ok(await page.$eval('[data-demo]', (d) => d.getAnimations({ subtree: true }).length > 0));
+  } finally { await browser.close(); }
+});
+
+test('la demostración se quita en cuanto uno toca la cuenta', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    await page.waitForSelector('[data-demo]', { timeout: 3000 });
+    await page.tap(plato('cerveza'));
+    assert.equal(await page.locator('[data-demo]').count(), 0);
+  } finally { await browser.close(); }
+});
+
+test('con movimiento reducido no hay demostración', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, movimientoReducido: true });
+  try {
+    await page.waitForTimeout(2000);
+    assert.equal(await page.locator('[data-demo]').count(), 0);
+  } finally { await browser.close(); }
+});
