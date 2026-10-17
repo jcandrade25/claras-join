@@ -133,7 +133,33 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 1rem var(--margen) 4rem;
 }
 .portada-texto { grid-column: 1 / span 6; }
-.portada-cuenta { grid-column: 8 / span 5; display: flex; flex-direction: column; align-items: center; }
+.portada-cuenta { grid-column: 7 / -1; grid-row: 1; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+
+/* Detrás de la cuenta, el comedor: tres fotos que se turnan despacio. */
+.portada-fotos {
+  grid-column: 7 / -1;
+  grid-row: 1;
+  align-self: stretch;
+  position: relative;
+  overflow: hidden;
+  margin: -1rem calc(-1 * var(--margen)) -4rem 0;
+}
+.portada-fotos img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: fundido 18s linear infinite;
+}
+.portada-fotos img:nth-child(2) { animation-delay: 6s; }
+.portada-fotos img:nth-child(3) { animation-delay: 12s; }
+@keyframes fundido {
+  0% { opacity: 0; }
+  6%, 33% { opacity: 1; }
+  39%, 100% { opacity: 0; }
+}
 
 .titular {
   font-weight: 800;
@@ -211,7 +237,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .dueno { background: var(--papel-2); }
 .plato-libre .dueno { background: var(--papel); }
-.sin-dueno { padding-inline: 0; color: var(--ladrillo); }
+.sin-dueno { padding-inline: 0; color: #a5401f; }
 
 .totales { margin-top: 1.25rem; padding-top: 1rem; display: grid; gap: 0.2rem; border-top: 4px dotted var(--tinta-suave); }
 .totales div { display: flex; justify-content: space-between; gap: 1rem; }
@@ -402,6 +428,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (prefers-reduced-motion: reduce) {
   .con-js .cuenta, .con-js .talon { animation: none; }
   .demo { display: none; }
+  .portada-fotos img { animation: none; }
+  .portada-fotos img:first-child { opacity: 1; }
   .demo-toque-1, .demo-toque-2, .demo-toque-1::after, .demo-toque-2::after { animation: none; }
   *, *::before, *::after { transition: none !important; }
 }
@@ -538,6 +566,46 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .respuesta { max-width: 52ch; margin-top: 0.9rem; }
 .pregunta:nth-child(3n + 2) :focus-visible { outline-color: var(--papel); }
 
+/* El cierre: tres fotos del paseo y una franja de ladrillo con la invitación. */
+.cierre-fotos { display: grid; grid-template-columns: repeat(3, 1fr); }
+.cierre-fotos img { display: block; width: 100%; height: 40svh; object-fit: cover; }
+.cierre-banda { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; align-content: center; min-height: 44svh; padding: 4rem var(--margen); }
+.cierre-texto { grid-column: 1 / span 7; max-width: 26ch; font-size: var(--step-lead); line-height: 1.3; }
+.cierre-texto a { text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 6px; font-weight: 500; }
+.cierre-nota { grid-column: 1 / span 7; margin-top: 2rem; }
+
+/* El pie: la parte de atrás del recibo, en baldosas. */
+.pie { padding: 0.5rem; background: var(--tinta); color: var(--papel); }
+.pie-tiles { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(13.75rem, auto); gap: 0.5rem; }
+.tile { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: 1.25rem; background: var(--papel); color: var(--tinta); text-decoration: none; }
+.tile-grande { font-size: var(--step-lead); line-height: 1.25; }
+.tile-frase { grid-column: 1 / span 4; }
+.tile-legal { display: flex; gap: 1.25rem; font-size: var(--step-small); }
+.tile-nav { grid-column: 5 / span 3; justify-content: flex-start; gap: 0.4rem; background: var(--papel-2); }
+.tile-nav a { text-decoration: none; }
+.tile-nav a:hover, .tile-legal a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.tile-privado { grid-column: 8 / span 2; background: var(--papel-2); }
+.tile-correo { grid-column: 10 / span 3; }
+.tile-correo a { text-decoration: none; overflow-wrap: anywhere; }
+.tile-marca {
+  grid-column: 1 / span 8;
+  min-height: 20rem;
+  justify-content: center;
+  align-items: center;
+  background: var(--ladrillo);
+  color: var(--papel);
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: var(--step-display);
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+.tile-accion { grid-column: 9 / span 4; }
+.tile-accion svg { align-self: flex-end; transition: transform 160ms ease; }
+.tile-accion:hover svg { transform: translate(4px, -4px); }
+.pie-creditos { max-width: 70ch; padding: 1.5rem 0.75rem 1rem; font-size: var(--step-small); }
+.pie-creditos a { color: inherit; }
+
 /* Tableta y teléfono: titular arriba, la cuenta debajo, luego la bajada y el botón. */
 @media (max-width: 980px) {
   .portada { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-top: 0.5rem; }
@@ -551,6 +619,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .paseo-texto { position: static; }
   .tirilla { margin-top: 2.5rem; }
   .carta-lista { margin-top: 2.5rem; grid-template-columns: 1fr; }
+  .portada-fotos { display: none; }
+  .cierre-fotos { grid-template-columns: 1fr 1fr; }
+  .cierre-fotos img { height: auto; aspect-ratio: 4 / 3; }
+  .cierre-fotos img:first-child { grid-column: 1 / -1; }
+  .cierre-banda { display: block; min-height: 0; }
+  .pie-tiles { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; gap: 0.4rem; }
+  .tile { min-height: 9rem; }
+  .tile-marca { grid-column: 1 / -1; grid-row: 1; min-height: 10rem; font-size: clamp(4rem, 1rem + 15vw, 6rem); }
+  .tile-accion { grid-column: 1 / -1; grid-row: 2; }
+  .tile-nav, .tile-correo, .tile-privado, .tile-frase { grid-column: auto; }
   .vitrina { display: block; min-height: 0; }
   .vitrina-texto { margin-top: 2rem; gap: 1.5rem; }
   .vitrina-pestanas { margin-top: 1.25rem; gap: 1.25rem; }
