@@ -13,6 +13,7 @@
   <script>document.documentElement.classList.add('con-js');</script>
   <script type="module" src="js/pagina.js"></script>
   <script type="module" src="js/cuenta.js"></script>
+  <script type="module" src="js/preguntas.js"></script>
 </head>
 <body>
   <header class="barra">
@@ -148,6 +149,36 @@
           <p class="carta-nota">Precio en Colombia. Pro se compra en la app de Android, sin suscripciones. En la versión web, Personas es gratis y escanear recibos no está disponible.</p>
         </div>
         <p class="carta-pie">Sin anuncios. Sin registrarte: agregas a cada persona solo con su nombre.</p>
+      </div>
+    </section>
+
+    <section class="seccion preguntas" id="preguntas" aria-labelledby="preguntas-titulo">
+      <h2 class="seccion-titulo" id="preguntas-titulo">Lo que preguntan</h2>
+      <div class="archivador" data-preguntas>
+        <details class="pregunta" name="preguntas" data-pregunta style="--n: 0" open>
+          <summary><span class="pregunta-tema">Cuenta</span><span class="pregunta-texto">¿Necesito crear una cuenta?</span></summary>
+          <p class="respuesta">No. Agregas a cada persona solo con su nombre y empiezas a dividir desde el primer minuto. El correo es opcional y solo sirve para recuperar tus grupos compartidos en otro celular.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta style="--n: 1">
+          <summary><span class="pregunta-tema">Amigos</span><span class="pregunta-texto">¿Todos tienen que tener la app?</span></summary>
+          <p class="respuesta">No. Puedes llevar las cuentas de alguien que no la tiene: basta con su nombre. Si quieren ver el grupo, entran con un enlace o un código, desde la app o desde el navegador.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta style="--n: 2">
+          <summary><span class="pregunta-tema">Plata</span><span class="pregunta-texto">¿Claras mueve plata?</span></summary>
+          <p class="respuesta">No. Te dice quién le paga a quién y cada uno paga por el medio que prefiera. Cobrar solo prepara un mensaje de WhatsApp con el monto y tu llave Bre-B, que mandas tú. Tu llave se queda en tu celular y Claras nunca pide claves.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta style="--n: 3">
+          <summary><span class="pregunta-tema">iPhone</span><span class="pregunta-texto">¿Funciona en iPhone?</span></summary>
+          <p class="respuesta">Sí, desde el navegador: entra a app.clarasapp.com y agrégala a tu pantalla de inicio. En Android también está en Google Play.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta style="--n: 4">
+          <summary><span class="pregunta-tema">Datos</span><span class="pregunta-texto">¿Qué pasa con mis datos?</span></summary>
+          <p class="respuesta">Tus grupos se guardan en tu celular. Solo los que compartes se suben a la nube, para que sus miembros los vean. No mostramos publicidad, no usamos rastreadores publicitarios y no vendemos tus datos. Puedes borrar tu cuenta y tus datos cuando quieras. <a href="privacidad.html">Política de privacidad</a></p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta style="--n: 5">
+          <summary><span class="pregunta-tema">Precio</span><span class="pregunta-texto">¿Cuánto cuesta?</span></summary>
+          <p class="respuesta">Nada: todo lo de la carta es gratis y sin anuncios. Claras Pro es un solo pago, sin suscripciones, y su precio está en <a href="#precio">la carta</a>.</p>
+        </details>
       </div>
     </section>
   </main>
