@@ -42,12 +42,13 @@
   /* Un solo radio, decidido una vez: totalmente redondo (Juan escogió A2). */
   --radio: 999px;
   --margen: clamp(1rem, 0.4rem + 2.4vw, 2rem);
+  --dientes-arriba: polygon(0% 12px, 3.571% 0%, 7.143% 12px, 10.714% 0%, 14.286% 12px, 17.857% 0%, 21.429% 12px, 25% 0%, 28.571% 12px, 32.143% 0%, 35.714% 12px, 39.286% 0%, 42.857% 12px, 46.429% 0%, 50% 12px, 53.571% 0%, 57.143% 12px, 60.714% 0%, 64.286% 12px, 67.857% 0%, 71.429% 12px, 75% 0%, 78.571% 12px, 82.143% 0%, 85.714% 12px, 89.286% 0%, 92.857% 12px, 96.429% 0%, 100% 12px, 100% 100%, 0% 100%);
   --dientes: polygon(0% 0%, 100% 0%, 100% calc(100% - 12px), 96.429% 100%, 92.857% calc(100% - 12px), 89.286% 100%, 85.714% calc(100% - 12px), 82.143% 100%, 78.571% calc(100% - 12px), 75% 100%, 71.429% calc(100% - 12px), 67.857% 100%, 64.286% calc(100% - 12px), 60.714% 100%, 57.143% calc(100% - 12px), 53.571% 100%, 50% calc(100% - 12px), 46.429% 100%, 42.857% calc(100% - 12px), 39.286% 100%, 35.714% calc(100% - 12px), 32.143% 100%, 28.571% calc(100% - 12px), 25% 100%, 21.429% calc(100% - 12px), 17.857% 100%, 14.286% calc(100% - 12px), 10.714% 100%, 7.143% calc(100% - 12px), 3.571% 100%, 0% calc(100% - 12px));
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: 'Archivo', system-ui, sans-serif;
@@ -111,7 +112,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 1rem var(--margen) 4rem;
 }
 .portada-texto { grid-column: 1 / span 6; }
-.portada-cuenta { grid-column: 8 / span 5; display: flex; justify-content: center; }
+.portada-cuenta { grid-column: 8 / span 5; display: flex; flex-direction: column; align-items: center; }
 
 .titular {
   font-weight: 800;
@@ -161,7 +162,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .plato-libre { background: var(--papel-2); border-radius: var(--radio); }
 .plato-cant { color: var(--tinta-suave); }
 .plato-valor { text-align: right; }
-.plato-centro { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.5rem; row-gap: 0.25rem; }
+.plato-centro { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.35rem; row-gap: 0.25rem; }
+/* El nombre del plato es lo que se arrastra o se toca: solo él bloquea el scroll. */
+.plato-nombre {
+  margin-left: -0.45rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radio);
+  text-align: left;
+  touch-action: none;
+  cursor: grab;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.plato-nombre:hover { background: var(--papel-2); }
+.plato-libre .plato-nombre:hover { background: var(--papel); }
+.plato-nombre[aria-pressed='true'] { background: var(--tinta); color: var(--papel); }
+.plato-nombre.arrastrando { opacity: 0.4; }
 .duenos { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; }
 .dueno, .sin-dueno {
   font-size: var(--step-small);
@@ -171,6 +186,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-radius: var(--radio);
 }
 .dueno { background: var(--papel-2); }
+.con-js .dueno { cursor: pointer; }
+.con-js .dueno:hover { background: var(--tinta); color: var(--papel); }
 .plato-libre .dueno { background: var(--papel); }
 .sin-dueno { background: var(--tinta); color: var(--papel); }
 
@@ -196,13 +213,103 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .persona-nombre { font-weight: 800; font-stretch: 62%; font-size: var(--step-body); line-height: 1; text-transform: uppercase; }
 .persona-total { font-size: var(--step-small); }
+.persona.encima, .con-seleccion .persona:hover { background: var(--tinta); color: var(--papel); }
+
+.pista { display: none; margin-top: 0.75rem; font-size: var(--step-small); color: var(--tinta-suave); }
+.con-js .pista { display: block; }
+.liquidada .pista { display: none; }
+
+/* Liquidar: la única acción en terracota sobre papel. */
+.boton-liquidar {
+  width: 100%;
+  margin-top: 0.85rem;
+  background: var(--acento);
+  color: var(--papel);
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: var(--step-lead);
+  text-transform: uppercase;
+}
+.boton-liquidar[hidden] { display: none; }
+
+/* Los talones: lo que queda al rasgar la cuenta, uno por cada pago. */
+.talones { width: min(100%, 31rem); display: grid; gap: 0.6rem; margin-top: 0.6rem; }
+.talones[hidden] { display: none; }
+.talon {
+  padding: 1.5rem 1.5rem 1.25rem;
+  background: var(--papel);
+  color: var(--tinta);
+  clip-path: var(--dientes-arriba);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  column-gap: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+.talon:nth-child(1) { transform: rotate(0.8deg); }
+.talon:nth-child(2) { transform: rotate(-0.6deg); }
+.talon:nth-child(3) { transform: rotate(1deg); }
+.talon-monto { font-weight: 800; font-stretch: 62%; font-size: var(--step-lead); }
+.talon-cobro { grid-column: 1 / -1; margin-top: 0.75rem; }
+.talon-cobro summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radio);
+  background: var(--tinta);
+  color: var(--papel);
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+.talon-cobro summary::-webkit-details-marker { display: none; }
+.talon-cobro summary:focus:not(:focus-visible) { outline: none; }
+.talon-mensaje { margin-top: 0.75rem; padding: 0.85rem 1rem; background: var(--papel-2); }
+.talon-nota { margin-top: 0.5rem; font-size: var(--step-small); color: var(--tinta-suave); }
+.boton-otra-vez { justify-self: start; }
+
+/* Lo que se arrastra sigue al dedo, encima del dedo para que se vea. */
+.fantasma {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radio);
+  background: var(--tinta);
+  color: var(--papel);
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* La cuenta sale impresa al cargar y se rasga al liquidar. */
+@keyframes imprimir { from { transform: translateY(-2rem); opacity: 0; } }
+@keyframes rasgar { from { transform: translateY(-1.75rem) rotate(-3deg); opacity: 0; } }
+.con-js .cuenta { animation: imprimir 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.con-js .talon { animation: rasgar 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 90ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .con-js .cuenta, .con-js .talon { animation: none; }
+  *, *::before, *::after { transition: none !important; }
+}
 
 /* Tableta y teléfono: titular arriba, la cuenta debajo, luego la bajada y el botón. */
 @media (max-width: 980px) {
   .portada { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-top: 0.5rem; }
   .portada-texto { display: contents; }
   .titular { order: 1; }
-  .portada-cuenta { order: 2; margin-top: 1.5rem; justify-content: flex-start; }
+  .portada-cuenta { order: 2; margin-top: 1.5rem; align-items: flex-start; }
   .bajada { order: 3; margin: 2rem 0 1.5rem; }
   .boton-principal { order: 4; align-self: flex-start; }
   .cuenta { transform: none; }

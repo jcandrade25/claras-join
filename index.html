@@ -10,6 +10,8 @@
   <link rel="preload" href="fonts/Archivo-titulos.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Archivo-texto.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/landing.css">
+  <script>document.documentElement.classList.add('con-js');</script>
+  <script type="module" src="js/cuenta.js"></script>
 </head>
 <body>
   <header class="barra">
@@ -30,35 +32,23 @@
         <a class="boton boton-principal" data-accion href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
       </div>
 
-      <div class="portada-cuenta">
+      <div class="portada-cuenta" data-cuenta>
         <article class="cuenta" aria-label="Cuenta de ejemplo de Fonda La Vaca para repartir">
           <header class="cuenta-cabeza">
             <p class="cuenta-local">Fonda La Vaca</p>
             <p class="cuenta-dato">Comida antioqueña, mesa 7</p>
           </header>
 
-          <ul class="platos">
-            <li class="plato" data-item="bandeja">
-              <span class="plato-cant">2</span><span class="plato-centro"><span class="plato-nombre">Bandeja paisa</span> <span class="duenos"><span class="dueno">Pacho</span><span class="dueno">Pipe</span></span></span><span class="plato-valor">72.000</span>
-            </li>
-            <li class="plato" data-item="sancocho">
-              <span class="plato-cant">1</span><span class="plato-centro"><span class="plato-nombre">Sancocho trifásico</span> <span class="duenos"><span class="dueno">Mafe</span></span></span><span class="plato-valor">32.000</span>
-            </li>
-            <li class="plato" data-item="empanadas">
-              <span class="plato-cant">2</span><span class="plato-centro"><span class="plato-nombre">Empanadas</span> <span class="duenos"><span class="dueno">Valen</span></span></span><span class="plato-valor">7.000</span>
-            </li>
-            <li class="plato plato-libre" data-item="chicharron">
-              <span class="plato-cant">1</span><span class="plato-centro"><span class="plato-nombre">Chicharrón</span> <span class="duenos"><span class="sin-dueno">¿De quién?</span></span></span><span class="plato-valor">25.000</span>
-            </li>
-            <li class="plato" data-item="limonada">
-              <span class="plato-cant">3</span><span class="plato-centro"><span class="plato-nombre">Limonada de coco</span> <span class="duenos"><span class="dueno">Mafe</span><span class="dueno">Valen</span><span class="dueno">Pacho</span></span></span><span class="plato-valor">36.000</span>
-            </li>
-            <li class="plato plato-libre" data-item="cerveza">
-              <span class="plato-cant">2</span><span class="plato-centro"><span class="plato-nombre">Cerveza</span> <span class="duenos"><span class="sin-dueno">¿De quién?</span></span></span><span class="plato-valor">14.000</span>
-            </li>
-            <li class="plato plato-libre" data-item="natas">
-              <span class="plato-cant">1</span><span class="plato-centro"><span class="plato-nombre">Postre de natas</span> <span class="duenos"><span class="sin-dueno">¿De quién?</span></span></span><span class="plato-valor">9.000</span>
-            </li>
+          <ul class="platos" data-platos>
+<!-- estatico:platos -->
+<li class="plato"><span class="plato-cant">2</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="bandeja" aria-pressed="false">Bandeja paisa</button> <span class="duenos"><button type="button" class="dueno" data-quitar="pacho" aria-label="Quitar a Pacho de Bandeja paisa">Pacho</button><button type="button" class="dueno" data-quitar="pipe" aria-label="Quitar a Pipe de Bandeja paisa">Pipe</button></span></span><span class="plato-valor">72.000</span></li>
+<li class="plato"><span class="plato-cant">1</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="sancocho" aria-pressed="false">Sancocho trifásico</button> <span class="duenos"><button type="button" class="dueno" data-quitar="mafe" aria-label="Quitar a Mafe de Sancocho trifásico">Mafe</button></span></span><span class="plato-valor">32.000</span></li>
+<li class="plato"><span class="plato-cant">2</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="empanadas" aria-pressed="false">Empanadas</button> <span class="duenos"><button type="button" class="dueno" data-quitar="valen" aria-label="Quitar a Valen de Empanadas">Valen</button></span></span><span class="plato-valor">7.000</span></li>
+<li class="plato"><span class="plato-cant">1</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="chicharron" aria-pressed="false">Chicharrón</button> <span class="duenos"><button type="button" class="dueno" data-quitar="mafe" aria-label="Quitar a Mafe de Chicharrón">Mafe</button><button type="button" class="dueno" data-quitar="pacho" aria-label="Quitar a Pacho de Chicharrón">Pacho</button><button type="button" class="dueno" data-quitar="pipe" aria-label="Quitar a Pipe de Chicharrón">Pipe</button></span></span><span class="plato-valor">25.000</span></li>
+<li class="plato"><span class="plato-cant">3</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="limonada" aria-pressed="false">Limonada de coco</button> <span class="duenos"><button type="button" class="dueno" data-quitar="mafe" aria-label="Quitar a Mafe de Limonada de coco">Mafe</button><button type="button" class="dueno" data-quitar="valen" aria-label="Quitar a Valen de Limonada de coco">Valen</button><button type="button" class="dueno" data-quitar="pacho" aria-label="Quitar a Pacho de Limonada de coco">Pacho</button></span></span><span class="plato-valor">36.000</span></li>
+<li class="plato"><span class="plato-cant">2</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="cerveza" aria-pressed="false">Cerveza</button> <span class="duenos"><button type="button" class="dueno" data-quitar="pipe" aria-label="Quitar a Pipe de Cerveza">Pipe</button></span></span><span class="plato-valor">14.000</span></li>
+<li class="plato"><span class="plato-cant">1</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="natas" aria-pressed="false">Postre de natas</button> <span class="duenos"><button type="button" class="dueno" data-quitar="mafe" aria-label="Quitar a Mafe de Postre de natas">Mafe</button></span></span><span class="plato-valor">9.000</span></li>
+<!-- /estatico:platos -->
           </ul>
 
           <dl class="totales">
@@ -68,15 +58,28 @@
             <div><dt>Pagó</dt><dd>Mafe</dd></div>
           </dl>
 
-          <p class="falta">Falta asignar <strong data-falta>$48.000</strong></p>
+          <p class="falta">Falta asignar <strong data-falta><!-- estatico:falta -->$0<!-- /estatico:falta --></strong></p>
 
-          <ul class="personas" aria-label="Quién debe cuánto">
-            <li><button class="persona" type="button" data-persona="mafe"><span class="persona-nombre">Mafe</span><span class="persona-total" data-total>$48.400</span></button></li>
-            <li><button class="persona" type="button" data-persona="pacho"><span class="persona-nombre">Pacho</span><span class="persona-total" data-total>$52.800</span></button></li>
-            <li><button class="persona" type="button" data-persona="valen"><span class="persona-nombre">Valen</span><span class="persona-total" data-total>$20.900</span></button></li>
-            <li><button class="persona" type="button" data-persona="pipe"><span class="persona-nombre">Pipe</span><span class="persona-total" data-total>$39.600</span></button></li>
+          <ul class="personas" data-personas aria-label="Quién debe cuánto">
+<!-- estatico:personas -->
+<li><button class="persona" type="button" data-persona="mafe"><span class="persona-nombre">Mafe</span><span class="persona-total" data-total>$67.468</span></button></li>
+<li><button class="persona" type="button" data-persona="pacho"><span class="persona-nombre">Pacho</span><span class="persona-total" data-total>$61.966</span></button></li>
+<li><button class="persona" type="button" data-persona="valen"><span class="persona-nombre">Valen</span><span class="persona-total" data-total>$20.900</span></button></li>
+<li><button class="persona" type="button" data-persona="pipe"><span class="persona-nombre">Pipe</span><span class="persona-total" data-total>$64.166</span></button></li>
+<!-- /estatico:personas -->
           </ul>
+          <p class="pista">Arrastra cada plato a quien se lo comió, o tócalo y luego toca a la persona.</p>
+          <button type="button" class="boton boton-liquidar" data-liquidar hidden>Liquidar</button>
         </article>
+
+        <div class="talones" data-talones>
+<!-- estatico:talones -->
+<article class="talon" data-talon="pipe" style="--i: 0"><p class="talon-quien">Pipe le paga a Mafe</p><p class="talon-monto" data-monto>$64.166</p><details class="talon-cobro"><summary>Cobrar por WhatsApp</summary><p class="talon-mensaje">Hola Pipe, en «Almuerzo en Fonda La Vaca» me debes $64.166. Puedes pagarme por Bre-B a la llave @mafe.ejemplo. ¡Gracias!</p><p class="talon-nota">Claras no mueve plata ni pide claves.</p></details></article>
+<article class="talon" data-talon="pacho" style="--i: 1"><p class="talon-quien">Pacho le paga a Mafe</p><p class="talon-monto" data-monto>$61.966</p><details class="talon-cobro"><summary>Cobrar por WhatsApp</summary><p class="talon-mensaje">Hola Pacho, en «Almuerzo en Fonda La Vaca» me debes $61.966. Puedes pagarme por Bre-B a la llave @mafe.ejemplo. ¡Gracias!</p><p class="talon-nota">Claras no mueve plata ni pide claves.</p></details></article>
+<article class="talon" data-talon="valen" style="--i: 2"><p class="talon-quien">Valen le paga a Mafe</p><p class="talon-monto" data-monto>$20.900</p><details class="talon-cobro"><summary>Cobrar por WhatsApp</summary><p class="talon-mensaje">Hola Valen, en «Almuerzo en Fonda La Vaca» me debes $20.900. Puedes pagarme por Bre-B a la llave @mafe.ejemplo. ¡Gracias!</p><p class="talon-nota">Claras no mueve plata ni pide claves.</p></details></article>
+<!-- /estatico:talones -->
+        </div>
+        <p class="solo-lector" aria-live="polite" data-anuncio></p>
       </div>
     </section>
   </main>
