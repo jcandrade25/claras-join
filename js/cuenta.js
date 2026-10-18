@@ -45,6 +45,17 @@ export function montarCuenta(raiz, fonda = FONDA) {
 
   function decir(texto) { anuncio.textContent = texto; }
 
+  // El pie pegado tapa lo que pasa por debajo: lo que debe quedar a la vista
+  // (las fichas del plato abierto) se mide contra su borde de arriba.
+  const pie = $('.cuenta-pie');
+  const bordePie = () => pie.getBoundingClientRect().top;
+  function mostrarAbierto() {
+    const fila = platos.querySelector('.plato-abierto');
+    if (!fila) return;
+    const sobra = fila.getBoundingClientRect().bottom + 12 - bordePie();
+    if (sobra > 0) window.scrollBy({ top: sobra, behavior: reducido() ? 'auto' : 'smooth' });
+  }
+
   function cambiar(nuevo, itemId) {
     estado = nuevo;
     if (liquidado) {
@@ -98,6 +109,8 @@ export function montarCuenta(raiz, fonda = FONDA) {
     raiz.classList.add('liquidada');
     decir(`Cuenta liquidada en ${talones.querySelectorAll('[data-talon]').length} pagos.`);
     talones.scrollIntoView({ block: 'nearest', behavior: reducido() ? 'auto' : 'smooth' });
+    // Liquidar desaparece: el foco pasa al primer talón.
+    talones.querySelector('[data-talon] summary')?.focus({ preventScroll: true });
   }
 
   // Tocar o hacer clic (también Enter y espacio en un botón).
@@ -114,7 +127,10 @@ export function montarCuenta(raiz, fonda = FONDA) {
     if (platoBtn) {
       abierto = abierto === platoBtn.dataset.item ? null : platoBtn.dataset.item;
       pintar();
-      if (abierto) decir(`${nombrePlato(abierto)}: escoge quién lo comió.`);
+      if (abierto) {
+        decir(`${nombrePlato(abierto)}: escoge quién lo comió.`);
+        mostrarAbierto();
+      }
       return;
     }
     const personaBtn = t.closest('[data-persona]');
@@ -124,11 +140,20 @@ export function montarCuenta(raiz, fonda = FONDA) {
       return;
     }
     if (t.closest('[data-liquidar]')) { hacerLiquidar(); return; }
-    if (t.closest('[data-otra-vez]')) reiniciar();
+    if (t.closest('[data-otra-vez]')) {
+      // Otra vez desaparece con los talones: el foco vuelve a las fichas.
+      reiniciar();
+      platos.querySelector('.plato-abierto [data-ficha]')?.focus();
+    }
   });
 
   raiz.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Escape' && abierto) { abierto = null; pintar(); }
+    if (ev.key !== 'Escape' || !abierto) return;
+    const cerrado = abierto;
+    abierto = null;
+    pintar();
+    // Si el foco estaba en una ficha, que ya no existe, vuelve al plato.
+    if (!raiz.contains(document.activeElement)) raiz.querySelector(`[data-item="${cerrado}"]`)?.focus();
   });
 
   // Atajo: arrastrar el plato con el dedo o el mouse hasta una persona.
@@ -190,6 +215,8 @@ export function montarCuenta(raiz, fonda = FONDA) {
     if (reducido() || demo || yaTocaron || !abierto) return;
     const fichas = [...platos.querySelectorAll('.plato-abierto [data-ficha]')].filter((f) => f.dataset.ficha !== 'todos');
     if (fichas.length < 2) return;
+    // Si el pie las tapa, el dedo tocaría el pie: mejor no mostrar nada.
+    if (fichas.slice(0, 2).some((f) => f.getBoundingClientRect().bottom > bordePie())) return;
     const base = raiz.getBoundingClientRect();
     const centro = (el) => {
       const r = el.getBoundingClientRect();

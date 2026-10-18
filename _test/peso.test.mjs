@@ -26,6 +26,15 @@ function modulosDeLaPagina(html) {
 
 const FUENTES = ['fonts/Archivo-titulos.woff2', 'fonts/Archivo-texto.woff2'];
 
+test('la cabeza pide de una vez todos los módulos que la página usa', () => {
+  // Sin esto, cada import es otra vuelta a la red antes de que la cuenta se arme.
+  const html = leer('index.html').toString('utf8');
+  const pedidos = new Set([...html.matchAll(/<(?:script type="module" src|link rel="modulepreload" href)="([^"]+)"/g)]
+    .map((m) => m[1].replace(/^\//, '')));
+  const faltan = modulosDeLaPagina(html).filter((m) => !pedidos.has(m));
+  assert.deepEqual(faltan, []);
+});
+
 test('las fuentes son WOFF2 de verdad, no TrueType con otro nombre', () => {
   for (const ruta of FUENTES) assert.equal(leer(ruta).subarray(0, 4).toString('latin1'), 'wOF2', ruta);
 });

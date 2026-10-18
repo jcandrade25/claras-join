@@ -231,3 +231,77 @@ test('con movimiento reducido no hay demostración', async () => {
     assert.equal(await page.locator('[data-demo]').count(), 0);
   } finally { await browser.close(); }
 });
+
+// Revisión final: la carga, el pie pegado en pantallas cortas y el foco.
+
+const bajoElPie = (page) => page.evaluate(() => {
+  const fichas = document.querySelector('.plato-abierto').getBoundingClientRect().bottom;
+  const pie = document.querySelector('.cuenta-pie').getBoundingClientRect().top;
+  return { fichas: Math.round(fichas), pie: Math.round(pie) };
+});
+
+test('mientras llega el JavaScript de la cuenta no se ven talones ni salta la portada', async () => {
+  async function medir(bloquear) {
+    const { browser, page } = await abrir({ ancho: 1440, alto: 900, movimientoReducido: true });
+    try {
+      if (bloquear) await page.route('**/js/cuenta.js', (r) => r.abort());
+      await page.goto(`${sitio.url}/`);
+      await page.waitForLoadState('networkidle');
+      return {
+        titular: await page.$eval('.titular', (e) => Math.round(e.getBoundingClientRect().top)),
+        talones: await page.$eval('[data-talones]', (e) => getComputedStyle(e).display),
+      };
+    } finally { await browser.close(); }
+  }
+  const montada = await medir(false);
+  const cargando = await medir(true);
+  assert.equal(cargando.talones, 'none');
+  assert.ok(Math.abs(cargando.titular - montada.titular) <= 24, `titular en ${cargando.titular}, luego en ${montada.titular}`);
+});
+
+test('en un Android de pantalla corta las fichas del plato abierto quedan sobre el pie', async () => {
+  for (const [ancho, alto] of [[360, 672], [360, 720], [390, 844]]) {
+    const { browser, page } = await pagina({ ancho, alto, tactil: true });
+    try {
+      const { fichas, pie } = await bajoElPie(page);
+      assert.ok(fichas <= pie, `${ancho}x${alto}: fichas hasta ${fichas}, pie desde ${pie}`);
+    } finally { await browser.close(); }
+  }
+});
+
+test('al abrir un plato que queda bajo el pie, la página lo sube a la vista', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true, movimientoReducido: true });
+  try {
+    // El último plato, tocado sin que el navegador de pruebas mueva la página.
+    await page.$eval(plato('natas'), (b) => b.click());
+    await page.waitForTimeout(200);
+    const { fichas, pie } = await bajoElPie(page);
+    assert.ok(fichas <= pie, `fichas hasta ${fichas}, pie desde ${pie}`);
+  } finally { await browser.close(); }
+});
+
+test('si las fichas quedan bajo el pie, la demostración no toca el pie', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    // Un pie más alto tapa las fichas del primer plato.
+    await page.addStyleTag({ content: '.cuenta-pie { padding-top: 14rem; }' });
+    await page.waitForTimeout(2000);
+    assert.equal(await page.locator('[data-demo]').count(), 0);
+  } finally { await browser.close(); }
+});
+
+test('con teclado, el foco sigue a la acción: Liquidar, Otra vez y Escape', async () => {
+  const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
+  try {
+    const activo = (s) => page.evaluate((sel) => document.activeElement?.matches(sel) ?? false, s);
+    await completar(page, (s) => page.click(s));
+    await page.focus('[data-liquidar]');
+    await page.keyboard.press('Enter');
+    assert.ok(await activo('[data-talon] summary'), 'Liquidar deja el foco en el primer talón');
+    await page.focus('[data-otra-vez]');
+    await page.keyboard.press('Enter');
+    assert.ok(await activo('.plato-abierto [data-ficha]'), 'Otra vez deja el foco en las fichas del plato abierto');
+    await page.keyboard.press('Escape');
+    assert.ok(await activo(plato('chicharron')), 'Escape deja el foco en el plato que se cerró');
+  } finally { await browser.close(); }
+});

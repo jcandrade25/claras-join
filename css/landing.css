@@ -63,8 +63,11 @@ a { color: inherit; }
 ul { list-style: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 
-:focus-visible { outline: 3px solid var(--sobre-fondo); outline-offset: 3px; }
-.cuenta :focus-visible { outline-color: var(--tinta); }
+/* El anillo del foco toma el color que contrasta con la superficie: papel sobre
+   ladrillo y tinta, tinta sobre papel. */
+:focus-visible { outline: 3px solid var(--foco, var(--sobre-fondo)); outline-offset: 3px; }
+.cuenta, .talon, .pregunta, .pie-recibo, .invitacion-talon { --foco: var(--tinta); }
+.pregunta:nth-child(3n + 2) { --foco: var(--papel); }
 
 /* Botones: rectos, un solo relleno. */
 .boton {
@@ -86,7 +89,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 [hidden] { display: none !important; }
-.boton-acento { background: var(--acento); color: var(--papel); }
+/* Texto normal sobre terracota no llega a 4,5 a 1: los botones de texto van en
+   ladrillo (5 a 1). Liquidar sigue en terracota porque su texto es grande. */
+.boton-acento { background: var(--ladrillo); color: var(--papel); }
 .boton-papel { background: var(--papel-2); color: var(--tinta); }
 
 /* La invitación: un tiquete con muescas a los lados, encima de la portada. */
@@ -135,7 +140,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   min-height: calc(100svh - 4rem);
   padding: 1rem var(--margen) 4rem;
 }
-.portada-texto { grid-column: 1 / span 6; }
+/* El texto se centra en la primera pantalla, no contra la cuenta: así no se
+   mueve cuando la cuenta cambia de alto al armarse o al liquidar. */
+.portada-texto {
+  grid-column: 1 / span 6;
+  align-self: start;
+  min-height: calc(100svh - 9rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 .portada-cuenta { grid-column: 8 / span 5; display: flex; flex-direction: column; align-items: center; }
 
 .titular {
@@ -276,6 +291,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Los talones: lo que queda al rasgar la cuenta, uno por cada pago. */
 .talones { width: min(100%, 31rem); display: grid; gap: 0.6rem; margin-top: 0.6rem; }
+/* Con JavaScript, la cuenta llega sin repartir: los talones de la versión
+   estática no se pintan mientras el módulo carga, así la portada no salta. */
+.con-js [data-cuenta]:not(.liquidada) [data-talones] { display: none; }
 .talones[hidden] { display: none; }
 .talon {
   padding: 1.5rem 1.5rem 1.25rem;
@@ -567,7 +585,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .pregunta-texto { display: block; font-size: var(--step-lead); font-weight: 500; line-height: 1.25; }
 .pregunta summary:hover .pregunta-texto { text-decoration: underline; text-underline-offset: 5px; }
 .respuesta { max-width: 52ch; margin-top: 0.9rem; }
-.pregunta:nth-child(3n + 2) :focus-visible { outline-color: var(--papel); }
 
 /* El final de la página es el final de un recibo: la invitación a descargar y,
    después de la perforación, lo que va al pie de una factura. */
@@ -641,4 +658,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .cuenta-pie { margin-inline: -1rem; padding-inline: 1rem; }
   .fichas { gap: 0.3rem; }
   .ficha { padding-inline: 0.6rem; }
+}
+
+/* Teléfonos angostos: las cinco fichas caben en una línea usando todo el renglón. */
+@media (max-width: 380px) {
+  .fichas { grid-column: 1 / -1; }
+  .ficha { padding-inline: 0.5rem; }
+}
+
+/* Teléfonos de pantalla corta: el pie pegado se encoge para que las fichas del
+   plato abierto queden a la vista encima de él. */
+@media (max-width: 760px) and (max-height: 760px) {
+  .titular { font-size: clamp(3.25rem, 1rem + 11vw, 4.5rem); }
+  .personas-titulo { display: none; }
+  .cuenta-pie { padding-block: 0.45rem 0.6rem; }
+  .persona { padding: 0.4rem 0.3rem; }
+  .pie-fila { margin-top: 0.4rem; }
+  .boton-liquidar { min-height: 2.75rem; }
 }
