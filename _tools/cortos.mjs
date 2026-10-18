@@ -1,4 +1,4 @@
-// Escribe las páginas de los enlaces cortos (tt, ig, yt, fb, wa) y /unirse/, el
+// Escribe las páginas de los enlaces cortos (tt, ig, yt, fb, wa) y /join/, el
 // puente de las invitaciones con su propia tarjeta para compartir. Correr si
 // cambia la plantilla: node _tools/cortos.mjs
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -62,14 +62,16 @@ for (const [ruta, fuente] of Object.entries(FUENTES)) {
   }));
 }
 
-// La app comparte https://clarasapp.com/?c=CODIGO; esa tarjeta es la de la
-// landing. /unirse/?c=CODIGO muestra la de la invitación y pasa a /?c=CODIGO.
-escribir('unirse', pagina({
+// La raíz lleva la tarjeta de la landing, así que la app comparte
+// /join/?c=CODIGO (en inglés, como claras://join/): muestra la tarjeta de la
+// invitación y pasa a /?c=CODIGO. Los enlaces ya enviados a /?c= siguen
+// sirviendo.
+escribir('join', pagina({
   titulo: 'Únete a un grupo en Claras',
   tarjeta: tarjeta({
     titulo: 'Te invitaron a un grupo en Claras',
     descripcion: 'Toca para entrar al grupo y repartir los gastos.',
-    url: 'https://clarasapp.com/unirse/',
+    url: 'https://clarasapp.com/join/',
   }),
   guion: "<script>location.replace('/' + location.search + location.hash);</script>",
 }));

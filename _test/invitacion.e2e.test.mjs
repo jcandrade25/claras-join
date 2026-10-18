@@ -29,8 +29,8 @@ test('con ?c= se ve el talón de la invitación con el código', async () => {
   } finally { await browser.close(); }
 });
 
-test('/unirse/?c= lleva a la invitación con el código', async () => {
-  const { browser, page } = await pagina('/unirse/?c=ABC123', UA.iphone);
+test('/join/?c= lleva a la invitación con el código', async () => {
+  const { browser, page } = await pagina('/join/?c=ABC123', UA.iphone);
   try {
     await page.waitForURL(/\/\?c=ABC123$/);
     assert.equal((await page.textContent('[data-codigo]')).trim(), 'ABC123');

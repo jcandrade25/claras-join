@@ -54,12 +54,12 @@ test('robots.txt y sitemap.xml', () => {
 
 test('robots.txt deja leer el noindex de los enlaces cortos', () => {
   // Un Disallow impide que el buscador lea el noindex y la URL puede salir sola en resultados.
-  assert.doesNotMatch(leer('robots.txt'), /Disallow: \/(tt|ig|yt|fb|wa|unirse)\//);
+  assert.doesNotMatch(leer('robots.txt'), /Disallow: \/(tt|ig|yt|fb|wa|join)\//);
 });
 
-test('los enlaces cortos y /unirse/ muestran una tarjeta al compartirlos', () => {
+test('los enlaces cortos y /join/ muestran una tarjeta al compartirlos', () => {
   const de = (pagina, atributo, nombre) => pagina.match(new RegExp(`<meta ${atributo}="${nombre}" content="([^"]*)"`))?.[1];
-  for (const ruta of [...Object.keys(FUENTES), 'unirse']) {
+  for (const ruta of [...Object.keys(FUENTES), 'join']) {
     const pagina = leer(`${ruta}/index.html`);
     assert.ok(de(pagina, 'property', 'og:title'), ruta);
     assert.ok(de(pagina, 'property', 'og:description'), ruta);
@@ -68,11 +68,11 @@ test('los enlaces cortos y /unirse/ muestran una tarjeta al compartirlos', () =>
   }
 });
 
-test('/unirse/ es el puente de las invitaciones, con su propia tarjeta', () => {
-  const pagina = leer('unirse/index.html');
+test('/join/ es el puente de las invitaciones, con su propia tarjeta', () => {
+  const pagina = leer('join/index.html');
   assert.match(pagina, /<meta name="robots" content="noindex">/);
   assert.match(pagina, /<meta property="og:title" content="Te invitaron a un grupo en Claras">/);
-  assert.match(pagina, /<meta property="og:url" content="https:\/\/clarasapp\.com\/unirse\/">/);
+  assert.match(pagina, /<meta property="og:url" content="https:\/\/clarasapp\.com\/join\/">/);
   assert.match(pagina, /<noscript>/);
 });
 
