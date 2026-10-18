@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /tt/
+Disallow: /ig/
+Disallow: /yt/
+Disallow: /fb/
+Disallow: /wa/
+
+Sitemap: https://clarasapp.com/sitemap.xml
