@@ -1,0 +1,6 @@
+# El texto sale siempre con LF, también en Windows con core.autocrlf: las
+# pruebas comparan index.html con lo que generan los módulos, línea por línea.
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.woff2 binary
