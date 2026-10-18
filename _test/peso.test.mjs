@@ -24,11 +24,20 @@ function modulosDeLaPagina(html) {
   return [...vistos];
 }
 
-test('HTML, CSS, JS y fuentes comprimidos pesan 200 KB o menos', () => {
+const FUENTES = ['fonts/Archivo-titulos.woff2', 'fonts/Archivo-texto.woff2'];
+
+test('las fuentes son WOFF2 de verdad, no TrueType con otro nombre', () => {
+  for (const ruta of FUENTES) assert.equal(leer(ruta).subarray(0, 4).toString('latin1'), 'wOF2', ruta);
+});
+
+test('HTML, CSS, JS y fuentes, como viajan, pesan 200 KB o menos', () => {
   const html = leer('index.html').toString('utf8');
   const modulos = modulosDeLaPagina(html);
   assert.ok(modulos.includes('js/motor.js'), 'sigue los imports hasta el motor');
-  const archivos = ['index.html', 'css/landing.css', ...modulos, 'fonts/Archivo-titulos.woff2', 'fonts/Archivo-texto.woff2'];
-  const total = archivos.reduce((suma, ruta) => suma + gzipSync(leer(ruta)).length, 0);
+  // El texto viaja comprimido; las fuentes WOFF2 ya vienen comprimidas y el
+  // servidor las manda tal cual.
+  const texto = ['index.html', 'css/landing.css', ...modulos].reduce((suma, ruta) => suma + gzipSync(leer(ruta)).length, 0);
+  const fuentes = FUENTES.reduce((suma, ruta) => suma + leer(ruta).length, 0);
+  const total = texto + fuentes;
   assert.ok(total <= 200 * 1024, `${Math.round(total / 1024)} KB`);
 });

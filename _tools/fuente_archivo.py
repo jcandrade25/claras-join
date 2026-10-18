@@ -35,6 +35,9 @@ def recortar(origen: str, nombre: str, ejes: dict) -> bool:
 
     salida = RAIZ / "fonts" / nombre
     salida.parent.mkdir(exist_ok=True)
+    # Options.flavor solo lo aplica subset.save_font; TTFont.save necesita el
+    # sabor en la fuente misma, o guarda TrueType sin comprimir.
+    fuente.flavor = "woff2"
     fuente.save(salida)
 
     cmap = TTFont(salida).getBestCmap()
