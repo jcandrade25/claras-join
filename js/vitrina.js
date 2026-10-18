@@ -13,6 +13,10 @@ export function montarVitrina(raiz) {
     }
     plato.src = pestana.dataset.imagen;
     plato.alt = pestana.dataset.alt;
+    // La captura nueva aparece fundiéndose sobre el plato.
+    plato.classList.remove('fundir');
+    void plato.offsetWidth;
+    plato.classList.add('fundir');
     if (enfocar) pestana.focus();
   }
 

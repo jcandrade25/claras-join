@@ -51,6 +51,7 @@
   <script type="module" src="js/cuenta.js"></script>
   <script type="module" src="js/preguntas.js"></script>
   <script type="module" src="js/vitrina.js"></script>
+  <script type="module" src="js/movimiento.js"></script>
 </head>
 <body>
   <header class="barra">
@@ -80,7 +81,7 @@
 
     <section class="portada">
       <div class="portada-texto">
-        <h1 class="titular">¿Quién<br> debe qué?</h1>
+        <h1 class="titular"><span class="titular-linea">¿Quién</span> <span class="titular-linea">debe qué?</span></h1>
         <p class="bajada">Claras divide los gastos del paseo, los roomies y los planes, y te dice quién le paga a quién. Gratis y sin registrarte.</p>
         <a class="boton boton-principal" data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
         <a class="enlace-iphone" data-solo-iphone hidden href="https://app.clarasapp.com/">¿Tienes iPhone? Úsala desde el navegador.</a>
@@ -141,13 +142,13 @@
       </div>
     </section>
 
-    <section class="seccion paseo" id="como-funciona" aria-labelledby="paseo-titulo">
+    <section class="seccion paseo" id="como-funciona" aria-labelledby="paseo-titulo" data-entrada>
       <div class="paseo-texto">
-        <h2 class="seccion-titulo" id="paseo-titulo">El paseo entero</h2>
-        <p class="seccion-bajada">Anota cada gasto cuando pasa: quién pagó, cuánto y entre quiénes. El domingo, Claras hace las cuentas.</p>
-        <p class="seccion-nota">Sirve igual para los roomies, la pareja, el asado o la vaca de la oficina.</p>
+        <h2 class="seccion-titulo" id="paseo-titulo" data-parte>El paseo entero</h2>
+        <p class="seccion-bajada" data-parte>Anota cada gasto cuando pasa: quién pagó, cuánto y entre quiénes. El domingo, Claras hace las cuentas.</p>
+        <p class="seccion-nota" data-parte>Sirve igual para los roomies, la pareja, el asado o la vaca de la oficina.</p>
       </div>
-      <article class="tirilla" aria-label="Ejemplo: las cuentas de un paseo a la finca">
+      <article class="tirilla" data-parte="imprime" aria-label="Ejemplo: las cuentas de un paseo a la finca">
         <header class="tirilla-cabeza">
           <p class="tirilla-grupo">Paseo a la finca</p>
           <p class="tirilla-dato">Ejemplo. Cuatro personas, todo entre los cuatro.</p>
@@ -164,83 +165,83 @@
       </article>
     </section>
 
-    <section class="seccion vitrina" id="app" aria-labelledby="vitrina-titulo" data-vitrina>
-      <figure class="vitrina-plato" data-ui>
+    <section class="seccion vitrina" id="app" aria-labelledby="vitrina-titulo" data-vitrina data-entrada>
+      <figure class="vitrina-plato" data-ui data-parte="asienta">
         <img data-plato src="img/app/cobrar.webp" width="780" height="780" loading="lazy" alt="Liquidar en la app: la tarjeta Cobra en un toque y un botón Cobrar en cada pago que te deben">
       </figure>
       <div class="vitrina-texto">
-        <h2 class="seccion-titulo" id="vitrina-titulo">Cobra sin pena</h2>
-        <div class="vitrina-pestanas" role="tablist" aria-label="Partes de la app">
+        <h2 class="seccion-titulo" id="vitrina-titulo" data-parte>Cobra sin pena</h2>
+        <div class="vitrina-pestanas" data-parte role="tablist" aria-label="Partes de la app">
           <button type="button" role="tab" id="pestana-cobrar" aria-controls="panel-cobrar" aria-selected="true" data-pestana="cobrar" data-imagen="img/app/cobrar.webp" data-alt="Liquidar en la app: la tarjeta Cobra en un toque y un botón Cobrar en cada pago que te deben">Cobrar</button>
           <button type="button" role="tab" id="pestana-items" aria-controls="panel-items" aria-selected="false" tabindex="-1" data-pestana="items" data-imagen="img/app/items.webp" data-alt="Un gasto por ítems en la app: la pizza con fichas para marcar quién la comió">Por ítems</button>
           <button type="button" role="tab" id="pestana-balances" aria-controls="panel-balances" aria-selected="false" tabindex="-1" data-pestana="balances" data-imagen="img/app/balances.webp" data-alt="Balances en la app: quién debe y a quién le deben en el grupo">Balances</button>
         </div>
-        <div class="vitrina-panel" role="tabpanel" id="panel-cobrar" aria-labelledby="pestana-cobrar" data-panel="cobrar">
+        <div class="vitrina-panel" data-parte role="tabpanel" id="panel-cobrar" aria-labelledby="pestana-cobrar" data-panel="cobrar">
           <h3 class="vitrina-panel-titulo">Un toque y listo</h3>
           <p>En Liquidar, Cobrar arma el mensaje con el monto y tu llave Bre-B y lo abre en tu WhatsApp. Lo mandas tú: Claras no mueve plata.</p>
         </div>
-        <div class="vitrina-panel" role="tabpanel" id="panel-items" aria-labelledby="pestana-items" data-panel="items" hidden>
+        <div class="vitrina-panel" data-parte role="tabpanel" id="panel-items" aria-labelledby="pestana-items" data-panel="items" hidden>
           <h3 class="vitrina-panel-titulo">Cada quien lo suyo</h3>
           <p>Anota cada plato y marca quién lo consumió. La propina se reparte según lo que comió cada uno.</p>
         </div>
-        <div class="vitrina-panel" role="tabpanel" id="panel-balances" aria-labelledby="pestana-balances" data-panel="balances" hidden>
+        <div class="vitrina-panel" data-parte role="tabpanel" id="panel-balances" aria-labelledby="pestana-balances" data-panel="balances" hidden>
           <h3 class="vitrina-panel-titulo">De un vistazo</h3>
           <p>Cuánto te deben y cuánto debes en cada grupo, y cuánto has consumido tú.</p>
         </div>
-        <a class="boton boton-papel vitrina-accion" data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
+        <a class="boton boton-papel vitrina-accion" data-parte data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
       </div>
     </section>
 
-    <section class="seccion carta" id="precio" aria-labelledby="carta-titulo">
-      <h2 class="seccion-titulo carta-titulo" id="carta-titulo">La carta</h2>
+    <section class="seccion carta" id="precio" aria-labelledby="carta-titulo" data-entrada>
+      <h2 class="seccion-titulo carta-titulo" id="carta-titulo" data-parte>La carta</h2>
       <div class="carta-lista">
         <div class="carta-grupo" data-grupo="gratis">
-          <h3 class="carta-grupo-nombre">Gratis</h3>
+          <h3 data-parte class="carta-grupo-nombre">Gratis</h3>
           <div class="carta-items">
-            <div class="carta-item"><p class="carta-nombre"><span>Grupos</span><span>$0</span></p><p class="carta-desc">Para el paseo, el apartamento o el regalo: los que necesites.</p></div>
-            <div class="carta-item"><p class="carta-nombre"><span>Dividir por ítems, con propina</span><span>$0</span></p><p class="carta-desc">Cada uno paga lo suyo y la propina va según lo que consumió.</p></div>
-            <div class="carta-item"><p class="carta-nombre"><span>Liquidar en pocos pagos</span><span>$0</span></p><p class="carta-desc">Quién le paga a quién, y las cuentas cuadran al peso.</p></div>
-            <div class="carta-item"><p class="carta-nombre"><span>Cobrar por WhatsApp</span><span>$0</span></p><p class="carta-desc">El monto y tu llave Bre-B en un mensaje que sale de tu WhatsApp.</p></div>
-            <div class="carta-item"><p class="carta-nombre"><span>Compartir en vivo</span><span>$0</span></p><p class="carta-desc">Cada uno entra desde su celular y ve los mismos gastos.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Grupos</span><span>$0</span></p><p class="carta-desc">Para el paseo, el apartamento o el regalo: los que necesites.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Dividir por ítems, con propina</span><span>$0</span></p><p class="carta-desc">Cada uno paga lo suyo y la propina va según lo que consumió.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Liquidar en pocos pagos</span><span>$0</span></p><p class="carta-desc">Quién le paga a quién, y las cuentas cuadran al peso.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Cobrar por WhatsApp</span><span>$0</span></p><p class="carta-desc">El monto y tu llave Bre-B en un mensaje que sale de tu WhatsApp.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Compartir en vivo</span><span>$0</span></p><p class="carta-desc">Cada uno entra desde su celular y ve los mismos gastos.</p></div>
           </div>
         </div>
         <div class="carta-grupo" data-grupo="pro">
-          <h3 class="carta-grupo-nombre carta-pro"><span>Claras Pro, un solo pago</span><span>$14.900</span></h3>
+          <h3 data-parte class="carta-grupo-nombre carta-pro"><span>Claras Pro, un solo pago</span><span>$14.900</span></h3>
           <div class="carta-items">
-            <div class="carta-item"><p class="carta-nombre"><span>Escanear recibos</span></p><p class="carta-desc">Una foto de la cuenta llena el gasto y sus ítems. La lectura se hace en tu celular.</p></div>
-            <div class="carta-item"><p class="carta-nombre"><span>Personas</span></p><p class="carta-desc">Tu saldo con cada persona, sumando todos tus grupos.</p></div>
-            <div class="carta-item"><p class="carta-nombre"><span>Personas vinculadas</span></p><p class="carta-desc">La misma persona conectada en todos tus grupos.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Escanear recibos</span></p><p class="carta-desc">Una foto de la cuenta llena el gasto y sus ítems. La lectura se hace en tu celular.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Personas</span></p><p class="carta-desc">Tu saldo con cada persona, sumando todos tus grupos.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Personas vinculadas</span></p><p class="carta-desc">La misma persona conectada en todos tus grupos.</p></div>
           </div>
-          <p class="carta-nota">Precio en Colombia. Pro se compra en la app de Android, sin suscripciones.</p>
+          <p class="carta-nota" data-parte>Precio en Colombia. Pro se compra en la app de Android, sin suscripciones.</p>
         </div>
-        <p class="carta-pie">Sin anuncios. Sin registrarte: agregas a cada persona solo con su nombre.</p>
+        <p class="carta-pie" data-parte>Sin anuncios. Sin registrarte: agregas a cada persona solo con su nombre.</p>
       </div>
     </section>
 
-    <section class="seccion preguntas" id="preguntas" aria-labelledby="preguntas-titulo">
-      <h2 class="seccion-titulo" id="preguntas-titulo">Lo que preguntan</h2>
+    <section class="seccion preguntas" id="preguntas" aria-labelledby="preguntas-titulo" data-entrada>
+      <h2 class="seccion-titulo" id="preguntas-titulo" data-parte>Lo que preguntan</h2>
       <div class="archivador" data-preguntas>
-        <details class="pregunta" name="preguntas" data-pregunta style="--n: 0" open>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 0" open>
           <summary><span class="pregunta-tema">Cuenta</span><span class="pregunta-texto">¿Necesito crear una cuenta?</span></summary>
           <p class="respuesta">No. Agregas a cada persona solo con su nombre y empiezas a dividir desde el primer minuto. El correo es opcional y solo sirve para recuperar tus grupos compartidos en otro celular.</p>
         </details>
-        <details class="pregunta" name="preguntas" data-pregunta style="--n: 1">
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 1">
           <summary><span class="pregunta-tema">Amigos</span><span class="pregunta-texto">¿Todos tienen que tener la app?</span></summary>
           <p class="respuesta">No. Puedes llevar las cuentas de alguien que no la tiene: basta con su nombre. Si quieren ver el grupo, entran con un enlace o un código, desde la app o desde el navegador.</p>
         </details>
-        <details class="pregunta" name="preguntas" data-pregunta style="--n: 2">
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 2">
           <summary><span class="pregunta-tema">Plata</span><span class="pregunta-texto">¿Claras mueve plata?</span></summary>
           <p class="respuesta">No. Te dice quién le paga a quién y cada uno paga por el medio que prefiera. Cobrar solo prepara un mensaje de WhatsApp con el monto y tu llave Bre-B, que mandas tú. Tu llave se queda en tu celular y Claras nunca pide claves.</p>
         </details>
-        <details class="pregunta" name="preguntas" data-pregunta style="--n: 3">
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 3">
           <summary><span class="pregunta-tema">iPhone</span><span class="pregunta-texto">¿Funciona en iPhone?</span></summary>
           <p class="respuesta">La app es para Android. En iPhone puedes usar Claras desde el navegador, en app.clarasapp.com, mientras llega a la App Store.</p>
         </details>
-        <details class="pregunta" name="preguntas" data-pregunta style="--n: 4">
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 4">
           <summary><span class="pregunta-tema">Datos</span><span class="pregunta-texto">¿Qué pasa con mis datos?</span></summary>
           <p class="respuesta">Tus grupos se guardan en tu celular. Solo los que compartes se suben a la nube, para que sus miembros los vean. No mostramos publicidad, no usamos rastreadores publicitarios y no vendemos tus datos. Puedes borrar tu cuenta y tus datos cuando quieras. <a href="privacidad.html">Política de privacidad</a></p>
         </details>
-        <details class="pregunta" name="preguntas" data-pregunta style="--n: 5">
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 5">
           <summary><span class="pregunta-tema">Precio</span><span class="pregunta-texto">¿Cuánto cuesta?</span></summary>
           <p class="respuesta">Nada: todo lo de la carta es gratis y sin anuncios. Claras Pro es un solo pago, sin suscripciones, y su precio está en <a href="#precio">la carta</a>.</p>
         </details>
@@ -249,13 +250,13 @@
 
   </main>
 
-  <footer class="pie">
-    <article class="pie-recibo" aria-label="Final de la cuenta">
+  <footer class="pie" data-entrada>
+    <article class="pie-recibo" data-parte aria-label="Final de la cuenta">
       <p class="pie-cierre">El próximo paseo ya tiene quién haga las cuentas.</p>
       <a class="boton boton-acento pie-accion" data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
       <a class="enlace-iphone" data-solo-iphone hidden href="https://app.clarasapp.com/">¿Tienes iPhone? Úsala desde el navegador.</a>
       <p class="pie-nota">Gratis, sin anuncios y sin registrarte.</p>
-      <div class="pie-final">
+      <div class="pie-final" data-parte>
         <p class="pie-gracias">Gracias por su visita</p>
         <p>Cuentas claras, amistades largas.</p>
         <nav class="pie-enlaces" aria-label="Más de Claras">
@@ -271,7 +272,7 @@
         </p>
         <p class="pie-dato">Esta página no usa cookies ni rastreadores.</p>
         <p class="pie-dato">Hecho en Bogotá, Colombia</p>
-        <p class="pie-marca" aria-hidden="true">Claras</p>
+        <p class="pie-marca" data-parte aria-hidden="true">Claras</p>
       </div>
     </article>
   </footer>
