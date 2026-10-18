@@ -622,6 +622,13 @@ html:not(.con-js) .guia-sin-js { display: inline; }
   text-transform: uppercase;
 }
 
+/* Escritorio: el titular comparte la pantalla con la cuenta y su columna es la
+   mitad del ancho. "DEBE QUÉ?" mide unas 3,8 veces el tamaño de la letra, así
+   que la letra no pasa de 11,25vw y el titular queda siempre en dos líneas. */
+@media (min-width: 981px) {
+  .titular { font-size: min(var(--step-display), 11.25vw); }
+}
+
 /* Tableta y teléfono: titular arriba, la cuenta debajo, luego la bajada y el botón. */
 @media (max-width: 980px) {
   .portada { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-top: 0.5rem; }
