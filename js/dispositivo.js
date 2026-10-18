@@ -1,6 +1,7 @@
-// A dónde lleva cada botón según el celular: Android va a Play; iPhone y
-// computadores, a la versión web (no hay app de iPhone en la tienda). Sirve
-// también dentro de los navegadores de Instagram, TikTok y Facebook.
+// A dónde lleva cada botón: todos van a Play, en cualquier celular o
+// computador. La versión web solo se ofrece en iPhone, como un enlace discreto
+// (no hay app de iPhone en la tienda). Sirve también dentro de los navegadores
+// de Instagram, TikTok y Facebook.
 
 const PLAY = 'https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras';
 

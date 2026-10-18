@@ -123,6 +123,11 @@ export function montarCuenta(raiz, fonda = FONDA) {
       tocarFicha(fichaBtn.closest('.plato').querySelector('[data-item]').dataset.item, fichaBtn.dataset.ficha);
       return;
     }
+    // Liquidada, la cuenta queda cerrada: solo Otra vez la abre de nuevo.
+    if (liquidado && t.closest('[data-item], [data-persona]')) {
+      decir('La cuenta ya está liquidada. Toca Otra vez para repartirla de nuevo.');
+      return;
+    }
     const platoBtn = t.closest('[data-item]');
     if (platoBtn) {
       abierto = abierto === platoBtn.dataset.item ? null : platoBtn.dataset.item;
@@ -156,12 +161,12 @@ export function montarCuenta(raiz, fonda = FONDA) {
     if (!raiz.contains(document.activeElement)) raiz.querySelector(`[data-item="${cerrado}"]`)?.focus();
   });
 
-  // Atajo: arrastrar el plato con el dedo o el mouse hasta una persona.
+  // Atajo: arrastrar el plato con el mouse hasta una persona.
   let arrastre = null;
   raiz.addEventListener('pointerdown', (ev) => {
     const platoBtn = ev.target.closest('[data-item]');
-    // En el celular se toca, como en la app; arrastrar es solo para el mouse.
-    if (!platoBtn || ev.button !== 0 || ev.pointerType === 'touch') return;
+    // Con el dedo o el lápiz se toca, como en la app; arrastrar es solo para el mouse.
+    if (!platoBtn || liquidado || ev.button !== 0 || ev.pointerType !== 'mouse') return;
     arrastre = { itemId: platoBtn.dataset.item, x: ev.clientX, y: ev.clientY, fantasma: null, encima: null, origen: platoBtn };
     platoBtn.setPointerCapture(ev.pointerId);
   });

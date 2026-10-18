@@ -188,6 +188,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .cuenta-dato { font-size: var(--step-small); color: var(--tinta-suave); }
 .cuenta-guia { margin-top: 0.3rem; font-size: var(--step-small); font-weight: 500; text-wrap: balance; }
+/* Sin JavaScript la cuenta llega resuelta y no responde: la guía no pide tocar. */
+.guia-sin-js { display: none; }
+html:not(.con-js) .guia-con-js { display: none; }
+html:not(.con-js) .guia-sin-js { display: inline; }
 
 .platos { display: grid; gap: 0.15rem; }
 .plato {
@@ -217,7 +221,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .plato-nombre[aria-expanded='true'] { background: var(--tinta); color: var(--papel); }
 .plato-nombre.arrastrando { opacity: 0.4; }
 @media (hover: hover) and (pointer: fine) {
-  .plato-nombre { touch-action: none; cursor: grab; }
+  /* El mouse arrastra sin bloquear nada: el dedo, en un portátil táctil, sigue moviendo la página. */
+  .plato-nombre { cursor: grab; }
 }
 .duenos { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; }
 .dueno, .sin-dueno {
@@ -331,7 +336,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .boton-otra-vez { justify-self: start; }
 
 /* Las fichas del plato abierto, como los chips de la tarjeta de ítem de la app. */
-.plato-abierto { background: var(--papel-2); border-radius: 1.5rem; padding-bottom: 0.6rem; }
+.plato-abierto { background: var(--papel-2); border-radius: var(--radio); padding-bottom: 0.6rem; }
 .fichas { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
 .ficha {
   position: relative;
@@ -656,13 +661,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .plato { padding: 0.25rem 0.5rem; }
   .totales { margin-top: 0.75rem; padding-top: 0.6rem; }
   .cuenta-pie { margin-inline: -1rem; padding-inline: 1rem; }
-  .fichas { gap: 0.3rem; }
+  /* Las fichas usan todo el renglón, separadas de la curva del plato abierto. */
+  .fichas { grid-column: 1 / -1; gap: 0.3rem; margin-left: 1rem; }
   .ficha { padding-inline: 0.6rem; }
 }
 
-/* Teléfonos angostos: las cinco fichas caben en una línea usando todo el renglón. */
+/* Teléfonos angostos: fichas un poco más estrechas para que las cinco quepan en una línea. */
 @media (max-width: 380px) {
-  .fichas { grid-column: 1 / -1; }
   .ficha { padding-inline: 0.5rem; }
 }
 

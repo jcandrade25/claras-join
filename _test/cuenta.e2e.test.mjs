@@ -147,10 +147,56 @@ test('en el celular nada de la cuenta bloquea el scroll', async () => {
   } finally { await browser.close(); }
 });
 
-test('con mouse el nombre del plato se puede arrastrar', async () => {
+test('en un portátil con pantalla táctil, el nombre del plato tampoco bloquea el scroll', async () => {
+  // El mouse arrastra sin necesitar touch-action: none; el dedo sigue moviendo la página.
   const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
   try {
-    assert.equal(await page.$eval(plato('chicharron'), (e) => getComputedStyle(e).touchAction), 'none');
+    assert.equal(await page.$eval(plato('chicharron'), (e) => getComputedStyle(e).touchAction), 'manipulation');
+  } finally { await browser.close(); }
+});
+
+test('con lápiz el plato se toca, no se arrastra', async () => {
+  const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
+  try {
+    await page.$eval(plato('cerveza'), (b) => {
+      const r = b.getBoundingClientRect();
+      const ev = (tipo, x) => new PointerEvent(tipo, { bubbles: true, pointerType: 'pen', pointerId: 7, button: 0, clientX: x, clientY: r.top + 5 });
+      b.dispatchEvent(ev('pointerdown', r.left + 5));
+      b.dispatchEvent(ev('pointermove', r.left + 60));
+    });
+    assert.equal(await page.locator('.fantasma').count(), 0);
+  } finally { await browser.close(); }
+});
+
+test('después de Liquidar, tocar la cuenta no la cambia a escondidas', async () => {
+  const { browser, page } = await pagina({ ancho: 1440, alto: 900 });
+  try {
+    await completar(page, (s) => page.click(s));
+    await page.click('[data-liquidar]');
+    const antes = await montos(page);
+    await page.click(plato('bandeja'));
+    await page.click(persona('valen'));
+    assert.deepEqual(await montos(page), antes);
+    assert.match(await page.textContent('[data-anuncio]'), /Otra vez/);
+  } finally { await browser.close(); }
+});
+
+test('sin JavaScript la guía no pide tocar nada', async () => {
+  const sinJs = await pagina({ ancho: 390, alto: 844, sinJs: true });
+  try {
+    assert.doesNotMatch(await sinJs.page.innerText('.cuenta-cabeza'), /Toca/);
+  } finally { await sinJs.browser.close(); }
+  const conJs = await pagina({ ancho: 390, alto: 844 });
+  try {
+    assert.match(await conJs.page.innerText('.cuenta-cabeza'), /Toca un plato y escoge quién lo comió/);
+  } finally { await conJs.browser.close(); }
+});
+
+test('el plato abierto usa el mismo radio que las fichas y los botones', async () => {
+  const { browser, page } = await pagina({ ancho: 390, alto: 844, tactil: true });
+  try {
+    const radio = (s) => page.$eval(s, (e) => getComputedStyle(e).borderTopLeftRadius);
+    assert.equal(await radio('.plato-abierto'), await radio('.ficha'));
   } finally { await browser.close(); }
 });
 

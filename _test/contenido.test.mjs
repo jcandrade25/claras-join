@@ -42,6 +42,14 @@ test('la carta: todo lo gratis a $0 y Pro a $14.900 una sola vez, dentro de Pro'
   assert.doesNotMatch(texto(c), /versión web/);
 });
 
+test('la pregunta del precio no contradice la carta, que cobra Pro', () => {
+  const respuesta = html.match(/¿Cuánto cuesta\?<\/span><\/summary>\s*<p class="respuesta">([\s\S]*?)<\/p>/)?.[1] ?? '';
+  assert.ok(respuesta, 'falta la respuesta');
+  assert.doesNotMatch(respuesta, /todo lo de la carta es gratis/);
+  assert.match(respuesta, /Claras Pro/);
+  assert.match(respuesta, /href="#precio"/);
+});
+
 test('la página termina como termina un recibo, con la descarga y lo legal', () => {
   const pie = html.match(/<footer[\s\S]*?<\/footer>/)?.[0] ?? '';
   const t = texto(pie);

@@ -1,5 +1,5 @@
 // Los enlaces de invitación siguen funcionando como antes de la landing, y cada
-// botón de acción lleva a Play en Android y a la versión web en lo demás.
+// botón de acción lleva a Play en cualquier aparato; la web solo se ofrece en iPhone.
 import { after, before, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
@@ -26,6 +26,14 @@ test('con ?c= se ve el talón de la invitación con el código', async () => {
     assert.equal((await page.textContent('[data-codigo]')).trim(), 'ABC123');
     // Quien viene a unirse no tiene el pie de la cuenta pegado abajo compitiendo.
     assert.equal(await page.$eval('.cuenta-pie', (e) => getComputedStyle(e).position), 'static');
+  } finally { await browser.close(); }
+});
+
+test('/unirse/?c= lleva a la invitación con el código', async () => {
+  const { browser, page } = await pagina('/unirse/?c=ABC123', UA.iphone);
+  try {
+    await page.waitForURL(/\/\?c=ABC123$/);
+    assert.equal((await page.textContent('[data-codigo]')).trim(), 'ABC123');
   } finally { await browser.close(); }
 });
 

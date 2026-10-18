@@ -52,6 +52,30 @@ test('robots.txt y sitemap.xml', () => {
   }
 });
 
+test('robots.txt deja leer el noindex de los enlaces cortos', () => {
+  // Un Disallow impide que el buscador lea el noindex y la URL puede salir sola en resultados.
+  assert.doesNotMatch(leer('robots.txt'), /Disallow: \/(tt|ig|yt|fb|wa|unirse)\//);
+});
+
+test('los enlaces cortos y /unirse/ muestran una tarjeta al compartirlos', () => {
+  const de = (pagina, atributo, nombre) => pagina.match(new RegExp(`<meta ${atributo}="${nombre}" content="([^"]*)"`))?.[1];
+  for (const ruta of [...Object.keys(FUENTES), 'unirse']) {
+    const pagina = leer(`${ruta}/index.html`);
+    assert.ok(de(pagina, 'property', 'og:title'), ruta);
+    assert.ok(de(pagina, 'property', 'og:description'), ruta);
+    assert.equal(de(pagina, 'property', 'og:image'), 'https://clarasapp.com/img/og.png', ruta);
+    assert.equal(de(pagina, 'name', 'twitter:card'), 'summary_large_image', ruta);
+  }
+});
+
+test('/unirse/ es el puente de las invitaciones, con su propia tarjeta', () => {
+  const pagina = leer('unirse/index.html');
+  assert.match(pagina, /<meta name="robots" content="noindex">/);
+  assert.match(pagina, /<meta property="og:title" content="Te invitaron a un grupo en Claras">/);
+  assert.match(pagina, /<meta property="og:url" content="https:\/\/clarasapp\.com\/unirse\/">/);
+  assert.match(pagina, /<noscript>/);
+});
+
 test('los enlaces cortos: Android a Play con su campaña, lo demás a la landing', () => {
   for (const [ruta, fuente] of Object.entries(FUENTES)) {
     const pagina = leer(`${ruta}/index.html`);

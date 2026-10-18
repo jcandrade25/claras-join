@@ -32,7 +32,7 @@ async function peticionesAfuera(ruta) {
   }
 }
 
-for (const ruta of ['/', '/?c=ABC123']) {
+for (const ruta of ['/', '/?c=ABC123', '/unirse/?c=ABC123']) {
   test(`${ruta}: todas las peticiones van al mismo servidor`, async () => {
     const { afuera, browser } = await peticionesAfuera(ruta);
     try { assert.deepEqual(afuera, []); } finally { await browser.close(); }
