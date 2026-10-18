@@ -1,210 +1,286 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-CO">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Únete a un grupo en Claras</title>
-  <meta name="description" content="Te invitaron a un grupo en Claras para repartir gastos sin enredos." />
-  <meta property="og:title" content="Te invitaron a un grupo en Claras" />
-  <meta property="og:description" content="Toca para entrar al grupo y repartir los gastos." />
-  <meta name="theme-color" content="#C75432" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="apple-touch-icon" href="favicon.svg" />
-  <link href="fonts/fonts.css" rel="stylesheet" />
-  <style>
-    :root {
-      --primary: #C75432;
-      --primary-dark: #A8431F;
-      --cream: #FBF6F1;
-      --surface: #FFFFFF;
-      --ink: #2B2018;
-      --muted: #8A7C70;
-      --soft: #F3E7DD;
-      --wa: #25D366;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      -webkit-font-smoothing: antialiased;
-    }
-    .card {
-      background: var(--surface);
-      border-radius: 28px;
-      padding: 40px 28px 32px;
-      max-width: 380px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 18px 50px rgba(120, 60, 30, 0.14);
-      border: 1px solid var(--soft);
-    }
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 26px;
-      color: var(--primary);
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-    .emoji { font-size: 52px; line-height: 1; margin: 8px 0 18px; }
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-    p.sub { color: var(--muted); font-size: 14.5px; line-height: 1.5; margin-bottom: 24px; }
-    .code-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-    .code {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 34px;
-      color: var(--primary);
-      letter-spacing: 3px;
-      background: var(--soft);
-      border-radius: 14px;
-      padding: 12px 0;
-      margin-bottom: 26px;
-    }
-    .btn {
-      display: flex; align-items: center; justify-content: center; gap: 9px;
-      width: 100%;
-      padding: 16px;
-      border-radius: 16px;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: transform .08s ease, filter .12s ease;
-    }
-    .btn:active { transform: scale(0.98); }
-    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(199,84,50,.32); }
-    .btn-primary:hover { filter: brightness(1.05); }
-    .btn-store { background: var(--ink); color: #fff; margin-top: 12px; }
-    .btn-copy { background: var(--soft); color: var(--primary-dark); padding: 12px; font-size: 15px; margin: -14px 0 24px; }
-    .web-link { display: block; margin-top: 14px; color: var(--muted); font-size: 14px; font-weight: 500; }
-    .hint { color: var(--muted); font-size: 12.5px; margin-top: 22px; line-height: 1.5; }
-    .footer { color: var(--muted); font-size: 11.5px; margin-top: 18px; opacity: .8; }
-    .legal { font-size: 11.5px; margin-top: 8px; }
-    .legal a { color: var(--muted); font-weight: 500; }
-    .btn svg { width: 20px; height: 20px; }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claras: dividir gastos con amigos</title>
+  <meta name="description" content="Claras divide los gastos del paseo, los roomies y los planes, y te dice quién le paga a quién. Gratis, sin anuncios y sin registrarte.">
+  <meta name="theme-color" content="#B3482A">
+  <link rel="canonical" href="https://clarasapp.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clarasapp.com/">
+  <meta property="og:site_name" content="Claras">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:title" content="Claras: ¿quién debe qué?">
+  <meta property="og:description" content="La app colombiana para dividir los gastos del paseo, los roomies y los planes. Gratis, sin anuncios y sin registrarte.">
+  <meta property="og:image" content="https://clarasapp.com/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="¿Quién debe qué? Una cuenta de restaurante repartida con Claras">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Claras",
+        "url": "https://clarasapp.com/",
+        "email": "support@clarasapp.com",
+        "logo": "https://clarasapp.com/favicon.svg"
+      },
+      {
+        "@type": "MobileApplication",
+        "name": "Claras: dividir gastos",
+        "operatingSystem": "ANDROID",
+        "applicationCategory": "FinanceApplication",
+        "inLanguage": "es",
+        "url": "https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras",
+        "description": "Divide los gastos del paseo, los roomies y los planes, y te dice quién le paga a quién. Gratis, sin anuncios y sin registrarte.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "COP" }
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preload" href="fonts/Archivo-titulos.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Archivo-texto.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/landing.css">
+  <script>document.documentElement.classList.add('con-js');</script>
+  <script type="module" src="js/pagina.js"></script>
+  <script type="module" src="js/cuenta.js"></script>
+  <script type="module" src="js/preguntas.js"></script>
+  <script type="module" src="js/vitrina.js"></script>
+  <script type="module" src="js/movimiento.js"></script>
+  <link rel="modulepreload" href="js/motor.js">
+  <link rel="modulepreload" href="js/fonda.js">
+  <link rel="modulepreload" href="js/estado-cuenta.js">
+  <link rel="modulepreload" href="js/cuenta-html.js">
+  <link rel="modulepreload" href="js/dispositivo.js">
+  <link rel="modulepreload" href="js/invitacion.js">
 </head>
 <body>
-  <div class="card">
-    <svg viewBox="0 0 1024 1024" width="104" height="104" style="margin:6px auto 18px; display:block;" aria-label="Claras">
-      <rect width="1024" height="1024" rx="224" fill="#C75432"/>
-      <path d="M 380 232 H 644 a 36 36 0 0 1 36 36 V 672 l -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 -28 38 -28 -38 V 268 a 36 36 0 0 1 36 -36 Z" fill="#FBF6F1"/>
-      <rect x="392" y="300" width="240" height="30" rx="15" fill="#C75432"/>
-      <rect x="392" y="356" width="168" height="30" rx="15" fill="#F0855B"/>
-      <rect x="503" y="420" width="18" height="216" rx="9" fill="#C75432"/>
-      <path d="M 576 462 C 576 438 548 428 512 428 C 472 428 448 446 448 478 C 448 506 476 518 512 528 C 548 538 576 550 576 580 C 576 610 548 624 512 624 C 474 624 448 612 444 584" fill="none" stroke="#C75432" stroke-width="32" stroke-linecap="round"/>
-    </svg>
-    <div class="logo">Claras<span style="color:var(--primary)">.</span></div>
-    <h1 id="titulo">Te invitaron a un grupo</h1>
-    <p class="sub" id="sub">Entra para repartir los gastos sin enredos, en pesos y sin crear cuentas.</p>
+  <header class="barra">
+    <a class="marca" href="/">Claras</a>
+    <nav class="barra-enlaces" aria-label="Secciones">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#precio">Precio</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="boton boton-barra" data-accion="corto" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar</a>
+  </header>
 
-    <div id="codeBox" style="display:none">
-      <div class="code-label">Tu código</div>
-      <div class="code" id="code"></div>
-      <button class="btn btn-copy" id="copyBtn" type="button" style="display:none">Copiar código</button>
-    </div>
+  <main>
+    <section class="invitacion" data-invitacion hidden aria-labelledby="invitacion-titulo">
+      <div class="invitacion-talon">
+        <h2 class="invitacion-titulo" id="invitacion-titulo">Te invitaron a un grupo</h2>
+        <p class="invitacion-codigo">Tu código <strong data-codigo></strong></p>
+        <div class="invitacion-acciones">
+          <a class="boton boton-acento" data-abrir href="https://app.clarasapp.com/">Abrir Claras</a>
+          <a class="boton boton-papel" data-tienda hidden href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar Claras</a>
+          <button type="button" class="boton boton-papel" data-copiar hidden>Copiar código</button>
+        </div>
+        <a class="invitacion-web" data-web hidden href="https://app.clarasapp.com/">o úsala en el navegador</a>
+        <p class="invitacion-pista" data-pista-invitacion></p>
+      </div>
+    </section>
 
-    <!-- Sin JavaScript, el botón lleva a la versión web, que sirve en cualquier teléfono. -->
-    <a class="btn btn-primary" id="openBtn" href="https://app.clarasapp.com/">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      <span id="openLabel">Abrir Claras</span>
-    </a>
+    <section class="portada">
+      <div class="portada-texto">
+        <h1 class="titular"><span class="titular-linea">¿Quién</span> <span class="titular-linea">debe qué?</span></h1>
+        <p class="bajada">Claras divide los gastos del paseo, los roomies y los planes, y te dice quién le paga a quién. Gratis y sin registrarte.</p>
+        <a class="boton boton-principal" data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
+        <a class="enlace-iphone" data-solo-iphone hidden href="https://app.clarasapp.com/">¿Tienes iPhone? Úsala desde el navegador.</a>
+      </div>
 
-    <a class="btn btn-store" id="storeBtn" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras" style="display:none">
-      Descargar Claras
-    </a>
+      <div class="portada-cuenta" data-cuenta>
+        <article class="cuenta" aria-label="Cuenta de ejemplo de Fonda La Vaca para repartir">
+          <header class="cuenta-cabeza">
+            <p class="cuenta-local">Fonda La Vaca</p>
+            <p class="cuenta-guia"><span class="guia-con-js">Cuenta de ejemplo. Toca un plato y escoge quién lo comió.</span><span class="guia-sin-js">Cuenta de ejemplo, ya repartida entre los cuatro.</span></p>
+          </header>
 
-    <a class="web-link" id="webLink" href="https://app.clarasapp.com/" style="display:none">o úsala en el navegador</a>
+          <ul class="platos" data-platos>
+<!-- estatico:platos -->
+<li class="plato"><span class="plato-cant">2</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="bandeja" aria-expanded="false">Bandeja paisa</button> <span class="duenos"><span class="dueno">Juanma</span><span class="dueno">Pipe</span></span></span><span class="plato-valor">72.000</span></li>
+<li class="plato"><span class="plato-cant">1</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="sancocho" aria-expanded="false">Sancocho trifásico</button> <span class="duenos"><span class="dueno">Dani</span></span></span><span class="plato-valor">32.000</span></li>
+<li class="plato"><span class="plato-cant">2</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="empanadas" aria-expanded="false">Empanadas</button> <span class="duenos"><span class="dueno">Valen</span></span></span><span class="plato-valor">7.000</span></li>
+<li class="plato"><span class="plato-cant">1</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="chicharron" aria-expanded="false">Chicharrón</button> <span class="duenos"><span class="dueno">Dani</span><span class="dueno">Juanma</span><span class="dueno">Pipe</span></span></span><span class="plato-valor">25.000</span></li>
+<li class="plato"><span class="plato-cant">3</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="limonada" aria-expanded="false">Limonada de coco</button> <span class="duenos"><span class="dueno">Dani</span><span class="dueno">Valen</span><span class="dueno">Juanma</span></span></span><span class="plato-valor">36.000</span></li>
+<li class="plato"><span class="plato-cant">2</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="cerveza" aria-expanded="false">Cerveza</button> <span class="duenos"><span class="dueno">Pipe</span></span></span><span class="plato-valor">14.000</span></li>
+<li class="plato"><span class="plato-cant">1</span><span class="plato-centro"><button type="button" class="plato-nombre" data-item="natas" aria-expanded="false">Postre de natas</button> <span class="duenos"><span class="dueno">Dani</span></span></span><span class="plato-valor">9.000</span></li>
+<!-- /estatico:platos -->
+          </ul>
 
-    <p class="hint" id="hint"></p>
-    <p class="footer">Claras · cuentas claras, amistades largas</p>
-    <p class="legal"><a href="privacidad.html">Privacidad</a> · <a href="eliminar-cuenta.html">Eliminar cuenta</a></p>
-  </div>
+          <dl class="totales">
+            <div><dt>Subtotal con impoconsumo</dt><dd>195.000</dd></div>
+            <div><dt>Propina voluntaria sugerida 10 %</dt><dd>19.500</dd></div>
+            <div class="total"><dt>Total</dt><dd>$214.500</dd></div>
+            <div><dt>Pagó</dt><dd>Dani</dd></div>
+          </dl>
 
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var code = (params.get('c') || params.get('code') || '').trim().toUpperCase();
-      // Solo un código de verdad (6 u 8 letras y números; margen hasta 12): sin
-      // esto la página mostraría y copiaría cualquier texto puesto en el enlace.
-      if (!/^[A-Z0-9]{4,12}$/.test(code)) code = '';
-      var ua = navigator.userAgent || '';
-      var esAndroid = /Android/i.test(ua);
-      // iPadOS se presenta como Mac; se distingue porque tiene pantalla táctil.
-      var esIOS = /iPhone|iPad|iPod/i.test(ua) ||
-          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      var web = 'https://app.clarasapp.com/' + (code ? '?c=' + encodeURIComponent(code) : '');
-      var deepLink = code ? 'claras://join/' + encodeURIComponent(code) : 'claras://join';
-      function $(id) { return document.getElementById(id); }
+          <div class="cuenta-pie">
+            <p class="personas-titulo" id="personas-titulo">Le toca a cada uno, con propina</p>
+            <ul class="personas" data-personas aria-labelledby="personas-titulo">
+<!-- estatico:personas -->
+<li><button class="persona" type="button" data-persona="dani"><span class="persona-nombre">Dani</span><span class="persona-total" data-total>$67.468</span></button></li>
+<li><button class="persona" type="button" data-persona="juanma"><span class="persona-nombre">Juanma</span><span class="persona-total" data-total>$61.966</span></button></li>
+<li><button class="persona" type="button" data-persona="valen"><span class="persona-nombre">Valen</span><span class="persona-total" data-total>$20.900</span></button></li>
+<li><button class="persona" type="button" data-persona="pipe"><span class="persona-nombre">Pipe</span><span class="persona-total" data-total>$64.166</span></button></li>
+<!-- /estatico:personas -->
+            </ul>
+            <div class="pie-fila">
+              <p class="falta">Falta asignar <strong data-falta><!-- estatico:falta -->$0<!-- /estatico:falta --></strong></p>
+              <button type="button" class="boton boton-liquidar" data-liquidar hidden>Liquidar</button>
+            </div>
+            <p class="pista">También puedes arrastrar un plato hasta una persona.</p>
+          </div>
+        </article>
 
-      if (code) {
-        $('code').textContent = code;
-        $('codeBox').style.display = 'block';
-      } else {
-        // Visita a clarasapp.com sin invitación: portada en vez de "te invitaron".
-        $('titulo').textContent = 'Reparte gastos sin enredos';
-        $('sub').textContent = 'Claras divide los gastos de viajes, roomies y planes, en pesos y sin crear cuentas.';
-      }
+        <div class="talones" data-talones>
+<!-- estatico:talones -->
+<article class="talon" data-talon="pipe" style="--i: 0"><p class="talon-quien">Pipe le paga a Dani</p><p class="talon-monto" data-monto>$64.166</p><details class="talon-cobro"><summary>Cobrar por WhatsApp</summary><p class="talon-intro">Así le llega a Pipe por WhatsApp:</p><p class="talon-mensaje">Hola Pipe, en «Almuerzo en Fonda La Vaca» me debes $64.166. Puedes pagarme por Bre-B a la llave @dani.ejemplo. ¡Gracias!</p><p class="talon-nota">En la app, este botón abre tu WhatsApp con el mensaje listo. Claras no mueve plata ni pide claves.</p></details></article>
+<article class="talon" data-talon="juanma" style="--i: 1"><p class="talon-quien">Juanma le paga a Dani</p><p class="talon-monto" data-monto>$61.966</p><details class="talon-cobro"><summary>Cobrar por WhatsApp</summary><p class="talon-intro">Así le llega a Juanma por WhatsApp:</p><p class="talon-mensaje">Hola Juanma, en «Almuerzo en Fonda La Vaca» me debes $61.966. Puedes pagarme por Bre-B a la llave @dani.ejemplo. ¡Gracias!</p><p class="talon-nota">En la app, este botón abre tu WhatsApp con el mensaje listo. Claras no mueve plata ni pide claves.</p></details></article>
+<article class="talon" data-talon="valen" style="--i: 2"><p class="talon-quien">Valen le paga a Dani</p><p class="talon-monto" data-monto>$20.900</p><details class="talon-cobro"><summary>Cobrar por WhatsApp</summary><p class="talon-intro">Así le llega a Valen por WhatsApp:</p><p class="talon-mensaje">Hola Valen, en «Almuerzo en Fonda La Vaca» me debes $20.900. Puedes pagarme por Bre-B a la llave @dani.ejemplo. ¡Gracias!</p><p class="talon-nota">En la app, este botón abre tu WhatsApp con el mensaje listo. Claras no mueve plata ni pide claves.</p></details></article>
+<!-- /estatico:talones -->
+        </div>
+        <p class="solo-lector" aria-live="polite" data-anuncio></p>
+      </div>
+    </section>
 
-      if (esAndroid) {
-        // La app abre claras://join/CODIGO; si no está instalada, queda la tienda
-        // y la versión web (mientras Claras no esté en producción, Play solo deja
-        // instalarla a los testers).
-        $('openLabel').textContent = 'Abrir en Claras';
-        $('openBtn').setAttribute('href', deepLink);
-        $('openBtn').addEventListener('click', function (e) {
-          e.preventDefault();
-          window.location.href = deepLink;
-        });
-        $('storeBtn').style.display = 'flex';
-        $('webLink').setAttribute('href', web);
-        $('webLink').style.display = 'block';
-        if (code) {
-          $('hint').textContent = '¿No se abrió? Instala Claras y vuelve a tocar el enlace. Tu código quedará listo.';
-          // Intento automático: si la app está instalada, Android cambia a Claras.
-          setTimeout(function () { window.location.href = deepLink; }, 600);
-        }
-      } else {
-        // iPhone y computador: no hay app que abrir (claras:// da error en Safari),
-        // así que el botón entra a la versión web con el código ya puesto.
-        $('openBtn').setAttribute('href', web);
-        if (code) $('copyBtn').style.display = 'flex';
-        $('hint').textContent = esIOS
-            ? (code ? '¿Ya usas Claras desde la pantalla de inicio? Ábrela, toca "Unirse con código" y pega el código.' : '')
-            : 'Claras funciona en el navegador. En Android también puedes instalar la app.';
-      }
+    <section class="seccion paseo" id="como-funciona" aria-labelledby="paseo-titulo" data-entrada>
+      <div class="paseo-texto">
+        <h2 class="seccion-titulo" id="paseo-titulo" data-parte>El paseo entero</h2>
+        <p class="seccion-bajada" data-parte>Anota cada gasto cuando pasa: quién pagó, cuánto y entre quiénes. El domingo, Claras hace las cuentas.</p>
+        <p class="seccion-nota" data-parte>Sirve igual para los roomies, la pareja, el asado o la vaca de la oficina.</p>
+      </div>
+      <article class="tirilla" data-parte="imprime" aria-label="Ejemplo: las cuentas de un paseo a la finca">
+        <header class="tirilla-cabeza">
+          <p class="tirilla-grupo">Paseo a la finca</p>
+          <p class="tirilla-dato">Ejemplo. Cuatro personas, todo entre los cuatro.</p>
+        </header>
+        <ul class="tirilla-dias">
+<!-- estatico:tirilla -->
+<li class="tirilla-dia"><p class="tirilla-cuando">Viernes</p><ul><li class="tirilla-fila"><span>Gasolina y peajes<span class="tirilla-quien">Pipe pagó</span></span><span class="lider" aria-hidden="true"></span><span>$186.000</span></li></ul></li>
+<li class="tirilla-dia"><p class="tirilla-cuando">Sábado</p><ul><li class="tirilla-fila"><span>Mercado para la finca<span class="tirilla-quien">Dani pagó</span></span><span class="lider" aria-hidden="true"></span><span>$240.000</span></li><li class="tirilla-fila"><span>La finca, dos noches<span class="tirilla-quien">Valen pagó</span></span><span class="lider" aria-hidden="true"></span><span>$900.000</span></li></ul></li>
+<li class="tirilla-dia"><p class="tirilla-cuando">Domingo</p><ul><li class="tirilla-fila"><span>Almuerzo en el pueblo<span class="tirilla-quien">Juanma pagó</span></span><span class="lider" aria-hidden="true"></span><span>$132.000</span></li></ul></li>
+<li class="tirilla-dia"><p class="tirilla-cuando">Para quedar a mano</p><ul><li class="tirilla-fila" data-de="juanma" data-a="valen"><span>Juanma le paga a Valen</span><span class="lider" aria-hidden="true"></span><span data-monto>$232.500</span></li><li class="tirilla-fila" data-de="pipe" data-a="valen"><span>Pipe le paga a Valen</span><span class="lider" aria-hidden="true"></span><span data-monto>$178.500</span></li><li class="tirilla-fila" data-de="dani" data-a="valen"><span>Dani le paga a Valen</span><span class="lider" aria-hidden="true"></span><span data-monto>$124.500</span></li></ul></li>
+<!-- /estatico:tirilla -->
+        </ul>
+        <p class="tirilla-final">Domingo: todo liquidado en 3 pagos</p>
+      </article>
+    </section>
 
-      $('copyBtn').addEventListener('click', function () {
-        function copiado() { $('copyBtn').textContent = 'Código copiado'; }
-        function seleccionar() {
-          var r = document.createRange();
-          r.selectNodeContents($('code'));
-          var s = window.getSelection();
-          s.removeAllRanges();
-          s.addRange(r);
-        }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(code).then(copiado, seleccionar);
-        } else {
-          seleccionar();
-        }
-      });
-    })();
-  </script>
+    <section class="seccion vitrina" id="app" aria-labelledby="vitrina-titulo" data-vitrina data-entrada>
+      <figure class="vitrina-plato" data-ui data-parte="asienta">
+        <img data-plato src="img/app/cobrar.webp" width="780" height="780" loading="lazy" alt="Liquidar en la app: la tarjeta Cobra en un toque y un botón Cobrar en cada pago que te deben">
+      </figure>
+      <div class="vitrina-texto">
+        <h2 class="seccion-titulo" id="vitrina-titulo" data-parte>Cobra sin pena</h2>
+        <div class="vitrina-pestanas" data-parte role="tablist" aria-label="Partes de la app">
+          <button type="button" role="tab" id="pestana-cobrar" aria-controls="panel-cobrar" aria-selected="true" data-pestana="cobrar" data-imagen="img/app/cobrar.webp" data-alt="Liquidar en la app: la tarjeta Cobra en un toque y un botón Cobrar en cada pago que te deben">Cobrar</button>
+          <button type="button" role="tab" id="pestana-items" aria-controls="panel-items" aria-selected="false" tabindex="-1" data-pestana="items" data-imagen="img/app/items.webp" data-alt="Un gasto por ítems en la app: la pizza con fichas para marcar quién la comió">Por ítems</button>
+          <button type="button" role="tab" id="pestana-balances" aria-controls="panel-balances" aria-selected="false" tabindex="-1" data-pestana="balances" data-imagen="img/app/balances.webp" data-alt="Balances en la app: quién debe y a quién le deben en el grupo">Balances</button>
+        </div>
+        <div class="vitrina-panel" data-parte role="tabpanel" id="panel-cobrar" aria-labelledby="pestana-cobrar" data-panel="cobrar">
+          <h3 class="vitrina-panel-titulo">Un toque y listo</h3>
+          <p>En Liquidar, Cobrar arma el mensaje con el monto y tu llave Bre-B y lo abre en tu WhatsApp. Lo mandas tú: Claras no mueve plata.</p>
+        </div>
+        <div class="vitrina-panel" data-parte role="tabpanel" id="panel-items" aria-labelledby="pestana-items" data-panel="items" hidden>
+          <h3 class="vitrina-panel-titulo">Cada quien lo suyo</h3>
+          <p>Anota cada plato y marca quién lo consumió. La propina se reparte según lo que comió cada uno.</p>
+        </div>
+        <div class="vitrina-panel" data-parte role="tabpanel" id="panel-balances" aria-labelledby="pestana-balances" data-panel="balances" hidden>
+          <h3 class="vitrina-panel-titulo">De un vistazo</h3>
+          <p>Cuánto te deben y cuánto debes en cada grupo, y cuánto has consumido tú.</p>
+        </div>
+        <a class="boton boton-papel vitrina-accion" data-parte data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
+      </div>
+    </section>
+
+    <section class="seccion carta" id="precio" aria-labelledby="carta-titulo" data-entrada>
+      <h2 class="seccion-titulo carta-titulo" id="carta-titulo" data-parte>La carta</h2>
+      <div class="carta-lista">
+        <div class="carta-grupo" data-grupo="gratis">
+          <h3 data-parte class="carta-grupo-nombre">Gratis</h3>
+          <div class="carta-items">
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Grupos</span><span>$0</span></p><p class="carta-desc">Para el paseo, el apartamento o el regalo: los que necesites.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Dividir por ítems, con propina</span><span>$0</span></p><p class="carta-desc">Cada uno paga lo suyo y la propina va según lo que consumió.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Liquidar en pocos pagos</span><span>$0</span></p><p class="carta-desc">Quién le paga a quién, y las cuentas cuadran al peso.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Cobrar por WhatsApp</span><span>$0</span></p><p class="carta-desc">El monto y tu llave Bre-B en un mensaje que sale de tu WhatsApp.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Compartir en vivo</span><span>$0</span></p><p class="carta-desc">Cada uno entra desde su celular y ve los mismos gastos.</p></div>
+          </div>
+        </div>
+        <div class="carta-grupo" data-grupo="pro">
+          <h3 data-parte class="carta-grupo-nombre carta-pro"><span>Claras Pro, un solo pago</span><span>$14.900</span></h3>
+          <div class="carta-items">
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Escanear recibos</span></p><p class="carta-desc">Una foto de la cuenta llena el gasto y sus ítems. La lectura se hace en tu celular.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Personas</span></p><p class="carta-desc">Tu saldo con cada persona, sumando todos tus grupos.</p></div>
+            <div class="carta-item" data-parte><p class="carta-nombre"><span>Personas vinculadas</span></p><p class="carta-desc">La misma persona conectada en todos tus grupos.</p></div>
+          </div>
+          <p class="carta-nota" data-parte>Precio en Colombia. Pro se compra en la app de Android, sin suscripciones.</p>
+        </div>
+        <p class="carta-pie" data-parte>Sin anuncios. Sin registrarte: agregas a cada persona solo con su nombre.</p>
+      </div>
+    </section>
+
+    <section class="seccion preguntas" id="preguntas" aria-labelledby="preguntas-titulo" data-entrada>
+      <h2 class="seccion-titulo" id="preguntas-titulo" data-parte>Lo que preguntan</h2>
+      <div class="archivador" data-preguntas>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 0" open>
+          <summary><span class="pregunta-tema">Cuenta</span><span class="pregunta-texto">¿Necesito crear una cuenta?</span></summary>
+          <p class="respuesta">No. Agregas a cada persona solo con su nombre y empiezas a dividir desde el primer minuto. El correo es opcional y solo sirve para recuperar tus grupos compartidos en otro celular.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 1">
+          <summary><span class="pregunta-tema">Amigos</span><span class="pregunta-texto">¿Todos tienen que tener la app?</span></summary>
+          <p class="respuesta">No. Puedes llevar las cuentas de alguien que no la tiene: basta con su nombre. Si quieren ver el grupo, entran con un enlace o un código, desde la app o desde el navegador.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 2">
+          <summary><span class="pregunta-tema">Plata</span><span class="pregunta-texto">¿Claras mueve plata?</span></summary>
+          <p class="respuesta">No. Te dice quién le paga a quién y cada uno paga por el medio que prefiera. Cobrar solo prepara un mensaje de WhatsApp con el monto y tu llave Bre-B, que mandas tú. Tu llave se queda en tu celular y Claras nunca pide claves.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 3">
+          <summary><span class="pregunta-tema">iPhone</span><span class="pregunta-texto">¿Funciona en iPhone?</span></summary>
+          <p class="respuesta">La app es para Android. En iPhone puedes usar Claras desde el navegador, en app.clarasapp.com, mientras llega a la App Store.</p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 4">
+          <summary><span class="pregunta-tema">Datos</span><span class="pregunta-texto">¿Qué pasa con mis datos?</span></summary>
+          <p class="respuesta">Tus grupos se guardan en tu celular. Solo los que compartes se suben a la nube, para que sus miembros los vean. No mostramos publicidad, no usamos rastreadores publicitarios y no vendemos tus datos. Puedes borrar tu cuenta y tus datos cuando quieras. <a href="privacidad.html">Política de privacidad</a></p>
+        </details>
+        <details class="pregunta" name="preguntas" data-pregunta data-parte="ficha" style="--n: 5">
+          <summary><span class="pregunta-tema">Precio</span><span class="pregunta-texto">¿Cuánto cuesta?</span></summary>
+          <p class="respuesta">Repartir, liquidar, cobrar y compartir no cuesta nada y no tiene anuncios. Claras Pro, que escanea recibos y suma tu saldo con cada persona, es un solo pago sin suscripciones: su precio está en <a href="#precio">la carta</a>.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie" data-entrada>
+    <article class="pie-recibo" data-parte aria-label="Final de la cuenta">
+      <p class="pie-cierre">El próximo paseo ya tiene quién haga las cuentas.</p>
+      <a class="boton boton-acento pie-accion" data-accion="largo" href="https://play.google.com/store/apps/details?id=com.jcandrade.cuentas_claras">Descargar en Google Play</a>
+      <a class="enlace-iphone" data-solo-iphone hidden href="https://app.clarasapp.com/">¿Tienes iPhone? Úsala desde el navegador.</a>
+      <p class="pie-nota">Gratis, sin anuncios y sin registrarte.</p>
+      <div class="pie-final" data-parte>
+        <p class="pie-gracias">Gracias por su visita</p>
+        <p>Cuentas claras, amistades largas.</p>
+        <nav class="pie-enlaces" aria-label="Más de Claras">
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#app">La app</a>
+          <a href="#precio">Precio</a>
+          <a href="#preguntas">Preguntas</a>
+        </nav>
+        <p class="pie-enlaces">
+          <a href="privacidad.html">Privacidad</a>
+          <a href="eliminar-cuenta.html">Eliminar cuenta</a>
+          <a href="mailto:support@clarasapp.com">support@clarasapp.com</a>
+        </p>
+        <p class="pie-dato">Esta página no usa cookies ni rastreadores.</p>
+        <p class="pie-dato">Hecho en Bogotá, Colombia</p>
+        <p class="pie-marca" data-parte aria-hidden="true">Claras</p>
+      </div>
+    </article>
+  </footer>
 </body>
 </html>
