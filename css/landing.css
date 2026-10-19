@@ -111,6 +111,38 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .invitacion-pista { margin-top: 0.5rem; font-size: var(--step-small); color: var(--tinta-suave); }
 .invitacion-pista:empty { display: none; }
 
+/* Con una invitación, lo del invitado es la primera pantalla entera, sobre la
+   tinta y sin otra descarga en la barra. Abajo, "¿Qué es Claras?" lleva a la
+   landing, que empieza en su ladrillo. La barra mide 4rem con o sin botón. */
+.con-invitacion .barra { min-height: 4rem; background: var(--tinta); }
+.con-invitacion .boton-barra { display: none; }
+.con-invitacion .invitacion {
+  --foco: var(--papel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100svh - 4rem);
+  padding: 1.5rem var(--margen) 1.75rem;
+  background: var(--tinta);
+}
+.con-invitacion .invitacion-talon { width: 100%; margin-block: auto; }
+/* La tilde de "¿QUIÉN" sobresale de su línea: con aire arriba, no asoma sobre la tinta. */
+.con-invitacion .portada { padding-top: 2.5rem; }
+.invitacion-siguiente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 2rem;
+  color: var(--papel);
+  font-weight: 500;
+  text-decoration: none;
+}
+.invitacion-siguiente span { font-size: var(--step-lead); line-height: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .invitacion-siguiente:hover { text-decoration: underline; text-underline-offset: 4px; }
+}
+
 /* Barra: marca, tres enlaces, una acción. */
 .barra {
   display: flex;
