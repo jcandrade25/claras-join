@@ -11,8 +11,8 @@ let sitio;
 before(async () => { sitio = await servir(fileURLToPath(new URL('..', import.meta.url))); });
 after(async () => { await sitio.cerrar(); });
 
-async function pagina(ruta, ua, ancho = 390) {
-  const { browser, page } = await abrir({ ancho, alto: 844, ua });
+async function pagina(ruta, ua, ancho = 390, alto = 844) {
+  const { browser, page } = await abrir({ ancho, alto, ua });
   // El intento automático de abrir la app (claras://) no debe sacar la página.
   await page.route('claras://**', (r) => r.abort());
   await page.goto(`${sitio.url}${ruta}`);
@@ -60,8 +60,57 @@ test('sin código, o con uno que no sirve, no hay talón', async () => {
     const { browser, page } = await pagina(ruta, UA.iphone);
     try {
       assert.ok(await page.isHidden('[data-invitacion]'), ruta);
+      // Sin invitación, la barra sigue ofreciendo la descarga.
+      assert.ok(await page.isVisible('.boton-barra'), ruta);
     } finally { await browser.close(); }
   }
+});
+
+test('con invitación, el talón es la primera pantalla y la landing empieza debajo', async () => {
+  for (const [ua, ancho, alto] of [[UA.android, 390, 844], [UA.iphone, 375, 667], [UA.windows, 1440, 900]]) {
+    const { browser, page } = await pagina('/?c=ABC123', ua, ancho, alto);
+    const caso = `${ancho}x${alto}`;
+    try {
+      const m = await page.evaluate(() => {
+        const r = (s) => document.querySelector(s).getBoundingClientRect();
+        const fondo = (el) => getComputedStyle(el).backgroundColor;
+        const siguiente = document.querySelector('[data-ver-landing]');
+        return {
+          vista: innerHeight,
+          portada: Math.round(r('.portada').top),
+          // La tilde de "¿QUIÉN" sobresale de su caja: el titular empieza bien abajo del borde.
+          titular: Math.round(r('.titular').top),
+          fondoInvitacion: fondo(document.querySelector('[data-invitacion]')),
+          fondoBarra: fondo(document.querySelector('.barra')),
+          fondoLanding: fondo(document.body),
+          botonBarra: getComputedStyle(document.querySelector('.boton-barra')).display,
+          siguiente: siguiente && { href: siguiente.getAttribute('href'), abajo: Math.round(siguiente.getBoundingClientRect().bottom) },
+        };
+      });
+      // Lo del invitado no comparte pantalla con la landing.
+      assert.ok(m.portada >= m.vista - 1, `${caso}: la portada empieza en ${m.portada}`);
+      assert.ok(m.titular >= m.vista + 24, `${caso}: el titular empieza en ${m.titular} y su tilde asoma`);
+      // Otro fondo, el mismo en la barra y en el talón; la landing sigue en su ladrillo.
+      assert.notEqual(m.fondoInvitacion, m.fondoLanding, caso);
+      assert.equal(m.fondoBarra, m.fondoInvitacion, caso);
+      // Ninguna otra descarga compite con la del talón.
+      assert.equal(m.botonBarra, 'none', caso);
+      // Abajo, a la vista, el paso a la landing.
+      assert.ok(m.siguiente, `${caso}: falta el enlace a la landing`);
+      assert.equal(m.siguiente.href, '#que-es-claras', caso);
+      assert.ok(m.siguiente.abajo <= m.vista, `${caso}: el enlace queda en ${m.siguiente.abajo}`);
+    } finally { await browser.close(); }
+  }
+});
+
+test('desde la invitación, "¿Qué es Claras?" baja a la landing', async () => {
+  const { browser, page } = await pagina('/?c=ABC123', UA.iphone);
+  try {
+    await page.click('[data-ver-landing]');
+    await page.waitForTimeout(300);
+    const titular = await page.$eval('.titular', (e) => e.getBoundingClientRect().top);
+    assert.ok(titular >= 0 && titular < 300, `el titular queda en ${titular}`);
+  } finally { await browser.close(); }
 });
 
 test('los botones de acción llevan a Play en cualquier celular o computador', async () => {
