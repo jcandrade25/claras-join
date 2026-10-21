@@ -176,8 +176,13 @@ test('plazos, pasos y versión exactos, en los dos idiomas', () => {
     'kept for a year',
     'whether or not they chose one in "Who are you?"',
   ]) assert.ok(pen.includes(frase), frase);
-  assert.ok(seccion(eliminar, 'es').includes('ya no lo pueden sincronizar'), 'llave en celulares es');
-  assert.ok(seccion(eliminar, 'en').includes('can no longer sync it'), 'llave en celulares en');
+  // Prueba manual del 2026-10-21: con la app abierta, el grupo borrado se quita al momento.
+  for (const frase of ['lo quita al momento', 'ya no lo puede sincronizar']) {
+    assert.ok(seccion(eliminar, 'es').includes(frase), frase);
+  }
+  for (const frase of ['removes it right away', 'can no longer sync it']) {
+    assert.ok(seccion(eliminar, 'en').includes(frase), frase);
+  }
   assert.ok(eliminar.includes('toca <strong>Editar</strong>, toca <strong>Quitar</strong> en la foto y luego '
     + '<strong>Guardar cambios</strong>'), 'quitar foto es');
   assert.ok(eliminar.includes('tap <strong>Edit</strong>, tap <strong>Remove</strong> on the photo, then '
