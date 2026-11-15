@@ -1,0 +1,4 @@
+# GitHub Pages arma el sitio con Jekyll, que esconde las carpetas que empiezan
+# con punto. .well-known lleva el archivo de Apple (apple-app-site-association)
+# con el que los enlaces de invitación abren la app en iPhone.
+include: [".well-known"]

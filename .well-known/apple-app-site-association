@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["A75LYU82HA.com.jcandrade.cuentasClaras"],
+        "components": [
+          { "/": "/join/*", "comment": "Invitación a un grupo: clarasapp.com/join/?c=CODIGO" },
+          { "/": "/", "?": { "c": "?*" }, "comment": "Invitaciones viejas: clarasapp.com/?c=CODIGO" }
+        ]
+      }
+    ]
+  }
+}
