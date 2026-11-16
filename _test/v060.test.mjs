@@ -163,7 +163,7 @@ test('plazos, pasos y versión exactos, en los dos idiomas', () => {
     'puede tardar uno o dos días en desaparecer',
     'sin los datos de Claras',
     'No hay un interruptor para apagarlos.',
-    'la que acompaña la versión 0.6.0 de la app',
+    'la que acompaña la versión 0.6.4 de la app',
     'el historial de compras',
     'que se guarda un año',
   ]) assert.ok(pes.includes(frase), frase);
@@ -171,7 +171,7 @@ test('plazos, pasos y versión exactos, en los dos idiomas', () => {
     'can take a day or two to disappear',
     "without Claras' data",
     "There's no switch to turn them off.",
-    'the one that ships with app version 0.6.0',
+    'the one that ships with app version 0.6.4',
     'purchase history',
     'kept for a year',
     'whether or not they chose one in "Who are you?"',
